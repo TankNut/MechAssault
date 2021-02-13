@@ -1,0 +1,15 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault\lonewolf\pilot\pilot01_head_black"
+	$bumpmap	 "models\mechassault\lonewolf\pilot\Pilot01_head_normal"
+	$phong				1
+	$phongboost			0.3
+	$phongexponent		40
+	$phongexponenttexture	"models\mechassault\lonewolf\pilot\Pilot01_head_cmplx"
+	$phongtint			"[.85 .85 1]"
+	$phongfresnelranges	"[.3 4 8]"
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+}

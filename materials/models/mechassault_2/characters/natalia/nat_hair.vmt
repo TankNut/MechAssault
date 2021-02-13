@@ -1,0 +1,15 @@
+//
+VertexLitGeneric
+{
+$basetexture "models\mechassault\lonewolf\natalia\natalia_hair"
+$bumpmap "models\mechassault\lonewolf\natalia\natalia_hair_bump"
+$alphatest 1
+//$alphatestreference 0.85
+$allowAlphaToCoverage 1
+$ambientocclusion	1
+$halflambert		1
+$diffuseexp			1
+$phongexponenttexture "models\mechassault\lonewolf\natalia\natalia_hair_env"
+$phongfresnelranges "[0 0.5 1]"
+	
+}

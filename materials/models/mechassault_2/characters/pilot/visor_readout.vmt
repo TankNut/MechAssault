@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	"$basetexture" "models\mechassault\lonewolf\pilot\Pilot01_faceplate_readout"
+	"$nocull"		"1"
+$alpha 1
+$additive 1
+
+}

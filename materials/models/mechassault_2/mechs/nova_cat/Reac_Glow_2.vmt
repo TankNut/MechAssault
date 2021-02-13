@@ -1,0 +1,15 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "models/mechassault_2/mechs/cougar/mech_color_reactor"
+	"$color2"		"[2 5 0.15]"
+	"$translucent"	"1"
+//	"$detail" "models/mechassault_2/vehicles/Military/VMIL_Rommel/VP_Tank_01_002_lights"
+//	"$detailscale" "1"
+//	"$detailblendfactor" "5"
+//	"$detailblendmode" "5"
+	"$additive"	"0"
+
+
+
+}
+

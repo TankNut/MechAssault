@@ -1,0 +1,38 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_Rommel/Vmil_RommelMk2_turret_low"
+	"$bumpmap" "models/mechassault_2/vehicles/Military/VMIL_Rommel/Vmil_RommelMK2_low_nrml"
+	$normalmapalphaenvmapmask 		1
+	$envmap			env_cubemap
+	$envmaptint "[0.15 0.15 0.15]"
+	$envmapfresnel 0.3
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .09
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+	"$blendtintbybasealpha" 1
+
+	Proxies
+	{
+		Clamp
+		{
+			min 0.15
+			max 1
+			srcVar1 "$color"
+			resultVar "$phongtint"
+		}
+		Clamp
+		{
+			min 0.3
+			max 1
+			srcVar1 "$color"
+			resultVar "$envmaptint"
+		}
+	}
+}
+
+
+
+

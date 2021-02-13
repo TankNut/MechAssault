@@ -1,0 +1,11 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault\lonewolf\pilot\Pilot01_faceplate"
+	$normalmapalphaenvmapmask		"models\mechassault\lonewolf\pilot\pilot01_faceplate_cmplx"
+	$envmap 		env_cubemap
+	$envmaptint "[0.2 0.5 0.4]"
+	"$rimlight" 1
+	"$rimlightexponent"       20
+	"$phongfresnelranges" "[1.2 3 8]"
+	$nodecal		1
+}

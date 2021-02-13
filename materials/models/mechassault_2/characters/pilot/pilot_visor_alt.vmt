@@ -1,0 +1,12 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "models\mechassault\lonewolf\pilot\Pilot01_faceplate_readout"
+"$envmapmask" "glass/reflectiveglass003_mask"
+	"$surfaceprop" "glass"
+	"$rimlight" 1
+	"$rimlightexponent"       20
+	"$phongfresnelranges" "[1.2 3 8]"
+	"$translucent" 	0
+	"$transparent"	1
+
+}

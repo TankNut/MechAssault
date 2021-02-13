@@ -1,0 +1,31 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "models/mechassault_2/mechs/cougar/mech_color_reactor"
+//	"$color2"		"[2 0.15 0.15]"
+	"$translucent"	"1"
+//	"$detail" "models/mechassault_2/vehicles/Military/VMIL_Rommel/VP_Tank_01_002_lights"
+//	"$detailscale" "1"
+//	"$detailblendfactor" "5"
+//	"$detailblendmode" "5"
+	"$additive"	"0"
+	"$blendtintbybasealpha" 1
+
+	Proxies
+	{
+		Clamp
+		{
+			min 0.15
+			max 1
+			srcVar1 "$color"
+			resultVar "$phongtint"
+		}
+		Clamp
+		{
+			min 0.25
+			max 1
+			srcVar1 "$color"
+			resultVar "$envmaptint"
+		}
+	}
+}
+

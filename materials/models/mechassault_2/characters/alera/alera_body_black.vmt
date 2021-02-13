@@ -1,0 +1,23 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault\lonewolf\alera\alera_body_black"
+	$bumpmap	 "models\mechassault\lonewolf\alera\alera_body_normal"
+	$phong				1
+	$phongboost			0.3
+	$phongexponent		40
+	$phongexponenttexture	"models\mechassault\lonewolf\alera\Alera_body_cmplx"
+	$phongtint			"[.85 .85 1]"
+	$phongfresnelranges	"[.3 4 8]"
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "dev/null"
+	$emissiveBlendBaseTexture	"models\mechassault\lonewolf\alera\Alera_body_illum"
+	$emissiveBlendFlowTexture     "dev/null"
+	$emissiveBlendTint "[8 8 8 ]"
+	$emissiveBlendStrength 14
+	$emissiveBlendScrollVector "[0 0]"
+
+}

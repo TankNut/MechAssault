@@ -1,0 +1,15 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault\lonewolf\natalia\Nat_pilot_head_blue"
+	$bumpmap	 "models\mechassault\lonewolf\natalia\Nat_pilot_head_bump"
+	$phong				1
+	$phongboost			0.3
+	$phongexponent		40
+	$phongtint			"[.85 .85 1]"
+	$phongfresnelranges	"[.3 4 8]"
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+
+}

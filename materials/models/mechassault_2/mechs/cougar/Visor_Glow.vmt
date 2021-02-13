@@ -1,0 +1,24 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/mechs/cougar/glass"
+//	"$bumpmap" "models/mechassault_2/mechs/cougar/cgr_body_normal"
+	"$model" 1
+	"$color2"		"[4 1.75 .25]"
+	"$phong" 1
+	"$phongboost" .15
+	"$phongexponent" 5
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+	"$nocull"		1
+	"$envmap"	"env_cubemap"
+	"$envmaptint"	"[.4 .4 .4]"
+	"$envmapsaturation"	".25"
+	"$additive"	"1"
+	"$blendtintbybasealpha"	1
+}
+
+
+
+
+

@@ -1,0 +1,18 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_APC/VMil_APC_Generic_Laser"
+	"$bumpmap" "models/mechassault_2/vehicles/Military/VMIL_APC/VMil_APC_Generic_Laser_nrml"
+	$normalmapalphaenvmapmask 		1
+	$envmap			env_cubemap
+	$envmaptint "[0.1 0.1 0.1]"
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .09
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+}
+
+
+
+

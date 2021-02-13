@@ -1,0 +1,22 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/mechs/Uziel/Uziel_Body"
+	"$bumpmap" "models/mechassault_2/mechs/Uziel/belial_body_nrml"
+	$normalmapalphaenvmapmask 		1
+	$envmap			env_cubemap
+	$envmaptint "[0.6 0.6 0.6]"
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .05
+	"$phongexponent" 25
+	"$phongtint"	"[.5 .5 .5]"
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+	"$nocull"		1
+
+}
+
+
+
+

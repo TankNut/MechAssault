@@ -1,0 +1,15 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/mechs/nova_cat/nova_cat_visor_glow"
+	"$color2"		"[5 1 0]"
+"$detail"				"models/mechassault_2/mechs/nova_cat/nova_cat_visor_glow"
+"$detailblendmode"			"5.00"
+"$detailblendfactor"			"1.00"
+"$detailscale"			"1.00"
+"$blendtintbybasealpha"	1
+}
+
+
+
+
+

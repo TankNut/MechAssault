@@ -1,0 +1,19 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/mechs/cougar/MA1Puma_Orig"
+	"$bumpmap" "models/mechassault_2/mechs/cougar/cgr_body_normal"
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .05
+	"$phongexponent" 25
+	"$phongtint"	"[.5 .5 .5]"
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+	"$nocull"		1
+
+}
+
+
+
+

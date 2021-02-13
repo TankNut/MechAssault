@@ -1,0 +1,15 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_Manticore/VMIL_Manticore_Spec"
+//	"$bumpmap" "models/mechassault_2/vehicles/Military/VMIL_Manticore/Vmil_Manticore_norm"
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .09
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+}
+
+
+
+
