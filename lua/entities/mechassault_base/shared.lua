@@ -28,7 +28,8 @@ ENT.HullMax 				= Vector(128, 128, 365)
 
 ENT.Model 					= Model("models/mechassault_2/mechs/mad_dog.mdl")
 
-ENT.Margin = 1.1
+ENT.Margin 					= 1.1
+ENT.StandRate 				= 0.5
 
 include("sh_animation.lua")
 include("sh_move.lua")
@@ -38,13 +39,18 @@ function ENT:Initialize()
 	self:SetModel(self.Model)
 	self:SetupPhysics(self.HullMin, self.HullMax)
 
+	self:ResetSequence("power_down")
+	self:SetCycle(1)
+
+	self:SetPlaybackRate(self.StandRate)
+
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
 	end
 end
 
 function ENT:SetupDataTables()
-	self:NetworkVar("Entity", 0, "Gun")
+	self:NetworkVar("Entity", 0, "Player")
 
 	self:NetworkVar("Vector", 0, "MoveSpeed")
 
@@ -53,6 +59,8 @@ function ENT:SetupDataTables()
 
 	self:NetworkVar("Bool", 0, "Running")
 	self:NetworkVar("Bool", 1, "ThirdPerson")
+
+	self:NetworkVar("Float", 0, "StandTimer")
 
 	self:SetForcedAngle(Angle(0, 0, 180))
 	self:SetAimAngle(Angle(0, self:GetAngles().y, 0))
@@ -83,11 +91,13 @@ end
 function ENT:Think()
 	self:NextThink(CurTime())
 
-	if CLIENT and game.SinglePlayer() then
-		self:UpdateAnimation()
-	end
+	self:UpdateAnimation()
 
 	return true
+end
+
+function ENT:AllowControl()
+	return self:GetStandTimer() < CurTime()
 end
 
 function ENT:Attack()
@@ -127,6 +137,11 @@ if CLIENT then
 	end
 else
 	function ENT:Use(ply)
+		self:SetCycle(0)
+		self:SetSequence("power_up")
+
+		self:SetStandTimer(CurTime() + self:SequenceDuration() / self.StandRate)
+
 		drive.PlayerStartDriving(ply, self, "drive_mechassault")
 	end
 end

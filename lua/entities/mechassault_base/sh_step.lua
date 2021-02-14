@@ -7,7 +7,9 @@ function ENT:TraceHull(start, endpos)
 		mins = self.HullMin,
 		maxs = self.HullMax,
 		mask = MASK_PLAYERSOLID,
-		filter = {self}
+		filter = function(ent)
+			return ent != self and ent:GetMoveType() != MOVETYPE_NOCLIP
+		end
 	})
 end
 

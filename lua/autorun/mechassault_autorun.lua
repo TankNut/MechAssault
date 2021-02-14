@@ -15,20 +15,55 @@ function vector:Clamp(min, max)
 	self.z = math.Clamp(self.z, min.z, max.z)
 end
 
+sound.Add({
+	name = "MA2_Mech.Step",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 90,
+	pitch = {95, 110},
+	sound = {
+		"MECHASSAULT_2/mech_step_1.ogg",
+		"MECHASSAULT_2/mech_step_2.ogg",
+		"MECHASSAULT_2/mech_step_3.ogg",
+		"MECHASSAULT_2/mech_step_4.ogg"
+	}
+})
+
+hook.Add("EntityEmitSound", "mechassault", function(snd)
+	if snd.OriginalSoundName == "MA2_Mech.Step" then
+		snd.SoundName = string.format("MECHASSAULT_2/mech_step_%s.ogg", math.random(1, 4)) -- We just want something random, not mech_step_1 through 4 in order
+
+		return true
+	end
+end)
+
 drive.Register("drive_mechassault", {
+	Init = function(self, cmd)
+		self.Entity:SetPlayer(self.Player)
+	end,
+	Stop = function(self)
+		self.StopDriving = true
+		self.Entity:SetPlayer(NULL)
+	end,
 	StartMove = function(self, mv, cmd)
-		if self.Entity:StartMove(self.Player, mv, cmd) then
+		self.Player:SetObserverMode(OBS_MODE_CHASE)
+
+		if self.Entity:AllowControl() and self.Entity:StartMove(self.Player, mv, cmd) then
 			self:Stop()
 		end
 	end,
 	Move = function(self, mv)
-		self.Entity:Move(mv)
+		if self.Entity:AllowControl() then
+			self.Entity:Move(mv)
+		end
 	end,
 	FinishMove = function(self, mv)
-		self.Entity:FinishMove(mv)
+		if self.Entity:AllowControl() then
+			self.Entity:FinishMove(mv)
 
-		if self.StopDriving then
-			self.Entity:StopDriving(self.Player)
+			if self.StopDriving then
+				self.Entity:StopDriving(self.Player)
+			end
 		end
 	end,
 	CalcView = function(self, view)

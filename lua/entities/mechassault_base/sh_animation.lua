@@ -1,31 +1,37 @@
 AddCSLuaFile()
 
 function ENT:UpdateAnimation()
-	local yaw = math.NormalizeAngle(self:GetAimAngle().y - self:GetAngles().y)
+	local ply = self:GetPlayer()
 
-	self:SetPoseParameter("aim_yaw", yaw)
-	self:SetPoseParameter("move_y", 0)
+	local sequence
+	local yaw = 0
 
-	local walk, run = self:GetSpeeds()
-	local awalk, arun = self:GetAnimationSpeeds()
-	local vel = self:GetMoveSpeed():Length()
+	if IsValid(ply) and self:AllowControl() then
+		yaw = math.NormalizeAngle(self:GetAimAngle().y - self:GetAngles().y)
+		sequence = self:GetRunning() and "run" or "walk"
 
-	local arate, mrate
+		local walk, run = self:GetSpeeds()
+		local awalk, arun = self:GetAnimationSpeeds()
+		local vel = self:GetMoveSpeed():Length()
 
-	local running = self:GetRunning()
+		local running = self:GetRunning()
+		local arate, mrate
 
-	if running then
-		arate = vel / arun
-		mrate = vel / run
-	else
-		arate = vel / awalk
-		mrate = vel / walk
+		if running then
+			arate = vel / arun
+			mrate = vel / run
+		else
+			arate = vel / awalk
+			mrate = vel / walk
+		end
+
+		self:SetPoseParameter("move_x", mrate)
+		self:SetPlaybackRate(arate)
+
+		if sequence != self:GetSequenceName(self:GetSequence()) then
+			self:ResetSequence(sequence)
+		end
 	end
 
-	self:SetPoseParameter("move_x", mrate)
-	self:SetPlaybackRate(arate)
-
-	local sequence = self:GetRunning() and self:LookupSequence("run") or self:LookupSequence("walk")
-
-	self:ResetSequence(sequence)
+	self:SetPoseParameter("aim_yaw", yaw)
 end

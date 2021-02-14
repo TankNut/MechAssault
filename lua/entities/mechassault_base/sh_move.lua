@@ -32,8 +32,6 @@ function ENT:GetSpeedData(mv)
 end
 
 function ENT:StartMove(ply, mv, cmd)
-	ply:SetObserverMode(OBS_MODE_CHASE)
-
 	mv:SetOrigin(self:GetNetworkOrigin())
 	mv:SetVelocity(self:GetMoveSpeed())
 
@@ -93,8 +91,6 @@ function ENT:FinishMove(mv)
 
 	ang.p = 0
 
-	self:UpdateAnimation()
-
 	self:SetNetworkOrigin(mv:GetOrigin())
 
 	if self:HasMoveInput(mv) then
@@ -123,8 +119,8 @@ end
 
 function ENT:StopDriving(ply)
 	self:SetMoveSpeed(vector_origin)
-
-	self:UpdateAnimation()
+	self:ResetSequence(self:LookupSequence("power_down"))
+	self:SetPlaybackRate(self.StandRate)
 end
 
 if CLIENT then
