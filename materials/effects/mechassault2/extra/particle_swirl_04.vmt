@@ -1,0 +1,7 @@
+SpriteCard
+{
+$basetexture "effects\mechassault2\extra\Particle_Swirl_04"
+$Additive 1
+$overbrightfactor 5
+$depthblendscale 12
+}
