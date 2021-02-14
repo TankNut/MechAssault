@@ -587,13 +587,6 @@ $collisionjoints "raptor_physics.smd" {
 	$jointconstrain "joint_rankle" x limit -25.00 30.00 0.00
 	$jointconstrain "joint_rankle" y limit -25.00 6.00 0.00
 	$jointconstrain "joint_rankle" z limit -10.00 35.00 0.00
-
-
-	$jointcollide joint_rankle joint_ldleg
-	$jointcollide joint_lankle joint_rdleg
-	$jointcollide joint_lankle joint_rankle
-	$jointcollide joint_rdleg joint_ldleg
-	$jointcollide joint_rujoint_lulegeg L
 }
 $collisiontext
 {

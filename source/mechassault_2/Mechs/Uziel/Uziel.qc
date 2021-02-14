@@ -604,18 +604,6 @@ $collisionjoints "uziel_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -35.00 45.00 0.00
 	$jointconstrain "joint_lankle" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_lankle" z limit 0.00 0.00 0.00
-
-	$jointcollide joint_rgun joint_ruleg
-	$jointcollide joint_rgun joint_luleg
-	$jointcollide joint_lgun joint_ruleg
-	$jointcollide joint_lgun joint_luleg
-	$jointcollide joint_rankle joint_ldleg
-	$jointcollide joint_lankle joint_rdleg
-	$jointcollide joint_lankle joint_rankle
-	$jointcollide joint_rdleg joint_ldleg
-	$jointcollide joint_ruleg joint_luleg
-	$jointcollide joint_rgun joint_torso
-	$jointcollide joint_lgun joint_torso
 }
 $collisiontext
 {

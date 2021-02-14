@@ -571,13 +571,6 @@ $collisionjoints "owens_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -5.00 30.00 0.00
 	$jointconstrain "joint_lankle" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_lankle" z limit 0.00 0.00 0.00
-
-
-	$jointcollide joint_rankle joint_ldleg
-	$jointcollide joint_lankle joint_rdleg
-	$jointcollide joint_lankle joint_rankle
-	$jointcollide joint_rdleg joint_ldleg
-	$jointcollide joint_rujoint_lulegeg L
 }
 $collisiontext
 {

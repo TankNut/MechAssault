@@ -594,12 +594,6 @@ $collisionjoints "maddog_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -15.00 15.00 0.00
 	$jointconstrain "joint_lankle" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_lankle" z limit -10.00 35.00 0.00
-
-	$jointcollide joint_rankle joint_ldleg
-	$jointcollide joint_lankle joint_rdleg
-	$jointcollide joint_lankle joint_rankle
-	$jointcollide joint_rdleg joint_ldleg
-	$jointcollide joint_ruleg joint_luleg
 }
 $collisiontext
 {

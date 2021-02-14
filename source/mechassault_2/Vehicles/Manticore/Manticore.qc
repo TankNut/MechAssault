@@ -52,8 +52,6 @@ $collisionjoints "Manticore_physics.smd" {
 	$jointconstrain "cann" x limit 0.00 0.00 0.00
 	$jointconstrain "cann" y limit 0.00 0.00 0.00
 	$jointconstrain "cann" z limit 0.00 0.00 0.00
-
-	$jointcollide cann turret
 }
 $collisiontext
 {

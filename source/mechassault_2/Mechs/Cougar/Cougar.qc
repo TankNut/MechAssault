@@ -629,18 +629,6 @@ $collisionjoints "cougar_physics.smd" {
 	$jointconstrain "joint_rgunabove" x limit 0.00 0.00 0.00
 	$jointconstrain "joint_rgunabove" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_rgunabove" z limit -150.00 75.00 0.00
-
-	$jointcollide joint_rgunabove joint_ruleg
-	$jointcollide joint_rgunabove joint_luleg
-	$jointcollide joint_lgunabove joint_ruleg
-	$jointcollide joint_lgunabove joint_luleg
-	$jointcollide joint_rankle joint_ldleg
-	$jointcollide joint_lankle joint_rdleg
-	$jointcollide joint_lankle joint_rankle
-	$jointcollide joint_rdleg joint_ldleg
-	$jointcollide joint_ruleg joint_luleg
-	$jointcollide joint_rgunabove joint_torso
-	$jointcollide joint_lgunabove joint_torso
 }
 $collisiontext
 {
