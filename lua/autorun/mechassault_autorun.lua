@@ -80,18 +80,18 @@ if CLIENT then
 			return
 		end
 
-		-- local tr = util.TraceLine({
-		-- 	start = ent:GetShootPos(),
-		-- 	endpos = ent:GetShootPos() + ent:GetAimAngle():Forward() * 32768,
-		-- 	filter = {ent, ent:GetGun()}
-		-- })
+		local tr = util.TraceLine({
+			start = ent:GetAimOrigin(),
+			endpos = ent:GetAimOrigin() + ent:GetAimAngle():Forward() * 32768,
+			filter = {ent}
+		})
 
-		-- local screen = tr.HitPos:ToScreen()
+		local screen = tr.HitPos:ToScreen()
 
-		-- cam.Start2D()
-		-- 	surface.SetDrawColor(255, 0, 0)
-		-- 	surface.DrawLine(screen.x - 5, screen.y, screen.x + 5, screen.y)
-		-- 	surface.DrawLine(screen.x, screen.y - 5, screen.x, screen.y + 5)
-		-- cam.End2D()
+		cam.Start2D()
+			surface.SetDrawColor(255, 0, 0)
+			surface.DrawLine(screen.x - 5, screen.y, screen.x + 5, screen.y)
+			surface.DrawLine(screen.x, screen.y - 5, screen.x, screen.y + 5)
+		cam.End2D()
 	end)
 end

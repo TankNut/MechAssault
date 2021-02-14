@@ -140,13 +140,9 @@ if CLIENT then
 
 	function ENT:HandleThirdPersonView(ply, view)
 		local ang = ply:EyeAngles()
-		local pos = self:GetPos() + Vector(0, 0, 64)
-		local target = self:GetOffset()
+		local pos = self:WorldSpaceCenter()
 
-		target.z = -target.z
-
-		target:Rotate(ang)
-		target = pos - target
+		local target = LocalToWorld(self.ViewOffset, angle_zero, pos, ang)
 
 		local tr = util.TraceHull({
 			start = pos,

@@ -28,8 +28,13 @@ ENT.HullMax 				= Vector(128, 128, 365)
 
 ENT.Model 					= Model("models/mechassault_2/mechs/mad_dog.mdl")
 
+ENT.ViewOffset 				= Vector(-500, 0, 200)
+
 ENT.Margin 					= 1.1
 ENT.StandRate 				= 0.5
+
+ENT.WeaponAttachments 		= {1, 2, 3, 4, 5, 6, 7, 8}
+ENT.AimOffset 				= Vector(0, 0, 100)
 
 include("sh_animation.lua")
 include("sh_move.lua")
@@ -94,6 +99,10 @@ function ENT:Think()
 	self:UpdateAnimation()
 
 	return true
+end
+
+function ENT:GetAimOrigin()
+	return self:WorldSpaceCenter() + self.AimOffset
 end
 
 function ENT:AllowControl()
