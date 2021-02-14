@@ -119,7 +119,8 @@ end
 
 function ENT:StopDriving(ply)
 	self:SetMoveSpeed(vector_origin)
-	self:ResetSequence(self:LookupSequence("power_down"))
+	self:SetCycle(0)
+	self:ResetSequence("power_down")
 	self:SetPlaybackRate(self.StandRate)
 end
 
