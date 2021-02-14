@@ -20,7 +20,7 @@ ENT.Category 				= "MechAssault"
 
 ENT.Spawnable 				= true
 
-ENT.PhysgunDisabled 		= true
+ENT.PhysgunDisabled 		= false
 ENT.m_tblToolsAllowed 		= nil
 
 ENT.HullMin 				= Vector(-128, -128, 0)
@@ -33,7 +33,7 @@ ENT.ViewOffset 				= Vector(-500, 0, 200)
 ENT.Margin 					= 1.1
 ENT.StandRate 				= 0.5
 
-ENT.WeaponAttachments 		= {1, 2, 3, 4, 5, 6, 7, 8}
+ENT.WeaponAttachments 		= {1, 2, 3, 4}
 ENT.AimOffset 				= Vector(0, 0, 100)
 
 include("sh_animation.lua")
@@ -66,6 +66,7 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Bool", 1, "ThirdPerson")
 
 	self:NetworkVar("Float", 0, "StandTimer")
+	self:NetworkVar("Float", 1, "NextAttack")
 
 	self:SetForcedAngle(Angle(0, 0, 180))
 	self:SetAimAngle(Angle(0, self:GetAngles().y, 0))
@@ -105,11 +106,40 @@ function ENT:GetAimOrigin()
 	return self:WorldSpaceCenter() + self.AimOffset
 end
 
+function ENT:GetAimPos()
+	return util.TraceLine({
+		start = self:GetAimOrigin(),
+		endpos = self:GetAimOrigin() + self:GetAimAngle():Forward() * 32768,
+		filter = {self}
+	}).HitPos
+end
+
 function ENT:AllowControl()
-	return self:GetStandTimer() < CurTime()
+	return self:GetStandTimer() <= CurTime()
 end
 
 function ENT:Attack()
+	if self:GetNextAttack() > CurTime() then
+		return
+	end
+
+	if SERVER then
+		self:EmitSound("MECHASSAULT_2/laser_lvl2.ogg")
+		for _, v in ipairs(self.WeaponAttachments) do
+			local attachment = self:GetAttachment(v)
+
+			local ent = ents.Create("mechassault_laser_lvl1")
+
+			ent:SetPos(attachment.Pos)
+			ent:SetAngles((self:GetAimPos() - attachment.Pos):Angle())
+			ent:SetOwner(self)
+
+			ent:Spawn()
+			ent:Activate()
+		end
+	end
+
+	self:SetNextAttack(CurTime() + 0.5)
 end
 
 function ENT:SecondaryAttack()

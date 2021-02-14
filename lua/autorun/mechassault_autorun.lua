@@ -15,6 +15,8 @@ function vector:Clamp(min, max)
 	self.z = math.Clamp(self.z, min.z, max.z)
 end
 
+game.AddParticles("particles/gm_mechassault_2_projectile_effects.pcf")
+
 sound.Add({
 	name = "MA2_Mech.Step",
 	channel = CHAN_AUTO,
@@ -80,13 +82,7 @@ if CLIENT then
 			return
 		end
 
-		local tr = util.TraceLine({
-			start = ent:GetAimOrigin(),
-			endpos = ent:GetAimOrigin() + ent:GetAimAngle():Forward() * 32768,
-			filter = {ent}
-		})
-
-		local screen = tr.HitPos:ToScreen()
+		local screen = ent:GetAimPos():ToScreen()
 
 		cam.Start2D()
 			surface.SetDrawColor(255, 0, 0)
