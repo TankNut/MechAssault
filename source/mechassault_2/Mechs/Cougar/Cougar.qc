@@ -347,8 +347,6 @@ $Sequence "walk" {
 	activity "ACT_WALK" 1
 	addlayer	"aimlayer_generic"
 	snap
-	fadein 0.3
-	fadeout 0.5
 	loop
 	fps 15
 	node "movement"
