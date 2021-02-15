@@ -1,0 +1,26 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/mechs/thor/thr_body_low"
+	"$bumpmap" "models/mechassault_2/mechs/thor/summoner_body_nrml"
+	$normalmapalphaenvmapmask 		1 
+	$envmap			env_cubemap
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$envmaptint "[1 1 1]"
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .05
+	"$phongexponent" 25
+	"$phongtint"	"[.5 .5 .5]"
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+	"$nocull"		1
+	"$blendtintbybasealpha"		1
+	"$color2"		"{100 125 185}"
+}
+
+
+
+

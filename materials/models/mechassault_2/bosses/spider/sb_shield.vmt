@@ -1,0 +1,22 @@
+"VertexlitGeneric"
+{
+	"$basetexturetransform"	"center .5 .5 scale .01 .01 rotate 0  translate 0 0"
+	"$translucent" 1
+	"$additive"	1
+	"$vertexcolor" 1
+	"$decal" 1	
+	"$color2"		"[1 2 5]"
+	"$basetexture" "models\mechassault_2\bosses\spider\Wpn_Shields_Anim_alt"
+	"$selfillum"	"1"
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "models\mechassault_2\bosses\spider\shield_scan_line_vert"
+	$emissiveBlendBaseTexture	"models\mechassault_2\bosses\spider\shield_scan_line_vert"
+	$emissiveBlendFlowTexture     "models\mechassault_2\bosses\spider\shield_scan_line_vert"
+	$emissiveBlendTint "[.1 .2 1]"
+	$emissiveBlendStrength 0.6
+	$emissiveBlendScrollVector "[.5 0]"
+	"$basetexturetransform"	"center .5 .5 scale 1.2 1.2 rotate 0  translate 0 0"
+	
+
+
+}

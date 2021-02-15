@@ -1,0 +1,26 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault_2\bosses\spider\sb_metal_screen"
+	$bumpmap 		"models\mechassault_2\bosses\spider\sb_metal_screen_nrml"
+	$normalmapalphaenvmapmask	1
+	$envmap			env_cubemap
+	$envmaptint "[0.3 0.3 0.3]"
+	$translucent	1
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+	$rimlight               1
+	$rimlightexponent       30
+	$rimlightboost          1	
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "models\mechassault_2\bosses\spider\Wpn_Shields_Anim"
+	$emissiveBlendBaseTexture	"models\mechassault_2\bosses\spider\Wpn_Shields_Anim"
+	$emissiveBlendFlowTexture     "models\mechassault_2\mechs\battle_armor\particle_glow_04"
+	$emissiveBlendTint "[2 0.5 25 ]"
+	$emissiveBlendStrength 14
+	$emissiveBlendScrollVector "[0 0.1]"
+
+
+
+}

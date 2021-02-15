@@ -1,0 +1,18 @@
+"UnlitGeneric"
+{
+	"$basetexture"	"models/mechassault_2/salvage/electric_bolts"
+	"$additive"	1
+	"$color2"		"{190 200 255}"
+
+"Proxies"
+   {
+      "AnimatedTexture"
+      {
+         "animatedtexturevar" "$basetexture"
+         "animatedtextureframenumvar" "$frame"
+         "animatedtextureframerate" "30"
+      }
+   }
+
+
+}
