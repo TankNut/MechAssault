@@ -1,0 +1,10 @@
+"UnlitGeneric"
+{
+	"$basetexture"	"effects/mechassault2/extra/distortion_ring_diff"
+//	"$bumpmap"	"effects/halo3/distortion_ring_diff"
+	"$translucent"	"1"
+	"$vertexalpha"	"1"
+	"$vertexcolor"	"1"
+
+
+}
