@@ -29,12 +29,14 @@ if CLIENT then
 	end
 else
 	function ENT:PhysicsCollide(data, phys)
-		if data.HitEntity then
+		local mech = self:GetOwner()
+
+		if data.HitEntity and IsValid(mech) then
 			local dmg = DamageInfo()
 
 			dmg:SetDamageType(DMG_DIRECT)
-			dmg:SetInflictor(self:GetOwner())
-			dmg:SetAttacker(self:GetOwner():GetPlayer())
+			dmg:SetInflictor(mech)
+			dmg:SetAttacker(mech:GetPlayer())
 			dmg:SetDamage(self.Damage)
 			dmg:SetDamagePosition(self:GetPos())
 
