@@ -15,7 +15,12 @@ function vector:Clamp(min, max)
 	self.z = math.Clamp(self.z, min.z, max.z)
 end
 
+function scripted_ents.IsTypeOf(name, base)
+	return name == base or scripted_ents.IsBasedOn(name, base)
+end
+
 game.AddParticles("particles/gm_mechassault_2_projectile_effects.pcf")
+game.AddParticles("particles/gm_mechassault_2_muzzleflash_effects.pcf")
 
 sound.Add({
 	name = "MA2_Mech.Step",

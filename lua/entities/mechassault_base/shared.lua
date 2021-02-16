@@ -8,37 +8,37 @@ STATE_COMBAT 	= 1
 AddCSLuaFile()
 
 ENT.Type 					= "anim"
-
-ENT.RenderGroup 			= RENDERGROUP_OPAQUE
-
 ENT.AutomaticFrameAdvance 	= true
 
 ENT.PrintName 				= "Mad Dog"
 ENT.Author 					= "TankNut"
 
 ENT.Category 				= "MechAssault"
-
 ENT.Spawnable 				= true
 
 ENT.PhysgunDisabled 		= false
 ENT.m_tblToolsAllowed 		= nil
 
-ENT.HullMin 				= Vector(-128, -128, 0)
-ENT.HullMax 				= Vector(128, 128, 365)
+ENT.HullMin 				= Vector(-140, -140, 0)
+ENT.HullMax 				= Vector(140, 140, 420)
 
 ENT.Model 					= Model("models/mechassault_2/mechs/mad_dog.mdl")
 
-ENT.ViewOffset 				= Vector(-500, 0, 200)
+ENT.ViewOffset 				= Vector(-500, 0, 240)
 
 ENT.Margin 					= 1.1
 ENT.StandRate 				= 0.5
 
-ENT.WeaponAttachments 		= {1, 2, 3, 4}
-ENT.AimOffset 				= Vector(0, 0, 100)
-
 include("sh_animation.lua")
 include("sh_move.lua")
 include("sh_step.lua")
+
+ENT.WeaponTypes = {}
+ENT.WeaponLoadout = {
+	{Type = "Laser", Level = 1}
+}
+
+include("weapons/weapon_laser.lua")
 
 function ENT:Initialize()
 	self:SetModel(self.Model)
@@ -68,9 +68,27 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Float", 0, "StandTimer")
 	self:NetworkVar("Float", 1, "NextAttack")
 
+	self:NetworkVar("Int", 0, "CurrentWeapon")
+
+	for k, v in ipairs(self.WeaponLoadout) do
+		local name = "WeaponLevel" .. k
+
+		self:NetworkVar("Int", k, name)
+		self["Set" .. name](self, v.Level)
+	end
+
 	self:SetForcedAngle(Angle(0, 0, 180))
 	self:SetAimAngle(Angle(0, self:GetAngles().y, 0))
 	self:SetThirdPerson(true)
+	self:SetCurrentWeapon(1)
+end
+
+function ENT:GetWeaponLevel(index)
+	return self["GetWeaponLevel" .. index](self)
+end
+
+function ENT:SetWeaponLevel(index, level)
+	self["SetWeaponLevel" .. index](self, level)
 end
 
 function ENT:SetupPhysics(mins, maxs)
@@ -103,7 +121,7 @@ function ENT:Think()
 end
 
 function ENT:GetAimOrigin()
-	return self:WorldSpaceCenter() + self.AimOffset
+	return self:WorldSpaceCenter() + Vector(0, 0, self.ViewOffset.z)
 end
 
 function ENT:GetAimPos()
@@ -118,28 +136,27 @@ function ENT:AllowControl()
 	return self:GetStandTimer() <= CurTime()
 end
 
+function ENT:UpgradeWeapon(weaponType)
+	for k, v in ipairs(self.WeaponLoadout) do
+		local class = self.WeaponTypes[v.Type]
+
+		if class.Type == weaponType then
+			self:SetWeaponLevel(k, math.min(self:GetWeaponLevel(k) + 1, class.MaxLevel))
+
+		end
+	end
+end
+
 function ENT:Attack()
 	if self:GetNextAttack() > CurTime() then
 		return
 	end
 
-	if SERVER then
-		self:EmitSound("MECHASSAULT_2/laser_lvl2.ogg")
-		for _, v in ipairs(self.WeaponAttachments) do
-			local attachment = self:GetAttachment(v)
+	local index = self:GetCurrentWeapon()
+	local weapon = self.WeaponLoadout[index]
+	local class = self.WeaponTypes[weapon.Type]
 
-			local ent = ents.Create("mechassault_laser_lvl1")
-
-			ent:SetPos(attachment.Pos)
-			ent:SetAngles((self:GetAimPos() - attachment.Pos):Angle())
-			ent:SetOwner(self)
-
-			ent:Spawn()
-			ent:Activate()
-		end
-	end
-
-	self:SetNextAttack(CurTime() + 0.5)
+	self[class.Function](self, class, self:GetWeaponLevel(index))
 end
 
 function ENT:SecondaryAttack()

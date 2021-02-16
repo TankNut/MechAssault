@@ -9,7 +9,7 @@ function ENT:GetSpeeds()
 end
 
 function ENT:GetAnimationSpeeds()
-	return 180, 330
+	return 200, 350
 end
 
 function ENT:GetSpeedData(mv)
