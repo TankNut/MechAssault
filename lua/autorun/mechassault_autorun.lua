@@ -20,6 +20,7 @@ function scripted_ents.IsTypeOf(name, base)
 end
 
 game.AddParticles("particles/gm_mechassault_2_projectile_effects.pcf")
+game.AddParticles("particles/gm_mechassault_2_muzzleflash_effects.pcf")
 
 sound.Add({
 	name = "MA2_Mech.Step",
