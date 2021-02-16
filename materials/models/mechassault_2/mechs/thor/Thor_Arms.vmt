@@ -1,6 +1,6 @@
 "VertexlitGeneric"
 {
-	"$basetexture" "models/mechassault_2/mechs/thor/thor_arms"
+	"$basetexture" "models/mechassault_2/mechs/thor/Thor_Guns"
 	"$bumpmap" "models/mechassault_2/mechs/thor/summoner_missile_nrml"
 	$normalmapalphaenvmapmask 		1 
 	$envmap			env_cubemap
