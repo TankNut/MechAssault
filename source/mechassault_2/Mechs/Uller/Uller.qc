@@ -560,7 +560,7 @@ $Sequence "ragdoll" {
 // COLLISION
 $collisionjoints "uller_physics.smd" {
 
-	$mass 65000.0
+	$mass 25000.0
 	$inertia 10.00
 	$damping 0.01
 	$rotdamping 1.50
