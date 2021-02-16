@@ -4,7 +4,7 @@ $modelname "mechassault_2/mechs/battle_armor.mdl"
 $attachment "Mortar" "joint_mortarbarrel" 0.00 -3.00 5.00 rotate -0 -90 0
 $attachment "Pulse_Laser" "joint_rgun" 2.00 2.00 -27.00 rotate 90 -90 0
 
-$scale 30
+$scale 32
 //$origin 0 0 -38 0
 
 $BodyGroup "Legs"

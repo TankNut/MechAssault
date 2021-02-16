@@ -1,7 +1,7 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/battle_armor_empty.mdl"
-$scale 32
+$scale 38
 //$origin 0 0 -38 0
 
 $BodyGroup "Hull"
