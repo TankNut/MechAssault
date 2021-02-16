@@ -15,7 +15,6 @@
 	$emissiveBlendTint "[.1 .2 1]"
 	$emissiveBlendStrength 0.6
 	$emissiveBlendScrollVector "[.5 0]"
-	"$basetexturetransform"	"center .5 .5 scale 1.2 1.2 rotate 0  translate 0 0"
 	
 
 
