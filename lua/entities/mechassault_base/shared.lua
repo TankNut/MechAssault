@@ -29,8 +29,6 @@ ENT.ViewOffset 				= Vector(-500, 0, 240)
 ENT.Margin 					= 1.1
 ENT.StandRate 				= 0.5
 
-ENT.AimOffset 				= Vector(0, 0, 100)
-
 include("sh_animation.lua")
 include("sh_move.lua")
 include("sh_step.lua")
@@ -123,7 +121,7 @@ function ENT:Think()
 end
 
 function ENT:GetAimOrigin()
-	return self:WorldSpaceCenter() + self.AimOffset
+	return self:WorldSpaceCenter() + Vector(0, 0, self.ViewOffset.z)
 end
 
 function ENT:GetAimPos()
