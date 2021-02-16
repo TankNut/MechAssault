@@ -1,28 +1,27 @@
 // Created by Crowbar 0.56
 
-$modelname "mechassault_2/mechs/thor.mdl"
-$attachment "pulse_laser_R" "joint_rgun" -4.00 -166.00 3.50 rotate -0 -90 0
-$attachment "pulse_laser_L" "joint_lgun" 26.00 -130.00 -6.50 rotate -0 -90 0
-$attachment "machinegun_1" "joint_torso" -56.00 -62.00 28.50 rotate -0 -90 0
-$attachment "machinegun_2" "joint_torso" 56.00 -62.00 28.50 rotate -0 -90 0
-$attachment "rocketpod" "joint_missile" 0.00 -110.00 30.00 rotate -0 -90 0
-$attachment "jumpjets_main" "joint_torso" -1.00 52.00 8.00 rotate 90 -0 0
-$attachment "jumpjets_L" "joint_torso" 48.00 77.00 55.00 rotate 30 40 0
-$attachment "jumpjets_R" "joint_torso" -48.00 77.00 55.00 rotate 30 140 0
+$modelname "mechassault_2/mechs/uller.mdl"
+$attachment "pulse_laser_R" "joint_rgun" 7.00 -83.00 -31.00 rotate -0 -90 0
+$attachment "pulse_laser_L" "joint_lgun" -9.00 -83.00 -31.00 rotate -0 -90 0
+$attachment "rocketpod_L" "joint_torso" 34.00 -10.00 70.50 rotate -0 -90 0
+$attachment "rocketpod_R" "joint_torso" -34.00 -10.00 70.50 rotate -0 -90 0
+$attachment "jumpjets_main" "joint_torso" -0.00 42.00 5.00 rotate 90 -0 0
+$attachment "jumpjets_L" "joint_torso" 21.00 52.00 24.00 rotate 30 40 0
+$attachment "jumpjets_R" "joint_torso" -21.00 52.00 24.00 rotate 30 140 0
 $scale 32
 //$origin 0 0 0 0
 
 $BodyGroup "Legs"
 {
-	studio "Thor Body Lower.smd"
+	studio "Uller Body Lower.smd"
 }
 $BodyGroup "Torso"
 {
-	studio "Thor Body Upper.smd"
+	studio "Uller Body Upper .smd"
 }	
 $BodyGroup "JumpJets"
 {
-	studio "Jump Jets Mesh.smd"
+	studio "Jump Jets.smd"
 }
 
 $surfaceprop "metalvehicle"
@@ -31,14 +30,14 @@ $contents "solid"
 
 $illumposition -1.971 -4.53 10.738
 
-$cdmaterials "models\mechassault_2\mechs\thor\"
+$cdmaterials "models\mechassault_2\mechs\uller\"
 
 $texturegroup "skinfamilies"
 {
-	{ "Thor_Body"      	 "Thor_Arms"	"Reac_Glow"}
-	{ "Summoner_Body"      	 "Summoner_Arms"	"Reac_Glow"}
-	{ "Thor_Body_MP"      	 "Thor_Arms_MP"	"Reac_Glow_MP"}
-	{ "Summoner_Body_MP"      	 "Summoner_Arms_MP"	"Reac_Glow_MP"}
+	{ "uller"      	"Reac_Glow"}
+	{ "kitfox"      "Reac_Glow"}
+	{ "uller_MP"   	"Reac_Glow_MP"}
+	{ "kitfox_MP" 	"Reac_Glow_MP"}
 }
 
 $weightlist weights_proportions {
@@ -74,224 +73,224 @@ $poseparameter "move_x" -1 1 loop 0
 
 // RAGDOLL
 
-
-$Animation "a_idle" "thr_anims\thr_base.smd" {
+$origin 0 0 2.5 0
+$Animation "a_idle" "ulr_anims\ulr_base.smd" {
 	fps 15
 	loop
 }
-$Animation "aim_mid_center" "thr_anims\aim_mid_center.smd" {
-	fps 15
-	loop
-	subtract "a_idle" 0
-}
-$Animation "aim_mid_left" "thr_anims\aim_mid_left.smd" {
+$Animation "aim_mid_center" "ulr_anims\aim_mid_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "aim_mid_right" "thr_anims\aim_mid_right.smd" {
+$Animation "aim_mid_left" "ulr_anims\aim_mid_left.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "aim_up_center" "thr_anims\aim_mid_center.smd" {
+$Animation "aim_mid_right" "ulr_anims\aim_mid_right.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "aim_up_left" "thr_anims\aim_mid_left.smd" {
+$Animation "aim_up_center" "ulr_anims\aim_mid_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "aim_up_right" "thr_anims\aim_mid_right.smd" {
+$Animation "aim_up_left" "ulr_anims\aim_mid_left.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "aim_down_center" "thr_anims\aim_mid_center.smd" {
+$Animation "aim_up_right" "ulr_anims\aim_mid_right.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "aim_down_left" "thr_anims\aim_mid_left.smd" {
+$Animation "aim_down_center" "ulr_anims\aim_mid_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "aim_down_right" "thr_anims\aim_mid_right.smd" {
+$Animation "aim_down_left" "ulr_anims\aim_mid_left.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "a_land" "thr_anims\thr_landstand.smd" {
+$Animation "aim_down_right" "ulr_anims\aim_mid_right.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+}
+$Animation "a_land" "ulr_anims\ulr_landstand.smd" {
 	fps 30
 	subtract "a_idle" 0
 }
-$Animation "a_hit_back" "thr_anims\thr_hitback.smd" {
+$Animation "a_hit_back" "ulr_anims\ulr_hitback.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "a_hit_front" "thr_anims\thr_hitfront.smd" {
+$Animation "a_hit_front" "ulr_anims\ulr_hitfront.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "a_hit_left" "thr_anims\thr_hitleft.smd" {
+$Animation "a_hit_left" "ulr_anims\ulr_hitleft.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-$Animation "a_hit_right" "thr_anims\thr_hitright.smd" {
+$Animation "a_hit_right" "ulr_anims\ulr_hitright.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
 }
-
-$Animation "a_walk_N" "thr_anims\thr_walk.smd" {
+$origin 0 0 5 0
+$Animation "a_walk_N" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 45
+$origin 0 0 5 45
 
-$Animation "a_walk_NW" "thr_anims\thr_walk.smd" {
+$Animation "a_walk_NW" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 -45
+$origin 0 0 5 -45
 
-$Animation "a_walk_NE" "thr_anims\thr_walk.smd" {
+$Animation "a_walk_NE" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 90
-$Animation "a_walk_W" "thr_anims\thr_walk.smd" {
+$origin 0 0 5 90
+$Animation "a_walk_W" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 32 LX LY
 }
-$origin 0 0 0 -90
-$Animation "a_walk_E" "thr_anims\thr_walk.smd" {
+$origin 0 0 5 -90
+$Animation "a_walk_E" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 36 LX LY
 }
-$origin 0 0 0 180
-$Animation "a_walk_S" "thr_anims\thr_walk.smd" {
+$origin 0 0 5 180
+$Animation "a_walk_S" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
-$origin 0 0 0 135
-$Animation "a_walk_SW" "thr_anims\thr_walk.smd" {
+$origin 0 0 5 135
+$Animation "a_walk_SW" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
-$origin 0 0 0 -135
-$Animation "a_walk_SE" "thr_anims\thr_walk.smd" {
+$origin 0 0 5 -135
+$Animation "a_walk_SE" "ulr_anims\ulr_walk.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
 
-$origin 0 0 0 0
-$Animation "a_run_N" "thr_anims\thr_run.smd" {
+$origin 0 0 5 0
+$Animation "a_run_N" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 45
-$Animation "a_run_NW" "thr_anims\thr_run.smd" {
+$origin 0 0 5 45
+$Animation "a_run_NW" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 -45
-$Animation "a_run_NE" "thr_anims\thr_run.smd" {
+$origin 0 0 5 -45
+$Animation "a_run_NE" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 90
-$Animation "a_run_W" "thr_anims\thr_run.smd" {
+$origin 0 0 5 90
+$Animation "a_run_W" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 32 LX LY
 }
-$origin 0 0 0 -90
-$Animation "a_run_E" "thr_anims\thr_run.smd" {
+$origin 0 0 5 -90
+$Animation "a_run_E" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 36 LX LY
 }
-$origin 0 0 0 180
-$Animation "a_run_S" "thr_anims\thr_run.smd" {
+$origin 0 0 5 180
+$Animation "a_run_S" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
-$origin 0 0 0 135
-$Animation "a_run_SW" "thr_anims\thr_run.smd" {
+$origin 0 0 5 135
+$Animation "a_run_SW" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
-$origin 0 0 0 -135
-$Animation "a_run_SE" "thr_anims\thr_run.smd" {
+$origin 0 0 5 -135
+$Animation "a_run_SE" "ulr_anims\ulr_run.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
 
-$origin 0 0 0 0
-$Animation "a_walk_limp_N" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 0
+$Animation "a_walk_limp_N" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 45
-$Animation "a_walk_limp_NW" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 45
+$Animation "a_walk_limp_NW" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 -45
-$Animation "a_walk_limp_NE" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 -45
+$Animation "a_walk_limp_NE" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 68 LX LY
 }
-$origin 0 0 0 90
-$Animation "a_walk_limp_W" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 90
+$Animation "a_walk_limp_W" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 32 LX LY
 }
-$origin 0 0 0 -90
-$Animation "a_walk_limp_E" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 -90
+$Animation "a_walk_limp_E" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 36 LX LY
 }
-$origin 0 0 0 180
-$Animation "a_walk_limp_S" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 180
+$Animation "a_walk_limp_S" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
-$origin 0 0 0 135
-$Animation "a_walk_limp_SW" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 135
+$Animation "a_walk_limp_SW" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
 }
-$origin 0 0 0 -135
-$Animation "a_walk_limp_SE" "thr_anims\thr_rgimp.smd" {
+$origin 0 0 5 -135
+$Animation "a_walk_limp_SE" "ulr_anims\ulr_rgimp.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
@@ -332,7 +331,7 @@ $Sequence "walk" {
 	node "movement"
 	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 16 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 15 "MA2_Mech.Step" }
 }
 
 $Sequence "walk_limp" {
@@ -340,7 +339,7 @@ $Sequence "walk_limp" {
 	"a_walk_limp_N"
 	"a_walk_limp_NE"
 	"a_walk_limp_W"
-	"thr_anims\thr_standrgimppose.smd"
+	"ulr_anims\ulr_standrgimppose2.smd"
 	"a_walk_limp_E"
 	"a_walk_limp_SW"
 	"a_walk_limp_S"
@@ -354,8 +353,7 @@ $Sequence "walk_limp" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 11 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 22 "MA2_Mech.Step" }
 }
 
 $Sequence "run" {
@@ -377,12 +375,24 @@ $Sequence "run" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 3 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 14 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 1 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 13 "MA2_Mech.Step" }
+}
+
+$origin 0 0 -120 0
+
+$sequence "jump" {
+	"ulr_anims\ulr_jump.smd"
+	activity "ACT_JUMP" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+	walkframe 145 LX LY
 }
 
 $Sequence "fall_forward" {
-	"thr_anims\thr_fallforward.smd"
+	"ulr_anims\ulr_fallforward.smd"
 	activity "ACT_DIESIMPLE" 1
 	fadein 0.3
 	fadeout 0.5
@@ -391,7 +401,7 @@ $Sequence "fall_forward" {
 }
 
 $Sequence "fall_back" {
-	"thr_anims\thr_fallback.smd"
+	"ulr_anims\ulr_fallback.smd"
 	activity "ACT_DIESIMPLE" 1
 	fadein 0.3
 	fadeout 0.5
@@ -400,7 +410,7 @@ $Sequence "fall_back" {
 }
 
 $Sequence "fall_left" {
-	"thr_anims\thr_fallleft.smd"
+	"ulr_anims\ulr_fallleft.smd"
 	activity "ACT_DIESIMPLE" 1
 	fadein 0.3
 	fadeout 0.5
@@ -409,7 +419,7 @@ $Sequence "fall_left" {
 }
 
 $Sequence "fall_right" {
-	"thr_anims\thr_fallright.smd"
+	"ulr_anims\ulr_fallright.smd"
 	activity "ACT_DIESIMPLE" 1
 	fadein 0.3
 	fadeout 0.5
@@ -418,26 +428,28 @@ $Sequence "fall_right" {
 }
 
 $Sequence "getup" {
-	"thr_anims\thr_getup.smd"
+	"ulr_anims\ulr_getup.smd"
 	activity "ACT_GET_UP_STAND" 1
 	fadein 0.3
 	fadeout 0.5
 	fps 30
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 29 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 47 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 33 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 45 "MA2_Mech.Step" }
 }
 
 $Sequence "getup_right" {
-	"thr_anims\thr_getup.smd"
+	"ulr_anims\ulr_getup.smd"
 	activity "ACT_GET_UP_STAND" 1
 	fadein 0.3
 	fadeout 0.5
 	fps 30
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 29 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 47 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 32 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 46 "MA2_Mech.Step" }
 }
+
+$origin 0 0 0 0
 
 $sequence "hit_back" {
 	"a_hit_back"
@@ -462,18 +474,10 @@ $sequence "hit_front" {
 }
 
 
-$sequence "jump" {
-	"thr_anims\thr_jump.smd"
-	activity "ACT_JUMP" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
-	loop
-	walkframe 145 LX LY
-}
+
 
 $sequence "land" {
-//	"thr_anims\thr_landforward.smd"
+//	"ulr_anims\ulr_landforward.smd"
 	"a_land"
 	activity "ACT_LAND" 1
 	fadein 0.2
@@ -482,9 +486,9 @@ $sequence "land" {
 	delta
 	walkframe 145 LX LY
 }
-
+$origin 0 0 2.5 0
 $sequence "idle" {
-	"thr_anims\thr_base.smd"
+	"ulr_anims\ulr_base.smd"
 	activity "ACT_IDLE" 1
 	addlayer	"aimlayer_generic"
 	fadein 0.2
@@ -495,7 +499,7 @@ $sequence "idle" {
 }
 
 $sequence "idle_limp" {
-	"thr_anims\thr_standrgimp.smd"
+	"ulr_anims\ulr_standrgimp.smd"
 	activity "ACT_IDLE_ON_FIRE" 1
 	addlayer	"aimlayer_generic"
 	fadein 0.2
@@ -505,28 +509,30 @@ $sequence "idle_limp" {
 
 }
 
+$origin 0 0 -125 0
+
 $sequence "power_up" {
-	"thr_anims\thr_powerup.smd"
+	"ulr_anims\ulr_powerup.smd"
 	activity "ACT_OBJ_STARTUP" 1
 	fadein 0.2
 	fadeout 0.2
 	fps 30
-	{ event AE_CL_PLAYSOUND 23 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 32 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 16 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 30 "MA2_Mech.Step" }
 }
 
 $sequence "power_down" {
-	"thr_anims\thr_powerdown.smd"
+	"ulr_anims\ulr_powerdown.smd"
 	activity "ACT_OBJ_DISMANTLING" 1
 	fadein 0.2
 	fadeout 0.2
 	fps 30
-	{ event AE_CL_PLAYSOUND 11 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 25 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 22 "MA2_Mech.Step" }
 }
 
 $sequence "power_down_pose" {
-	"thr_anims\thr_poweredoff.smd"
+	"ulr_anims\ulr_poweredoff.smd"
 	activity "ACT_OBJ_IDLE" 1
 	fadein 0.2
 	fadeout 0.2
@@ -534,16 +540,16 @@ $sequence "power_down_pose" {
 	loop
 }
 
-
+$origin 0 0 0 0
 
 $Sequence "reference" {
-	"Thor Body Upper.smd"
+	"Uller Body Upper .smd"
 	fadein 1
 	fadeout 1
 	fps 10
 }
 $Sequence "ragdoll" {
-	"Thor Body Upper.smd"
+	"Uller Body Upper .smd"
 	activity "ACT_DIERAGDOLL" 1
 	fadein 1
 	fadeout 1
@@ -552,7 +558,7 @@ $Sequence "ragdoll" {
 
 
 // COLLISION
-$collisionjoints "thor_physics.smd" {
+$collisionjoints "uller_physics.smd" {
 
 	$mass 65000.0
 	$inertia 10.00
@@ -630,30 +636,34 @@ $collisiontext
 $scale 0.9
 // .qc block generated by HLMV begins.
 
+
+// .qc block generated by HLMV begins.
+
 $surfaceprop "metalvehicle"
+$jointsurfaceprop "ROOT"	 "metalvehicle"
 
 
 $hboxset "default"
 
-$hbox 3 "joint_ROOT"	   -41.56  -77.58  -22.75    41.71   24.22   53.18
-$hbox 2 "joint_torso"	   -90.56  -79.77    0.00    90.33   81.65  151.71
-$hbox 2 "joint_torsoabove"	   -88.11    0.00    0.00    88.14   32.40  127.69
-$hbox 5 "joint_ruarm"	   -69.91  -40.18  -90.10    19.16    5.72   28.78
-$hbox 5 "joint_rgun"	   -36.44 -163.61  -45.03    26.56    6.61   34.00
-$hbox 4 "joint_luarm"	     0.00  -39.90  -73.45    47.35    5.67   28.72
-$hbox 4 "joint_lgun"	     0.00 -127.61  -31.26    53.16   14.33   18.40
-$hbox 6 "joint_luleg"	    -7.03  -64.14 -127.33    74.40   23.31   15.04
-$hbox 6 "joint_ldleg"	   -39.39  -48.63 -110.75    47.56   61.51   21.10
-$hbox 6 "joint_lankle"	   -13.35  -27.91  -43.52    17.48   35.03   18.42
-$hbox 6 "joint_lbtoe"	   -34.44  -16.40  -20.38    36.53   28.17   17.97
-$hbox 6 "joint_lftoe"	   -35.46  -67.37  -23.57    35.71    0.00   17.50
-$hbox 7 "joint_ruleg"	   -73.64  -64.06 -127.51     7.79   23.38   14.86
-$hbox 7 "joint_rdleg"	   -46.65  -48.82 -110.32    40.29   61.31   21.54
-$hbox 7 "joint_rankle"	   -16.54  -27.91  -43.52    14.29   35.04   18.41
-$hbox 7 "joint_rbtoe"	   -36.94  -16.40  -20.43    34.04   28.17   17.93
-$hbox 7 "joint_rftoe"	   -36.06  -67.42  -23.56    35.11    0.00   17.52
-$hbox 2 "joint_missile"	   -31.09 -108.62   -2.44    33.74   18.40   63.15
+$hbox 2 "joint_ROOT"	   -35.65  -45.42  -17.51    35.65   15.24   29.73
+$hbox 3 "joint_torso"	   -67.49  -61.33    0.00    67.49   53.77   90.45
+$hbox 3 "joint_torsoabove"	   -74.96    0.00    0.00    74.96    5.01   26.02
+$hbox 4 "joint_luarm"	    -7.62  -13.70  -25.48    13.56   11.61   15.79
+$hbox 4 "joint_lgun"	   -15.38  -80.79  -39.04    10.41   16.91    2.34
+$hbox 5 "joint_ruarm"	   -13.34  -13.70  -25.48     7.85   11.61   15.79
+$hbox 5 "joint_rgun"	   -11.92  -80.79  -39.04    13.87   16.91    2.34
+$hbox 7 "joint_ruleg"	   -34.12  -23.66  -56.90     0.00   43.05   21.05
+$hbox 7 "joint_rdleg"	    -9.74  -64.81  -53.67    29.77    5.77   13.69
+$hbox 7 "joint_rankle"	   -22.98  -20.59  -27.56    14.25   23.85   10.36
+$hbox 7 "joint_ritoe"	    -2.07   -9.13  -10.45    25.78   11.47    7.20
+$hbox 7 "joint_rotoe"	   -10.38   -7.35  -10.69    10.21   32.47    6.97
+$hbox 7 "joint_rftoe"	    -7.00  -34.51  -11.09    13.60    5.31    6.57
+$hbox 6 "joint_luleg"	     0.00  -23.65  -56.88    33.98   43.05   21.07
+$hbox 6 "joint_ldleg"	   -30.21  -64.80  -53.72     9.30    5.77   13.62
+$hbox 6 "joint_lankle"	   -14.86  -20.58  -27.57    22.37   23.86   10.35
+$hbox 6 "joint_litoe"	   -28.37   -9.11  -10.48     0.00   11.49    7.17
+$hbox 6 "joint_lotoe"	    -9.99   -7.07  -10.69    10.61   32.75    6.96
+$hbox 6 "joint_lftoe"	   -13.68  -34.54  -10.45     6.92    5.28    7.20
 
 // .qc block generated by HLMV ends.
-
 
