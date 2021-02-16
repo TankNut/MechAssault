@@ -9,12 +9,12 @@ ENT.HullSize 				= 10
 
 ENT.ImpactSound 			= Sound("MECHASSAULT_2/laser_impact_mech.ogg")
 
-PrecacheParticleSystem("gm_MA2_laser_lvl1")
+PrecacheParticleSystem("gm_MA2_laser_lvl2")
 
 function ENT:Initialize()
 	BaseClass.Initialize(self)
 
-	ParticleEffectAttach("gm_MA2_laser_lvl1", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+	ParticleEffectAttach("gm_MA2_laser_lvl2", PATTACH_ABSORIGIN_FOLLOW, self, 0)
 end
 
 if CLIENT then

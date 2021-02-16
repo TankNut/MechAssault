@@ -1,13 +1,9 @@
 AddCSLuaFile()
 
 ENT.Type 					= "anim"
+ENT.AutomaticFrameAdvance	= true
 
 ENT.Author 					= "TankNut"
-
-ENT.Spawnable 				= false
-ENT.AdminSpawnable 			= false
-
-ENT.AutomaticFrameAdvance	= true
 
 ENT.Model 					= Model("models/weapons/w_missile_launch.mdl")
 
