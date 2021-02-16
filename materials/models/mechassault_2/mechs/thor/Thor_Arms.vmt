@@ -1,6 +1,6 @@
 "VertexlitGeneric"
 {
-	"$basetexture" "models/mechassault_2/mechs/thor/thr_missile_low"
+	"$basetexture" "models/mechassault_2/mechs/thor/thor_arms"
 	"$bumpmap" "models/mechassault_2/mechs/thor/summoner_missile_nrml"
 	$normalmapalphaenvmapmask 		1 
 	$envmap			env_cubemap
@@ -18,7 +18,7 @@
 	"$phongfresnelranges" "[1.2 3 8]"
 	"$nocull"		1
 	"$blendtintbybasealpha"		1
-	"$color2"		"{100 125 185}"
+//	"$color2"		"{100 125 185}"
 }
 
 
