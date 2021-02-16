@@ -29,7 +29,6 @@ ENT.ViewOffset 				= Vector(-500, 0, 240)
 ENT.Margin 					= 1.1
 ENT.StandRate 				= 0.5
 
-ENT.WeaponAttachments 		= {1, 2, 3, 4}
 ENT.AimOffset 				= Vector(0, 0, 100)
 
 include("sh_animation.lua")
