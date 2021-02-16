@@ -8,7 +8,7 @@ $attachment "rocketpod_R" "joint_torso" -34.00 -10.00 70.50 rotate -0 -90 0
 $attachment "jumpjets_main" "joint_torso" -0.00 42.00 5.00 rotate 90 -0 0
 $attachment "jumpjets_L" "joint_torso" 21.00 52.00 24.00 rotate 30 40 0
 $attachment "jumpjets_R" "joint_torso" -21.00 52.00 24.00 rotate 30 140 0
-$scale 32
+$scale 42
 //$origin 0 0 0 0
 
 $BodyGroup "Legs"
