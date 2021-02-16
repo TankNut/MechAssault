@@ -1,7 +1,7 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/Stiletto.mdl"
-$scale 0.87
+$scale 1
 $attachment "Autocannon" "joint_torso" -114.00 -95.00 17.50 rotate -0 -90 -90
 $attachment "Pulse_Laser" "joint_torso" -62.50 -65.00 56.00 rotate 0 -90 0
 $attachment "Missiles_1" "joint_torso" 70.00 45.00 74.50 rotate 0 -90 0
@@ -11,7 +11,7 @@ $attachment "jumpjets_L" "joint_torso" 46.00 136.00 43.00 rotate 30 40 0
 $attachment "jumpjets_R" "joint_torso" -52.00 136.00 43.00 rotate 30 140 0
 
 
-$scale 35
+$scale 40
 //$origin 0 0 -38 0
 
 $BodyGroup "Legs"
@@ -587,6 +587,13 @@ $collisionjoints "raptor_physics.smd" {
 	$jointconstrain "joint_rankle" x limit -25.00 30.00 0.00
 	$jointconstrain "joint_rankle" y limit -25.00 6.00 0.00
 	$jointconstrain "joint_rankle" z limit -10.00 35.00 0.00
+
+
+	$jointcollide joint_rankle joint_ldleg
+	$jointcollide joint_lankle joint_rdleg
+	$jointcollide joint_lankle joint_rankle
+	$jointcollide joint_rdleg joint_ldleg
+	$jointcollide joint_rujoint_lulegeg L
 }
 $collisiontext
 {

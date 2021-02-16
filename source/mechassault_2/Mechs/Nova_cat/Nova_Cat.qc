@@ -1,12 +1,13 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/nova_cat.mdl"
+$scale	1.35
 $attachment "pulse_laser_R1" "joint_ruarm" -38.00 -152.00 -23.50 rotate 0 -90 0
 $attachment "pulse_laser_R2" "joint_ruarm" -52.00 -152.00 -50.50 rotate -0 -90 0
 $attachment "machinegun_1" "joint_luarm" 19.00 -114.00 -28.50 rotate 0 -90 0
 $attachment "machinegun_2" "joint_luarm" 48.00 -114.00 -12.50 rotate -0 -90 0
 $attachment "machinegun_3" "joint_luarm" 48.00 -114.00 -44.50 rotate -0 -90 0
-$scale 35
+$scale 48
 //$origin 0 0 0 0
 
 $BodyGroup "Legs"
@@ -592,6 +593,18 @@ $collisionjoints "novacat_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -35.00 45.00 0.00
 	$jointconstrain "joint_lankle" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_lankle" z limit 0.00 0.00 0.00
+
+	$jointcollide joint_rgunabove joint_ruleg
+	$jointcollide joint_rgunabove joint_luleg
+	$jointcollide joint_lgunabove joint_ruleg
+	$jointcollide joint_lgunabove joint_luleg
+	$jointcollide joint_rankle joint_ldleg
+	$jointcollide joint_lankle joint_rdleg
+	$jointcollide joint_lankle joint_rankle
+	$jointcollide joint_rdleg joint_ldleg
+	$jointcollide joint_ruleg joint_luleg
+	$jointcollide joint_rgunabove joint_torso
+	$jointcollide joint_lgunabove joint_torso
 }
 $collisiontext
 {

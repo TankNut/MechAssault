@@ -1,6 +1,7 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/atlas.mdl"
+$scale	1.37
 $attachment "pulse_laser_R1" "joint_rgun" -50.00 -117.00 -25.50 rotate -0 -90 0
 $attachment "pulse_laser_R2" "joint_rgun" -50.00 -122.00 -1.50 rotate -0 -90 0
 $attachment "pulse_laser_R3" "joint_rgun" -31.00 -75.00 30.50 rotate -0 -90 0
@@ -11,7 +12,7 @@ $attachment "pulse_laser_L3" "joint_lgun" 29.00 -75.00 30.50 rotate -0 -90 0
 $attachment "pulse_laser_L4" "joint_lgun" 4.00 -90.00 30.50 rotate -0 -90 0
 $attachment "rocketpod_L" "joint_torso" -45.00 -52.00 15.00 rotate -0 -90 0
 $attachment "rocketpod_R" "joint_torso" 45.00 -52.00 15.00 rotate -0 -90 0
-$scale 29
+$scale 40
 //$origin 0 0 0 0
 
 $BodyGroup "Legs"
@@ -596,6 +597,18 @@ $collisionjoints "atlas_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -35.00 45.00 0.00
 	$jointconstrain "joint_lankle" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_lankle" z limit 0.00 0.00 0.00
+
+	$jointcollide joint_rgunabove joint_ruleg
+	$jointcollide joint_rgunabove joint_luleg
+	$jointcollide joint_lgunabove joint_ruleg
+	$jointcollide joint_lgunabove joint_luleg
+	$jointcollide joint_rankle joint_ldleg
+	$jointcollide joint_lankle joint_rdleg
+	$jointcollide joint_lankle joint_rankle
+	$jointcollide joint_rdleg joint_ldleg
+	$jointcollide joint_ruleg joint_luleg
+	$jointcollide joint_rgunabove joint_torso
+	$jointcollide joint_lgunabove joint_torso
 }
 $collisiontext
 {

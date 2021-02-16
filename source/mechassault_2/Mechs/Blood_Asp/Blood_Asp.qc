@@ -1,13 +1,14 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/blood_asp.mdl"
+$scale 1.25
 $attachment "machinegun_R" "joint_rgun" 5.00 -147.00 -32.50 rotate -0 -90 0
 $attachment "machinegun_L" "joint_lgun" -5.00 -147.00 -32.50 rotate -0 -90 0
 $attachment "missile_pod_L" "joint_torso" 80.00 -57.00 65.00 rotate -0 -90 0
 $attachment "missile_pod_R" "joint_torso" -80.00 -57.00 65.00 rotate -0 -90 0
 $attachment "Plasma_PPC_R" "joint_torso" -80.00 -47.00 140.00 rotate -0 -90 0
 $attachment "Plasma_PPC_L" "joint_torso" 80.00 -47.00 140.00 rotate -0 -90 0
-$scale 40
+$scale 50
 //$origin 0 0 0 0
 
 $BodyGroup "Body"
@@ -595,6 +596,18 @@ $collisionjoints "bloodasp_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -60.00 20.00 0.00
 	$jointconstrain "joint_lankle" y limit -19.00 19.00 0.00
 	$jointconstrain "joint_lankle" z limit -10.00 35.00 0.00
+
+	$jointcollide joint_rgun joint_ruleg
+	$jointcollide joint_rgun joint_luleg
+	$jointcollide joint_lgun joint_ruleg
+	$jointcollide joint_lgun joint_luleg
+	$jointcollide joint_rankle joint_ldleg
+	$jointcollide joint_lankle joint_rdleg
+	$jointcollide joint_lankle joint_rankle
+	$jointcollide joint_rdleg joint_ldleg
+	$jointcollide joint_ruleg joint_luleg
+	$jointcollide joint_rgun joint_torso
+	$jointcollide joint_lgun joint_torso
 }
 $collisiontext
 {

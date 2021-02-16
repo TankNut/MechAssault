@@ -1,11 +1,12 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/uziel.mdl"
-$attachment "pulse_laser_R" "joint_rgun" 15.00 -18.00 73.50 rotate -90 -0 0
-$attachment "pulse_laser_L" "joint_lgun" -22.00 -18.00 73.50 rotate -90 -0 0
-$attachment "autocannon_R" "joint_rgun" 9.00 -44.00 105.50 rotate -90 0 0
-$attachment "autocannon_L" "joint_lgun" -14.00 -44.00 105.50 rotate -90 -0 0
-$scale 40
+$attachment "pulse_laser_R" "joint_rgun" -25.00 -138.00 0.50 rotate 0 -90 0
+$attachment "pulse_laser_L" "joint_lgun" 23.00 -138.00 0.50 rotate -0 -90 0
+$attachment "machinegun_R" "joint_torsoabove" 53.00 -70.00 84.50 rotate 0 -90 0
+$attachment "machinegun_L" "joint_torsoabove" -53.00 -70.00 84.50 rotate 0 -90 0
+$attachment "rocket_pod" "joint_torsoabove" 0.00 -45.00 106.50 rotate -0 -90 0
+$scale 47
 //$origin 0 0 0 0
 
 $BodyGroup "Legs"
@@ -604,6 +605,18 @@ $collisionjoints "uziel_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -35.00 45.00 0.00
 	$jointconstrain "joint_lankle" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_lankle" z limit 0.00 0.00 0.00
+
+	$jointcollide joint_rgun joint_ruleg
+	$jointcollide joint_rgun joint_luleg
+	$jointcollide joint_lgun joint_ruleg
+	$jointcollide joint_lgun joint_luleg
+	$jointcollide joint_rankle joint_ldleg
+	$jointcollide joint_lankle joint_rdleg
+	$jointcollide joint_lankle joint_rankle
+	$jointcollide joint_rdleg joint_ldleg
+	$jointcollide joint_ruleg joint_luleg
+	$jointcollide joint_rgun joint_torso
+	$jointcollide joint_lgun joint_torso
 }
 $collisiontext
 {

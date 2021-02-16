@@ -1,6 +1,7 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/mad_dog.mdl"
+$scale	1.15
 $attachment "pulse_laser_R1" "joint_rgun" -18.00 -146.00 -8.50 rotate -0 -90 0
 $attachment "pulse_laser_R2" "joint_rgun" 6.00 -162.00 0.50 rotate -0 -90 0
 $attachment "pulse_laser_L1" "joint_lgun" 17.00 -146.00 -8.50 rotate -0 -90 0
@@ -9,7 +10,7 @@ $attachment "machinegun_1" "joint_torso" -42.00 -112.00 38.50 rotate -0 -90 0
 $attachment "machinegun_2" "joint_torso" 42.00 -112.00 38.50 rotate -0 -90 0
 $attachment "rocketpod_L" "joint_torso" 52.00 25.00 105.50 rotate -0 -90 0
 $attachment "rocketpod_R" "joint_torso" -52.00 25.00 105.50 rotate -0 -90 0
-$scale 32
+$scale 37
 //$origin 0 0 0 0
 
 $BodyGroup "Legs"
@@ -594,6 +595,12 @@ $collisionjoints "maddog_physics.smd" {
 	$jointconstrain "joint_lankle" x limit -15.00 15.00 0.00
 	$jointconstrain "joint_lankle" y limit 0.00 0.00 0.00
 	$jointconstrain "joint_lankle" z limit -10.00 35.00 0.00
+
+	$jointcollide joint_rankle joint_ldleg
+	$jointcollide joint_lankle joint_rdleg
+	$jointcollide joint_lankle joint_rankle
+	$jointcollide joint_rdleg joint_ldleg
+	$jointcollide joint_ruleg joint_luleg
 }
 $collisiontext
 {
