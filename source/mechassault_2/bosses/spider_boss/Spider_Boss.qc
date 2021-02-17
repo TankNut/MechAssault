@@ -1,8 +1,9 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/bosses/Spider_Boss.mdl"
-//$attachment "rocketpod_L" "joint_torso" 52.00 25.00 105.50 rotate -0 -90 0
-//$attachment "rocketpod_R" "joint_torso" -52.00 25.00 105.50 rotate -0 -90 0
+$attachment "rocketpod_L" "joint_turret" 110.00 -225.00 245.50 rotate -0 -90 0
+$attachment "rocketpod_R" "joint_turret" -110.00 -225.00 245.50 rotate -0 -90 0
+$attachment "plasma_origin" "joint_root" 0.00 -360.00 30.00 rotate 30 -90 0
 $scale 32
 //$origin 0 0 0 0
 
@@ -61,7 +62,11 @@ $contents "solid"
 $illumposition -1.971 -4.53 10.738
 
 $cdmaterials "models\mechassault_2\bosses\spider\"
-
+$texturegroup "skinfamilies"
+{
+	{ "sb_body"    }
+	{ "sb_body_off" }
+}
 
 $weightlist weights_leg_RF {
 
@@ -277,7 +282,11 @@ $Sequence "walk" {
 	node "movement"
 	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 17 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 8 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 19 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 20 "MA2_Mech.Step" }
 }
 
 $Sequence "run" {
@@ -299,7 +308,11 @@ $Sequence "run" {
 	node "movement"
 	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 16 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 8 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 19 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 20 "MA2_Mech.Step" }
 }
 
 $sequence "stomp" {
@@ -310,6 +323,7 @@ $sequence "stomp" {
 	fps 30
 	walkframe 145 LX LY
 	{ event 1100 27 "event_ma2_spider_boss_stomp" }
+	{ event AE_CL_PLAYSOUND 27 "MA2_SpiderBoss.Stomp" }
 }
 
 $sequence "stomp_angry" {
@@ -320,6 +334,7 @@ $sequence "stomp_angry" {
 	fps 50
 	walkframe 145 LX LY
 	{ event 1100 27 "event_ma2_spider_boss_stomp" }
+	{ event AE_CL_PLAYSOUND 27 "MA2_SpiderBoss.Stomp" }
 }
 
 
