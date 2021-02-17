@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"effects/mechassault2/extra/flare_b_fx"
+	"$basetexture"	"effects/mechassault2/extra/mech_flare2"
 	"$additive"	1
 	"$vertexcolor"	1
 	"$vertexalpha"	1
