@@ -104,18 +104,75 @@ $weightlist weights_leg_LB {
 "joint_root" 0
 }
 
+$weightlist weights_turret {
 
-//$PoseParameter "aim_pitch" -1 1 0
-//$PoseParameter "aim_yaw" -180 180 0
+"joint_ROOT" 0
+"joint_turret" 1
+}
+
+$PoseParameter "aim_pitch" -1 1 0
+$PoseParameter "aim_yaw" -180 180 0
 $poseparameter "move_y" -1 1 loop 0
 $poseparameter "move_x" -1 1 loop 0
 
 // RAGDOLL
-
-
 $Animation "a_idle" "sb_anims\sb_base.smd" {
 	fps 15
 	loop
+}
+$Animation "aim_mid_center" "sb_anims\aim_mid_center.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_mid_left" "sb_anims\aim_mid_left.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_mid_right" "sb_anims\aim_mid_right.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_up_center" "sb_anims\aim_mid_center.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_up_left" "sb_anims\aim_mid_left.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_up_right" "sb_anims\aim_mid_right.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_down_center" "sb_anims\aim_mid_center.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_down_left" "sb_anims\aim_mid_left.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
+}
+$Animation "aim_down_right" "sb_anims\aim_mid_right.smd" {
+	fps 15
+	loop
+	weightlist	"weights_turret"
+	subtract "a_idle" 0
 }
 $Animation "a_land" "sb_anims\sb_land.smd" {
 	fps 30
@@ -123,7 +180,6 @@ $Animation "a_land" "sb_anims\sb_land.smd" {
 }
 $Animation "a_jumpidle" "sb_anims\sb_jump_idle.smd" {
 	fps 30
-	subtract "a_idle" 0
 }
 
 $Animation "a_walk_N" "sb_anims\sb_walk.smd" {
@@ -263,6 +319,19 @@ $Animation "a_gimp_leg_LB" "sb_anims\sb_gimp_left_back_leg.smd" {
 
 $origin 0 0 0 0
 
+$sequence "aimlayer_generic" {
+	"aim_up_right" "aim_up_center"  "aim_up_left"
+	"aim_mid_right" "aim_mid_center"  "aim_mid_left"
+	"aim_down_right" "aim_down_center"  "aim_down_left"
+	blend "aim_yaw" -180 180
+	blend "aim_pitch" -0.1 0.1
+	blendwidth 3
+	delta
+	fadein 0.3
+	fadeout 0.3
+	hidden
+}
+
 $Sequence "walk" {
 	"a_walk_NW"
 	"a_walk_N"
@@ -274,6 +343,7 @@ $Sequence "walk" {
 	"a_walk_S"
 	"a_walk_SE"
 	activity "ACT_WALK" 1
+	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
 	snap
@@ -300,6 +370,7 @@ $Sequence "run" {
 	"a_run_S"
 	"a_run_SE"
 	activity "ACT_RUN" 1
+	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
 	snap
@@ -398,6 +469,7 @@ $Sequence "PPC Stance to Base" {
 $sequence "turn_left" {
 	"sb_anims\sb_turn_left.smd"
 	activity "ACT_TURN_LEFT" 1
+	addlayer	"aimlayer_generic"
 	fadein 0.2
 	fadeout 0.2
 	fps 30
@@ -407,6 +479,7 @@ $sequence "turn_left" {
 $sequence "turn_right" {
 	"sb_anims\sb_turn_right.smd"
 	activity "ACT_TURN_RIGHT" 1
+	addlayer	"aimlayer_generic"
 	fadein 0.2
 	fadeout 0.2
 	fps 30
@@ -483,6 +556,7 @@ $sequence "walk_gimp_LB" {
 $sequence "jump" {
 	"sb_anims\sb_jump.smd"
 	activity "ACT_JUMP" 1
+	addlayer	"aimlayer_generic"
 	fadein 0.2
 	fadeout 0.2
 	fps 30
@@ -492,6 +566,7 @@ $sequence "jump" {
 $sequence "jump_idle" {
 	"a_jumpidle"
 	activity "ACT_HOVER" 1
+	addlayer	"aimlayer_generic"
 	fadein 0.2
 	fadeout 0.2
 	fps 30
@@ -514,6 +589,7 @@ $sequence "land" {
 $sequence "idle" {
 	"sb_anims\sb_base.smd"
 	activity "ACT_IDLE" 1
+	addlayer	"aimlayer_generic"
 	fadein 0.2
 	fadeout 0.2
 	fps 30
