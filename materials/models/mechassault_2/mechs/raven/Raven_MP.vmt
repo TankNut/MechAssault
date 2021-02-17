@@ -1,0 +1,40 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/mechs/raven/corvus_body_low"
+	"$bumpmap" "models/mechassault_2/mechs/raven/raven_body_normal"
+	$normalmapalphaenvmapmask 		1
+	$envmap			env_cubemap
+	$envmaptint "[0.25 0.25 0.25]"
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .1
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+	"$nocull"		1
+	"$blendtintbybasealpha" 1
+
+		Proxies
+		{
+			Clamp
+			{
+				min 0.15
+				max 1
+				srcVar1 "$color"
+				resultVar "$phongtint"
+			}
+			Clamp
+			{
+				min 0.25
+				max 1
+				srcVar1 "$color"
+				resultVar "$envmaptint"
+			}
+		}
+}
+
+
+
+
