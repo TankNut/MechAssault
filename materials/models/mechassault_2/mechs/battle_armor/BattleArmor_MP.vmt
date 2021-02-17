@@ -1,6 +1,6 @@
 VertexLitGeneric
 {
-	$baseTexture		"models\mechassault_2\mechs\battle_armor\battlearmor_white"
+	$baseTexture		"models\mechassault_2\mechs\battle_armor\battlearmor_low"
 	$normalmapalphaenvmapmask 		"models\mechassault_2\mechs\battle_armor\BattleArmor_normal"
 	$envmap			env_cubemap
 	$envmapmask		"models\mechassault_2\mechs\battle_armor\battlearmor_mask"
@@ -15,7 +15,7 @@ VertexLitGeneric
 	$emissiveBlendEnabled 1
 	$emissiveBlendTexture     "models\mechassault_2\mechs\battle_armor\battlearmor_low"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\battle_armor\battlearmor_emissive"
-	$emissiveBlendFlowTexture     "models\mechassault_2\mechs\battle_armor\particle_glow_04"
+	$emissiveBlendFlowTexture     "vgui\white"
 	$emissiveBlendTint "[1 1 1 ]"
 	$emissiveBlendStrength 10
 	$emissiveBlendScrollVector "[0 0]"
@@ -33,15 +33,15 @@ VertexLitGeneric
 		}
 		Clamp
 		{
-			min 0.5
-			max 0.8
+			min 0.45
+			max 0.7
 			srcVar1 "$color"
 			resultVar "$envmaptint"
 		}
 		Clamp
 		{
-			min 0.01
-			max 5
+			min 0
+			max 1
 			srcVar1 "$color"
 			resultVar "$emissiveBlendTint"
 		}
