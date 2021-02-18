@@ -1,7 +1,7 @@
 "VertexlitGeneric"
 {
 	"$basetexture" "models/mechassault_2/mechs/mad_dog/maddog_body_low"
-	"$bumpmap" "models/mechassault_2/mechs/mad_dog/vtr_body_low_nrml"
+	"$bumpmap" "models/mechassault_2/mechs/mad_dog/maddog_body_low_nrml"
 	$normalmapalphaenvmapmask 		1 
 	$envmap			env_cubemap
 	$ambientocclusion	1

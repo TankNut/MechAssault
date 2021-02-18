@@ -38,9 +38,9 @@ $cdmaterials "models\mechassault_2\mechs\Stiletto\"
 $texturegroup "skinfamilies"
 {
 	{ "Stiletto"    	  	 "Reac_Glow"}
-	{ "Stiletto_Colorable" 	 "Reac_Glow_3"}
-	{ "Stiletto_Raptor" 	 "Reac_Glow_2"}
-	{ "Stiletto_Raptor_Colorable" 	 "Reac_Glow_3"}
+	{ "Raptor" 	 "Reac_Glow_2"}
+	{ "Stiletto_MP" 	 "Reac_Glow_3"}
+	{ "Raptor_MP" 	 "Reac_Glow_3"}
 }
 
 // RAGDOLL
