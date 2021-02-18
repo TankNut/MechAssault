@@ -119,9 +119,7 @@ end
 
 function ENT:StopDriving(ply)
 	self:SetMoveSpeed(vector_origin)
-	self:SetCycle(0)
-	self:ResetSequence("power_down")
-	self:SetPlaybackRate(self.StandRate)
+	self:SetState(STATE_POWERDOWN)
 end
 
 if CLIENT then
