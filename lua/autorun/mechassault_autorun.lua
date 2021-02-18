@@ -55,17 +55,17 @@ drive.Register("drive_mechassault", {
 	StartMove = function(self, mv, cmd)
 		self.Player:SetObserverMode(OBS_MODE_CHASE)
 
-		if self.Entity:AllowControl() and self.Entity:StartMove(self.Player, mv, cmd) then
+		if self.Entity:AllowInput() and self.Entity:StartMove(self.Player, mv, cmd) then
 			self:Stop()
 		end
 	end,
 	Move = function(self, mv)
-		if self.Entity:AllowControl() then
+		if self.Entity:AllowInput() then
 			self.Entity:Move(mv)
 		end
 	end,
 	FinishMove = function(self, mv)
-		if self.Entity:AllowControl() then
+		if self.Entity:AllowInput() then
 			self.Entity:FinishMove(mv)
 
 			if self.StopDriving then
