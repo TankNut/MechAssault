@@ -6,7 +6,7 @@ function ENT:UpdateAnimation()
 	local sequence
 	local yaw = 0
 
-	if IsValid(ply) and self:AllowInput() then
+	if IsValid(ply) and self:AllowControl() then
 		yaw = math.NormalizeAngle(self:GetAimAngle().y - self:GetAngles().y)
 		sequence = self:GetRunning() and "run" or "walk"
 

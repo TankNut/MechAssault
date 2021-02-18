@@ -2,12 +2,8 @@ LOCAL_STEP_SIZE = 16
 LOCAL_STEP_HEIGHT = 18
 MOVE_HEIGHT_EPSILON = 0.0625
 
-STATE_INVALID = 0
-STATE_OFFLINE = 1
-STATE_POWERUP = 2
-STATE_ACTIVE = 3
-STATE_POWERDOWN = 4
-STATE_EXPLODING = 5
+STATE_IDLE 		= 0
+STATE_COMBAT 	= 1
 
 AddCSLuaFile()
 
@@ -36,7 +32,6 @@ ENT.StandRate 				= 0.5
 include("sh_animation.lua")
 include("sh_move.lua")
 include("sh_step.lua")
-include("sh_state.lua")
 
 ENT.WeaponTypes = {}
 ENT.WeaponLoadout = {
@@ -45,16 +40,14 @@ ENT.WeaponLoadout = {
 
 include("weapons/weapon_laser.lua")
 
-ENT.States = {}
-
-include("states/state_offline.lua")
-include("states/state_powerup.lua")
-include("states/state_active.lua")
-include("states/state_powerdown.lua")
-
 function ENT:Initialize()
 	self:SetModel(self.Model)
 	self:SetupPhysics(self.HullMin, self.HullMax)
+
+	self:ResetSequence("power_down")
+	self:SetCycle(1)
+
+	self:SetPlaybackRate(self.StandRate)
 
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
@@ -72,16 +65,15 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Bool", 0, "Running")
 	self:NetworkVar("Bool", 1, "ThirdPerson")
 
-	self:NetworkVar("Float", 0, "StateTimer")
+	self:NetworkVar("Float", 0, "StandTimer")
 	self:NetworkVar("Float", 1, "NextAttack")
 
 	self:NetworkVar("Int", 0, "CurrentWeapon")
-	self:NetworkVar("Int", 1, "CurrentState")
 
 	for k, v in ipairs(self.WeaponLoadout) do
 		local name = "WeaponLevel" .. k
 
-		self:NetworkVar("Int", k + 1, name)
+		self:NetworkVar("Int", k, name)
 		self["Set" .. name](self, v.Level)
 	end
 
@@ -89,8 +81,6 @@ function ENT:SetupDataTables()
 	self:SetAimAngle(Angle(0, self:GetAngles().y, 0))
 	self:SetThirdPerson(true)
 	self:SetCurrentWeapon(1)
-
-	self:SetState(STATE_OFFLINE)
 end
 
 function ENT:GetWeaponLevel(index)
@@ -126,7 +116,6 @@ function ENT:Think()
 	self:NextThink(CurTime())
 
 	self:UpdateAnimation()
-	self:UpdateState()
 
 	return true
 end
@@ -143,14 +132,8 @@ function ENT:GetAimPos()
 	}).HitPos
 end
 
-function ENT:AllowInput()
-	local state = self:GetStateTable()
-
-	if state then
-		return state.AllowInput or false
-	end
-
-	return false
+function ENT:AllowControl()
+	return self:GetStandTimer() <= CurTime()
 end
 
 function ENT:UpgradeWeapon(weaponType)
@@ -209,18 +192,11 @@ if CLIENT then
 		self:DrawModel()
 	end
 else
-	function ENT:CanEnter(ply)
-		return self:GetCurrentState() == STATE_OFFLINE
-	end
-
 	function ENT:Use(ply)
-		if not self:CanEnter(ply) then
-			self:EmitSound("MECHASSAULT_2/UI_low_hp.ogg")
+		self:SetCycle(0)
+		self:SetSequence("power_up")
 
-			return
-		end
-
-		self:SetState(STATE_POWERUP)
+		self:SetStandTimer(CurTime() + self:SequenceDuration() / self.StandRate)
 
 		drive.PlayerStartDriving(ply, self, "drive_mechassault")
 	end
