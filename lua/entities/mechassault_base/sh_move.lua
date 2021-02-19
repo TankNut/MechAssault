@@ -147,7 +147,7 @@ if CLIENT then
 			endpos = target,
 			mins = Vector(-2, -2, -2),
 			maxs = Vector(2, 2, 2),
-			filter = {self}
+			mask = MASK_SOLID_BRUSHONLY
 		})
 
 		view.origin		= tr.HitPos

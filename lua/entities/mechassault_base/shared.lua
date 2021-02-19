@@ -52,13 +52,48 @@ include("states/state_powerup.lua")
 include("states/state_active.lua")
 include("states/state_powerdown.lua")
 
+if SERVER then
+	function ENT:SpawnFunction(ply, tr, class)
+		local ang = Angle(0, -ply:EyeAngles().y, 0)
+		local ent = ents.Create(class)
+
+		ent:SetCreator(ply)
+		ent:SetAngles(ang)
+
+		ent:Spawn()
+		ent:Activate()
+
+		ent:SetPos(tr.HitPos)
+
+		undo.Create(class)
+			undo.AddEntity(ent)
+			undo.SetPlayer(ply)
+			undo.SetCustomUndoText("Undone " .. ent.PrintName)
+		undo.Finish()
+
+		return ent
+	end
+end
+
 function ENT:Initialize()
 	self:SetModel(self.Model)
 	self:SetupPhysics(self.HullMin, self.HullMax)
 
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
+		self:CreateBoneFollowers()
 	end
+
+	for k, v in ipairs(self.WeaponLoadout) do
+		self["SetWeaponLevel" .. k](self, v.Level)
+	end
+
+	self:SetForcedAngle(Angle(0, 0, 180))
+	self:SetAimAngle(Angle(0, self:GetAngles().y, 0))
+	self:SetThirdPerson(true)
+	self:SetCurrentWeapon(1)
+
+	self:SetState(STATE_OFFLINE)
 end
 
 function ENT:SetupDataTables()
@@ -82,15 +117,7 @@ function ENT:SetupDataTables()
 		local name = "WeaponLevel" .. k
 
 		self:NetworkVar("Int", k + 1, name)
-		self["Set" .. name](self, v.Level)
 	end
-
-	self:SetForcedAngle(Angle(0, 0, 180))
-	self:SetAimAngle(Angle(0, self:GetAngles().y, 0))
-	self:SetThirdPerson(true)
-	self:SetCurrentWeapon(1)
-
-	self:SetState(STATE_OFFLINE)
 end
 
 function ENT:GetWeaponLevel(index)
@@ -114,7 +141,7 @@ function ENT:SetupPhysics(mins, maxs)
 	else
 		self:PhysicsInitBox(mins, maxs)
 		self:SetMoveType(MOVETYPE_STEP)
-		self:SetSolid(SOLID_BBOX)
+		self:SetSolid(SOLID_NONE)
 
 		self:GetPhysicsObject():EnableMotion(false)
 	end
@@ -127,6 +154,10 @@ function ENT:Think()
 
 	self:UpdateAnimation()
 	self:UpdateState()
+
+	if SERVER then
+		self:UpdateBoneFollowers()
+	end
 
 	return true
 end
