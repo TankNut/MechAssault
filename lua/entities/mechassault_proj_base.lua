@@ -7,31 +7,117 @@ ENT.Author 					= "TankNut"
 
 ENT.Model 					= Model("models/weapons/w_missile_launch.mdl")
 
+ENT.Damage 					= 0
+
 ENT.Velocity 				= 3000
 ENT.HullSize 				= 10
 
+ENT.GravityMultiplier 		= 0
+
 function ENT:Initialize()
 	self:SetModel(self.Model)
-	self:DrawShadow(false)
 
-	if SERVER then
-		self:PhysicsInitSphere(self.HullSize, "metal")
-		self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
+	self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
 
-		local phys = self:GetPhysicsObject()
+	self.Vel = self:GetForward() * self.Velocity
+	self.LastThink = CurTime()
 
-		if IsValid(phys) then
-			phys:EnableDrag(false)
-			phys:EnableGravity(false)
-			phys:SetBuoyancyRatio(0)
-			phys:Wake()
-			phys:SetVelocity(self:GetAngles():Forward() * self.Velocity)
+	self.Hit = false
+
+	if self.ParticleAttach then
+		ParticleEffectAttach("gm_MA2_laser_lvl1", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+	end
+end
+
+function ENT:Think()
+	if self.Hit then
+		return
+	end
+
+	local gravity = physenv.GetGravity() * self.GravityMultiplier
+	local delta = CurTime() - self.LastThink
+
+	self.Vel = self.Vel + (gravity * delta)
+	self:Process()
+
+	local pos = self:GetPos() + (self.Vel * delta)
+
+	local blacklist = {
+		[self] = true,
+		[self:GetOwner()] = true
+	}
+
+	local tr = util.TraceHull({
+		start = self:GetPos(),
+		endpos = pos,
+		filter = function(ent)
+			if blacklist[ent] or ent:GetClass() == self:GetClass() then
+				return false
+			end
+
+			return true
+		end,
+		collisiongroup = COLLISION_GROUP_PROJECTILE,
+		mins = Vector(-0.5, -0.5, -0.5) * self.HullSize,
+		maxs = Vector(0.5, 0.5, 0.5) * self.HullSize
+	})
+
+	if tr.Hit or tr.StartSolid or tr.AllSolid then
+		self:StopParticles()
+
+		self:OnHit(tr)
+		self:SetPos(tr.HitPos)
+
+		self.Hit = true
+
+		if SERVER then
+			SafeRemoveEntity(self)
+		end
+
+		return
+	end
+
+	if CLIENT then
+		self:SetRenderOrigin(pos)
+	else
+		self:SetPos(pos)
+	end
+
+	self.LastThink = CurTime()
+	self:NextThink(CurTime())
+
+	return true
+end
+
+function ENT:Process()
+end
+
+if SERVER then
+	function ENT:DealDamage(ent)
+		local mech = self:GetOwner()
+
+		if IsValid(mech) and IsValid(self.Player) then
+			local dmg = DamageInfo()
+
+			dmg:SetDamageType(DMG_DIRECT)
+			dmg:SetInflictor(mech)
+			dmg:SetAttacker(self.Player)
+			dmg:SetDamage(self.Damage)
+			dmg:SetDamagePosition(self:GetPos())
+
+			ent:TakeDamageInfo(dmg)
 		end
 	end
 end
 
-if SERVER then
-	function ENT:PhysicsCollide(data, phys)
-		SafeRemoveEntity(self)
+function ENT:OnHit(tr)
+	if SERVER then
+		if self.ImpactSound then
+			self:EmitSound(self.ImpactSound)
+		end
+
+		if IsValid(tr.Entity) then
+			self:DealDamage(tr.Entity)
+		end
 	end
 end

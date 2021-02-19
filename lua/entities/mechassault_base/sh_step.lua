@@ -8,7 +8,7 @@ function ENT:TraceHull(start, endpos)
 		maxs = self.HullMax,
 		mask = MASK_PLAYERSOLID,
 		filter = function(ent)
-			return ent != self and ent:GetMoveType() != MOVETYPE_NOCLIP
+			return ent:IsWorld() or (ent != self and scripted_ents.IsTypeOf(ent:GetClass(), "mechassault_base"))
 		end
 	})
 end

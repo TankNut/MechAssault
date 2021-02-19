@@ -119,9 +119,7 @@ end
 
 function ENT:StopDriving(ply)
 	self:SetMoveSpeed(vector_origin)
-	self:SetCycle(0)
-	self:ResetSequence("power_down")
-	self:SetPlaybackRate(self.StandRate)
+	self:SetState(STATE_POWERDOWN)
 end
 
 if CLIENT then
@@ -149,7 +147,7 @@ if CLIENT then
 			endpos = target,
 			mins = Vector(-2, -2, -2),
 			maxs = Vector(2, 2, 2),
-			filter = {self}
+			mask = MASK_SOLID_BRUSHONLY
 		})
 
 		view.origin		= tr.HitPos
