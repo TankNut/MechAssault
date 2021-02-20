@@ -1,11 +1,18 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/uziel.mdl"
-$attachment "pulse_laser_R" "joint_rgun" -25.00 -138.00 0.50 rotate 0 -90 0
-$attachment "pulse_laser_L" "joint_lgun" 23.00 -138.00 0.50 rotate -0 -90 0
+$attachment "pulse_laser_R1" "joint_rgun" -25.00 -138.00 0.50 rotate 0 -90 0
+$attachment "pulse_laser_R2" "joint_rgun" -16.00 -60.00 -30.50 rotate -0 -90 0
+$attachment "pulse_laser_L1" "joint_lgun" 23.00 -138.00 0.50 rotate -0 -90 0
+$attachment "pulse_laser_L2" "joint_lgun" 15.00 -60.00 -30.50 rotate -0 -90 0
 $attachment "machinegun_R" "joint_torsoabove" 53.00 -70.00 84.50 rotate 0 -90 0
 $attachment "machinegun_L" "joint_torsoabove" -53.00 -70.00 84.50 rotate 0 -90 0
 $attachment "rocket_pod" "joint_torsoabove" 0.00 -45.00 106.50 rotate -0 -90 0
+$attachment "jumpjets_main" "joint_torso" 0.00 98.00 5.00 rotate 90 -0 0
+$attachment "jumpjets_L" "joint_torso" 45.00 118.00 52.00 rotate 30 40 0
+$attachment "jumpjets_R" "joint_torso" -45.00 118.00 52.00 rotate 30 140 0
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 135.00 45.00 rotate -0 -90 0
 $scale 47
 //$origin 0 0 0 0
 

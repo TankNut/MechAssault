@@ -7,8 +7,8 @@ $attachment "Pulse_Laser_L" "joint_lmissile" 65.00 -57.00 -18.00 rotate -0 -90 0
 $attachment "Pulse_Laser_R" "joint_rmissile" -65.50 -57.00 -18.00 rotate -0 -90 0
 $attachment "Missiles_L" "joint_lmissile" 40.00 -37.00 15.00 rotate -0 -90 0
 $attachment "Missiles_R" "joint_rmissile" -40.00 -37.00 15.00 rotate -0 -90 0
-
-
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 85.00 25.00 rotate -0 -90 0
 $scale 30
 //$origin 0 0 -38 0
 

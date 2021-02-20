@@ -1,16 +1,18 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/Stiletto.mdl"
+
 $scale 1
-$attachment "Autocannon" "joint_torso" -114.00 -95.00 17.50 rotate -0 -90 -90
-$attachment "Pulse_Laser" "joint_torso" -62.50 -65.00 56.00 rotate 0 -90 0
-$attachment "Missiles_1" "joint_torso" 70.00 45.00 74.50 rotate 0 -90 0
-$attachment "Missiles_2" "joint_torso" -70.00 45.00 74.50 rotate 0 -90 0
-$attachment "jumpjets_main" "joint_torso" -3.00 114.00 -0.00 rotate 90 -0 0
-$attachment "jumpjets_L" "joint_torso" 46.00 136.00 43.00 rotate 30 40 0
-$attachment "jumpjets_R" "joint_torso" -52.00 136.00 43.00 rotate 30 140 0
-
-
+$attachment "Autocannon" "joint_torso" -122.00 -100.00 39.50 rotate -0 -90 -90
+$attachment "Pulse_Laser" "joint_torso" -67.50 -66.00 82.00 rotate -0 -90 0
+$attachment "Missiles_1" "joint_torso" 74.00 50.00 100.50 rotate -0 -90 0
+$attachment "Missiles_2" "joint_torso" -74.00 50.00 100.50 rotate -0 -90 0
+$attachment "jumpjets_main" "joint_torso" -3.00 120.00 -12.00 rotate 90 -0 0
+$attachment "jumpjets_L" "joint_torso" 44.00 140.00 33.00 rotate 30 40 0
+$attachment "jumpjets_R" "joint_torso" -55.00 143.00 33.00 rotate 30 140 0
+$scale 1
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 160.00 35.00 rotate -0 -90 0
 $scale 40
 //$origin 0 0 -38 0
 

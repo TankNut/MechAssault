@@ -10,6 +10,8 @@ $attachment "machinegun_1" "joint_torso" -69.00 -142.00 51.50 rotate -0 -90 0
 $attachment "machinegun_2" "joint_torso" 66.00 -142.00 51.50 rotate -0 -90 0
 $attachment "rocketpod_L" "joint_torso" 120.00 -30.00 140.50 rotate -0 -90 0
 $attachment "rocketpod_R" "joint_torso" -120.00 -30.00 140.50 rotate -0 -90 0
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 120.00 70.00 rotate -0 -90 0
 $scale 37
 //$origin 0 0 0 0
 

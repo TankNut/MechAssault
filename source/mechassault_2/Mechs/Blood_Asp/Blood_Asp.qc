@@ -2,12 +2,20 @@
 
 $modelname "mechassault_2/mechs/blood_asp.mdl"
 $scale 1.25
-$attachment "machinegun_R" "joint_rgun" 5.00 -147.00 -32.50 rotate -0 -90 0
-$attachment "machinegun_L" "joint_lgun" -5.00 -147.00 -32.50 rotate -0 -90 0
+$attachment "machinegun_R1" "joint_rgun" 5.00 -147.00 -32.50 rotate -0 -90 0
+$scale	1
+$attachment "machinegun_R2" "joint_rgun" 6.25 -177.75 -65.63 rotate -0 -90 0
+$scale 1.25
+$attachment "machinegun_L1" "joint_lgun" -5.00 -147.00 -32.50 rotate -0 -90 0
+$scale	1
+$attachment "machinegun_L2" "joint_lgun" -5.00 -177.75 -65.63 rotate -0 -90 0
+$scale 1.25
 $attachment "missile_pod_L" "joint_torso" 80.00 -57.00 65.00 rotate -0 -90 0
 $attachment "missile_pod_R" "joint_torso" -80.00 -57.00 65.00 rotate -0 -90 0
 $attachment "Plasma_PPC_R" "joint_torso" -80.00 -47.00 140.00 rotate -0 -90 0
 $attachment "Plasma_PPC_L" "joint_torso" 80.00 -47.00 140.00 rotate -0 -90 0
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 118.75 70.00 rotate -0 -90 0
 $scale 50
 //$origin 0 0 0 0
 

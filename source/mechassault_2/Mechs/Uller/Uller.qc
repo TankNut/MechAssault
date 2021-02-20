@@ -39,7 +39,8 @@ $attachment "rocketpod_R" "joint_torso" -34 -10 70.5 rotate 0 -90 0
 $attachment "jumpjets_main" "joint_torso" 0 42 5 rotate 90 0 0
 $attachment "jumpjets_L" "joint_torso" 21 52 24 rotate 30 40 0
 $attachment "jumpjets_R" "joint_torso" -21 52 24 rotate 30 140 0
-
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 85.00 30.00 rotate -0 -90 0
 $cbox 0 0 0 0 0 0
 
 $bbox -87.362 -129.223 0.895 115.004 130.05 317.234

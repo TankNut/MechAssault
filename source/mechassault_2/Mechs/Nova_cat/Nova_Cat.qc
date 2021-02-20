@@ -1,12 +1,17 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/nova_cat.mdl"
+
+
 $scale	1.35
 $attachment "pulse_laser_R1" "joint_ruarm" -38.00 -152.00 -23.50 rotate 0 -90 0
 $attachment "pulse_laser_R2" "joint_ruarm" -52.00 -152.00 -50.50 rotate -0 -90 0
 $attachment "machinegun_1" "joint_luarm" 19.00 -114.00 -28.50 rotate 0 -90 0
 $attachment "machinegun_2" "joint_luarm" 48.00 -114.00 -12.50 rotate -0 -90 0
 $attachment "machinegun_3" "joint_luarm" 48.00 -114.00 -44.50 rotate -0 -90 0
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$scale	1
+$attachment "battlearmor_attach" "joint_torso" 0.00 115.00 45.00 rotate -0 -90 0
 $scale 48
 //$origin 0 0 0 0
 
