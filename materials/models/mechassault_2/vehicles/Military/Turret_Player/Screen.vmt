@@ -1,0 +1,15 @@
+"VertexLitGeneric"
+{
+	$baseTexture		"models\mechassault_2\vehicles\military\Turret_Player\misc_137_turret_screen"
+//	"$color2"		"[0.15 0.15 4]"
+//	"$translucent"	"1"
+	"$detail" "models\mechassault_2\vehicles\military\Turret_Player\misc_137_turret_screen"
+	"$detailscale" "1"
+	"$detailblendfactor" "5"
+	"$detailblendmode" "5"
+	"$additive"	"0"
+	"$blendtintbybasealpha"	"1"
+
+
+}
+
