@@ -13,11 +13,11 @@ VertexLitGeneric
 	$rimlightexponent       30
 	$rimlightboost          1	
 	$emissiveBlendEnabled 1
-	$emissiveBlendTexture     "models\mechassault_2\mechs\elemental\elemental"
+	$emissiveBlendTexture     "vgui\white"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\elemental\elemental_illum"
 	$emissiveBlendFlowTexture     "vgui\white"
 	$emissiveBlendTint "[1 1 1 ]"
-	$emissiveBlendStrength 10
+	$emissiveBlendStrength 50
 	$emissiveBlendScrollVector "[0 0]"
 
 "$blendtintbybasealpha" 1
@@ -40,8 +40,8 @@ VertexLitGeneric
 		}
 		Clamp
 		{
-			min 0.01
-			max 5
+			min 0
+			max 15
 			srcVar1 "$color"
 			resultVar "$emissiveBlendTint"
 		}

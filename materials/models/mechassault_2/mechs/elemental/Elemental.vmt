@@ -13,7 +13,7 @@ VertexLitGeneric
 	$rimlightexponent       30
 	$rimlightboost          1	
 	$emissiveBlendEnabled 1
-	$emissiveBlendTexture     "models\mechassault_2\mechs\elemental\elemental"
+	$emissiveBlendTexture     "vgui\white"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\elemental\elemental_illum"
 	$emissiveBlendFlowTexture     "vgui\white"
 	$emissiveBlendTint "[10 0 0 ]"
