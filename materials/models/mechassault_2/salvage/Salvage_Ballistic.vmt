@@ -14,5 +14,15 @@ VertexLitGeneric
 	$rimlightboost          1	
 
 
+	Proxies
+	{
 
+               Sine
+               {
+               sinemin       "1"           // STILL needs to be changed, see later
+               sinemax      "7.5"      // SEE below why it's 2.99 and not 2
+               sineperiod   "0"         // We want that the time between each peak is 10sec
+               resultVar     "$color"
+               }
+	}
 }
