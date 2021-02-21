@@ -6,7 +6,7 @@ ENT.AutomaticFrameAdvance 	= true
 ENT.Author 					= "TankNut"
 
 ENT.Model 					= Model("models/weapons/w_missile_launch.mdl")
-ENT.Sound 					= Sound("MECHASSAULT_2/special_charge.ogg")
+ENT.Sound 					= Sound("mechassault_2/items/salvage.ogg")
 
 function ENT:Initialize()
 	self:SetModel(self.Model)

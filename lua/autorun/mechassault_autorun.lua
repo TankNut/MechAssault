@@ -29,16 +29,16 @@ sound.Add({
 	level = 90,
 	pitch = {95, 110},
 	sound = {
-		"MECHASSAULT_2/mech_step_1.ogg",
-		"MECHASSAULT_2/mech_step_2.ogg",
-		"MECHASSAULT_2/mech_step_3.ogg",
-		"MECHASSAULT_2/mech_step_4.ogg"
+		"mechassault_2/mechs/mech_step_1.ogg",
+		"mechassault_2/mechs/mech_step_2.ogg",
+		"mechassault_2/mechs/mech_step_3.ogg",
+		"mechassault_2/mechs/mech_step_4.ogg"
 	}
 })
 
 hook.Add("EntityEmitSound", "mechassault", function(snd)
 	if snd.OriginalSoundName == "MA2_Mech.Step" then
-		snd.SoundName = string.format("MECHASSAULT_2/mech_step_%s.ogg", math.random(1, 4)) -- We just want something random, not mech_step_1 through 4 in order
+		snd.SoundName = string.format("mechassault_2/mechs/mech_step_%s.ogg", math.random(1, 4)) -- We just want something random, not mech_step_1 through 4 in order
 
 		return true
 	end

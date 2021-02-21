@@ -6,7 +6,7 @@ ENT.States[STATE_POWERDOWN] = {
 }
 
 function ENT:SwitchToPowerdown()
-	self:EmitSound("MECHASSAULT_2/mech_exit.ogg")
+	self:EmitSound("mechassault_2/mechs/mech_exit.ogg")
 
 	self:SetCycle(0)
 	self:SetSequence("power_down")

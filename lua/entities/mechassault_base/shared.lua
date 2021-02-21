@@ -246,7 +246,7 @@ else
 
 	function ENT:Use(ply)
 		if not self:CanEnter(ply) then
-			self:EmitSound("MECHASSAULT_2/UI_low_hp.ogg")
+			self:EmitSound("mechassault_2/ui/ui_low_hp.ogg")
 
 			return
 		end
