@@ -1,0 +1,16 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault_2\weapons\sh07_BM-00out"
+	$bumpmap	"models\mechassault_2\weapons\sh07_NM-00out"
+	$phong				1
+	$phongboost			0.1
+	$phongexponent		40
+	$phongtint			"[.85 .85 1]"
+	$phongfresnelranges	"[.3 4 8]"
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+
+
+}

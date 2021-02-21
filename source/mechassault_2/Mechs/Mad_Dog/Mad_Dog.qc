@@ -1,6 +1,8 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/mad_dog.mdl"
+
+
 $scale	1.15
 $attachment "pulse_laser_R1" "joint_rgun" -18.00 -146.00 -8.50 rotate -0 -90 0
 $attachment "pulse_laser_R2" "joint_rgun" 6.00 -162.00 0.50 rotate -0 -90 0
@@ -8,8 +10,12 @@ $attachment "pulse_laser_L1" "joint_lgun" 17.00 -146.00 -8.50 rotate -0 -90 0
 $attachment "pulse_laser_L2" "joint_lgun" -7.00 -162.00 0.50 rotate -0 -90 0
 $attachment "machinegun_1" "joint_torso" -42.00 -112.00 38.50 rotate -0 -90 0
 $attachment "machinegun_2" "joint_torso" 42.00 -112.00 38.50 rotate -0 -90 0
-$attachment "rocketpod_L" "joint_torso" 52.00 25.00 105.50 rotate -0 -90 0
-$attachment "rocketpod_R" "joint_torso" -52.00 25.00 105.50 rotate -0 -90 0
+$scale	1
+$attachment "rocketpod_R" "joint_torso" -55.80 28.75 121.33 rotate -0 -90 0
+$attachment "rocketpod_L" "joint_torso" 55.80 28.75 121.33 rotate -0 -90 0
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$scale	1
+$attachment "battlearmor_attach" "joint_torso" 0.00 110.00 70.00 rotate -0 -90 0
 $scale 37
 //$origin 0 0 0 0
 

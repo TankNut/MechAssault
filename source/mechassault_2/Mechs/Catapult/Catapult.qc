@@ -1,18 +1,21 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/Catapult.mdl"
-$scale 1.1
-$attachment "Autocannon" "joint_torso" -114.00 -95.00 17.50 rotate -0 -90 -90
+$scale 1.05
 $attachment "Pulse_Laser_1" "joint_torso" -46.50 -165.00 -27.00 rotate -0 -90 0
 $attachment "Pulse_Laser_2" "joint_torso" -12.50 -162.00 5.00 rotate -0 -90 0
 $attachment "Pulse_Laser_3" "joint_torso" 12.50 -162.00 5.00 rotate -0 -90 0
-$attachment "Pulse_Laser_4" "joint_torso" 46.50 -165.00 -27.00 rotate -0 -90 0
+$attachment "Pulse_Laser_4" "joint_torso" 46.50 -165.00 -27.00 rotate -0 -90 
+$scale 1.1
 $attachment "Missiles_1" "joint_ruarm" -35.00 15.00 65.00 rotate -15 -90 0
 $attachment "Missiles_2" "joint_luarm" 35.00 15.00 65.00 rotate -15 -90 0
+$scale	1.05
 $attachment "jumpjets_main" "joint_torso" 1.00 111.00 -12.00 rotate 70 90 0
 $attachment "jumpjets_L" "joint_torso" 45.00 120.00 28.00 rotate 30 40 0
 $attachment "jumpjets_R" "joint_torso" -42.50 120.00 28.00 rotate 30 140 0
-
+$scale	1
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 144.50 40.00 rotate -0 -90 0
 $scale 42
 //$origin 0 0 -38 0
 

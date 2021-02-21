@@ -2,6 +2,7 @@
 
 $modelname "mechassault_2/mechs/cougar.mdl"
 
+
 $bodygroup "Legs"
 {
 	studio "Cougar Hips.smd"
@@ -44,18 +45,24 @@ $texturegroup "skinfamilies"
 	{ "Cougar_MP" "Reac_Glow_2" }
 	{ "Puma_MP"   "Reac_Glow_2" }
 }
-
+$scale	1.125
 $attachment "pulse_laser_R" "joint_rgunlower" 15 -18 73.5 rotate -90 0 0
 $attachment "pulse_laser_L" "joint_lgunlower" -22 -18 73.5 rotate -90 0 0
 $attachment "autocannon_R" "joint_rgunlower" 9 -44 105.5 rotate -90 0 0
 $attachment "autocannon_L" "joint_lgunlower" -14 -44 105.5 rotate -90 0 0
 $attachment "missile_pod_R" "joint_torso" 80 -30 38 rotate 0 -90 0
 $attachment "missile_pod_L" "joint_torso" -80 -30 38 rotate 0 -90 0
+$scale	1
+$attachment "machinegun_R" "joint_torso" 72.00 -58.00 7.00 rotate -0 -90 0
+$attachment "machinegun_L" "joint_torso" -80.00 -58.00 7.00 rotate -0 -90 0
+$scale	1.125
 $attachment "defense_system" "joint_torso" -2 12 74 rotate -90 0 0
 $attachment "jumpjets_main" "joint_torso" -3 67 -6 rotate 90 0 0
 $attachment "jumpjets_L" "joint_torso" 24 80 16 rotate 30 40 0
 $attachment "jumpjets_R" "joint_torso" -30 80 16 rotate 30 140 0
-
+$scale		1
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$attachment "battlearmor_attach" "joint_torso" -4.00 105.00 15.00 rotate -0 -90 0
 $cbox 0 0 0 0 0 0
 
 $bbox -114.71 -166.668 -37.527 110.163 167.195 367.077

@@ -1,6 +1,7 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/ragnarok.mdl"
+
 $scale 1.2
 $attachment "pulse_laser_R1" "joint_rgun" -30.40 -182.60 -18.85 rotate -0 -90 0
 $attachment "pulse_laser_R2" "joint_rgun" -35.40 -208.60 -64.85 rotate -0 -90 0
@@ -8,6 +9,9 @@ $attachment "pulse_laser_L1" "joint_lgun" 30.40 -182.60 -18.85 rotate -0 -90 0
 $attachment "pulse_laser_L2" "joint_lgun" 35.40 -208.60 -64.85 rotate -0 -90 0
 $attachment "rocketpod" "joint_torso" 75.00 -80.00 95.00 rotate -0 -90 0
 $attachment "lavagun" "joint_torso" -85.00 -90.00 175.00 rotate -0 -90 0
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$scale	1
+$attachment "battlearmor_attach" "joint_torso" 0.00 85.00 20.00 rotate -0 -90 0
 $scale 42
 //$origin 0 0 0 0
 

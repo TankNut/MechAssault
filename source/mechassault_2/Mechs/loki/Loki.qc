@@ -1,6 +1,7 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/loki.mdl"
+
 $scale 1.25
 $attachment "pulse_laser_R" "joint_rgun" -2.50 -130.00 4.00 rotate -0 -90 0
 $attachment "pulse_laser_L" "joint_lgun" 4.50 -130.00 4.00 rotate -0 -90 0
@@ -10,7 +11,10 @@ $attachment "rocketpod" "joint_torso" -48.50 -7.00 144.00 rotate -0 -90 0
 $attachment "jumpjets_main" "joint_torso" -1.10 60.20 7.80 rotate 90 -0 0
 $attachment "jumpjets_L" "joint_torso" 40.80 78.70 46.50 rotate 30 40 0
 $attachment "jumpjets_R" "joint_torso" -40.80 78.70 46.50 rotate 30 140 0
-
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+$scale	1
+$attachment "defense_system" "joint_torso" 59.00 12.00 170.00 rotate -90 -0 0
+$attachment "battlearmor_attach" "joint_torso" 0.00 120.00 50.00 rotate -0 -90 0
 $scale 43.5
 //$origin 0 0 0 0
 

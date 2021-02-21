@@ -2,6 +2,8 @@
 
 $modelname "mechassault_2/mechs/elemental.mdl"
 $attachment "JumpJets_main" "joint_torso" 0.50 11.00 14.00 rotate 90 -90 0
+$attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
+
 $scale 1.25
 $attachment "Missile_R" "joint_missilepod_R" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "Missile_L" "joint_missilepod_L" 0.00 0.00 0.00 rotate -0 -90 0

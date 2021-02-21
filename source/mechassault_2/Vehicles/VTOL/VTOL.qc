@@ -25,6 +25,7 @@ $cdmaterials "models\mechassault_2\vehicles\Military\VMIL_VTOL\"
 $texturegroup "skinfamilies"
 {
 	{ "VMIL_VTOL"}
+	{ "VMIL_VTOL_WOB"}
 	{ "VMIL_VTOL_MP"}
 }
 
@@ -60,6 +61,8 @@ $collisionjoints "VTOL_physics.smd" {
 	$jointconstrain "wing right" x limit -180.00 180.00 0.00
 	$jointconstrain "wing right" y limit 0.00 0.00 0.00
 	$jointconstrain "wing right" z limit 0.00 0.00 0.00
+
+	$jointcollide cann turret
 }
 $collisiontext
 {

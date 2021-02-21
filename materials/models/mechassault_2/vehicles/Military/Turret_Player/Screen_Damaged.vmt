@@ -1,0 +1,23 @@
+"VertexLitGeneric"
+{
+	$baseTexture		"models\mechassault_2\vehicles\military\Turret_Player\misc_137_turret_screen"
+//	"$translucent"	"1"
+	"$detail" "models\mechassault_2\vehicles\military\Turret_Player\misc_137_turret_screen"
+	"$detailscale" "1"
+	"$detailblendfactor" "1"
+	"$detailblendmode" "5"
+	"$additive"	"0"
+	"$blendtintbybasealpha"	"0"
+	"$color2"		"[75.15 0.15 0.15]"
+	$offset			"[75.15 0.15 0.15]"
+Sine // a proxy which produces a sine wave
+		sine
+		{
+			sineperiod	1.7
+			sinemin		0
+			sinemax		1
+			timeoffset	0
+			resultvar	"$color2"
+		}
+}
+
