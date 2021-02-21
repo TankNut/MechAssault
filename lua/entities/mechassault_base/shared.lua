@@ -33,6 +33,8 @@ ENT.ViewOffset 				= Vector(-500, 0, 240)
 ENT.Margin 					= 1.1
 ENT.StandRate 				= 0.5
 
+ENT.MaxHealth 				= 3571
+
 include("sh_animation.lua")
 include("sh_move.lua")
 include("sh_step.lua")
@@ -51,6 +53,7 @@ include("states/state_offline.lua")
 include("states/state_powerup.lua")
 include("states/state_active.lua")
 include("states/state_powerdown.lua")
+include("states/state_exploding.lua")
 
 if SERVER then
 	function ENT:SpawnFunction(ply, tr, class)
@@ -93,6 +96,8 @@ function ENT:Initialize()
 	self:SetThirdPerson(true)
 	self:SetCurrentWeapon(1)
 
+	self:SetMechHealth(self.MaxHealth)
+
 	self:SetState(STATE_OFFLINE)
 end
 
@@ -112,11 +117,12 @@ function ENT:SetupDataTables()
 
 	self:NetworkVar("Int", 0, "CurrentWeapon")
 	self:NetworkVar("Int", 1, "CurrentState")
+	self:NetworkVar("Int", 2, "MechHealth")
 
 	for k, v in ipairs(self.WeaponLoadout) do
 		local name = "WeaponLevel" .. k
 
-		self:NetworkVar("Int", k + 1, name)
+		self:NetworkVar("Int", k + 2, name)
 	end
 end
 
@@ -254,5 +260,15 @@ else
 		self:SetState(STATE_POWERUP)
 
 		drive.PlayerStartDriving(ply, self, "drive_mechassault")
+	end
+
+	function ENT:OnTakeDamage(dmg)
+		self:SetMechHealth(self:GetMechHealth() - dmg:GetDamage())
+
+		print(self:GetMechHealth())
+
+		if self:GetCurrentState() != STATE_EXPLODING and self:GetMechHealth() <= 0 then
+			self:SetState(STATE_EXPLODING)
+		end
 	end
 end

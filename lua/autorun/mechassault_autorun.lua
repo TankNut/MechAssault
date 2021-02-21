@@ -21,6 +21,7 @@ end
 
 game.AddParticles("particles/gm_mechassault_2_projectile_effects.pcf")
 game.AddParticles("particles/gm_mechassault_2_muzzleflash_effects.pcf")
+game.AddParticles("particles/gm_mechassault_2_explosions.pcf")
 
 sound.Add({
 	name = "MA2_Mech.Step",
