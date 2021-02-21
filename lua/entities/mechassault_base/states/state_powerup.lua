@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 ENT.States[STATE_POWERUP] = {
 	SwitchTo = "SwitchToPowerup",
-	Think = "ThinkPowerup"
+	TimerFinished = "PowerupTimer"
 }
 
 function ENT:SwitchToPowerup()
@@ -15,8 +15,6 @@ function ENT:SwitchToPowerup()
 	self:SetStateTimer(CurTime() + self:SequenceDuration() / self.StandRate)
 end
 
-function ENT:ThinkPowerup()
-	if self:GetStateTimer() <= CurTime() then
-		self:SetState(STATE_ACTIVE)
-	end
+function ENT:PowerupTimer()
+	self:SetState(STATE_ACTIVE)
 end

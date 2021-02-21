@@ -34,6 +34,12 @@ function ENT:UpdateState()
 	local state = self:GetStateTable()
 
 	if state then
+		local time = self:GetStateTimer()
+
+		if time > 0 and time <= CurTime() then
+			self:Invoke(state.TimerFinished)
+		end
+
 		self:Invoke(state.Think)
 	end
 end

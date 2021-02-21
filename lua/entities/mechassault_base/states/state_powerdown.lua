@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 ENT.States[STATE_POWERDOWN] = {
 	SwitchTo = "SwitchToPowerdown",
-	Think = "ThinkPowerdown"
+	TimerFinished = "PowerdownTimer"
 }
 
 function ENT:SwitchToPowerdown()
@@ -15,8 +15,6 @@ function ENT:SwitchToPowerdown()
 	self:SetStateTimer(CurTime() + self:SequenceDuration() / self.StandRate)
 end
 
-function ENT:ThinkPowerdown()
-	if self:GetStateTimer() <= CurTime() then
-		self:SetState(STATE_OFFLINE)
-	end
+function ENT:PowerdownTimer()
+	self:SetState(STATE_OFFLINE)
 end
