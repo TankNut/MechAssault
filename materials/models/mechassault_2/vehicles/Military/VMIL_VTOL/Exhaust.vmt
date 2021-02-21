@@ -1,0 +1,12 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_VTOL/VTOL_004_interior"
+	"$bumpmap" "models/mechassault_2/vehicles/Military/VMIL_VTOL/VTOL_004_interior_nrml"
+	"$color2"		"[1 1 1]"
+	"$detail" "models/mechassault_2/vehicles/Military/VMIL_VTOL/VTOL_004_interior"
+	"$detailscale" "1"
+	"$detailblendfactor" "15"
+	"$detailblendmode" "5"
+	"$additive"	"0"
+}
+
