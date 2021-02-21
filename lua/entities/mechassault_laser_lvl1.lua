@@ -3,7 +3,7 @@ AddCSLuaFile()
 
 ENT.Base 					= "mechassault_proj_base"
 
-ENT.Damage 					= 200
+ENT.Damage 					= 65
 ENT.Velocity 				= 6000
 ENT.HullSize 				= 10
 

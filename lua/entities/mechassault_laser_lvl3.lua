@@ -3,8 +3,8 @@ AddCSLuaFile()
 
 ENT.Base 					= "mechassault_proj_base"
 
-ENT.Damage 					= 200
-ENT.Velocity 				= 4000
+ENT.Damage 					= 117
+ENT.Velocity 				= 6000
 ENT.HullSize 				= 10
 
 ENT.ParticleAttach 			= "gm_MA2_laser_lvl3"
