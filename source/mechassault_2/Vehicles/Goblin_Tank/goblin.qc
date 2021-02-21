@@ -1,6 +1,7 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/vehicles/vmil_goblin.mdl"
+$scale 1.35
 $attachment "MG_Right" "Cann" 21.00 0.00 32.00 rotate -90 0 0
 $attachment "MG_Left" "Cann"  -21.00 0.00 32.00 rotate -90 0 0
 $attachment "Rocket" "Cann" 0.00 10.00 20.00 rotate -90 90 0
@@ -24,6 +25,266 @@ $cdmaterials "models\mechassault_2\vehicles\Military\VMIL_Goblin\"
 
 // RAGDOLL
 
+$PoseParameter "aim_pitch" -45 45 0
+$PoseParameter "aim_yaw" -180 180 0
+
+$weightlist weights_turret {
+
+"Turr" 1
+"Cann" 0
+"Hull"	0
+
+}
+
+
+$weightlist weights_cannon {
+
+"Turr" 0
+"Cann" 1
+"Hull"	0
+
+}
+
+$Animation "a_idle" "tank_anims\reference.smd" {
+	fps 15
+	loop
+}
+$Animation "aim_mid_center" "tank_anims\aim_mid_center.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_turret"
+}
+$Animation "aim_mid_left" "tank_anims\aim_mid_left.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_turret"
+}
+$Animation "aim_mid_right" "tank_anims\aim_mid_right.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_turret"
+}
+$Animation "aim_up_center" "tank_anims\aim_up_center.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_cannon"
+}
+$Animation "aim_up_left" "tank_anims\aim_up_center.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_cannon"
+}
+$Animation "aim_up_right" "tank_anims\aim_up_center.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_cannon"
+}
+$Animation "aim_down_center" "tank_anims\aim_down_center.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_cannon"
+}
+$Animation "aim_down_left" "tank_anims\aim_down_center.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_cannon"
+}
+$Animation "aim_down_right" "tank_anims\aim_down_center.smd" {
+	fps 15
+	loop
+	subtract "a_idle" 0
+	weightlist	"weights_cannon"
+}
+$Animation "a_walk_N" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 68 LX LY
+}
+$origin 0 0 0 45
+
+$Animation "a_walk_NW" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 68 LX LY
+}
+$origin 0 0 0 -45
+
+$Animation "a_walk_NE" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 68 LX LY
+}
+$origin 0 0 0 90
+$Animation "a_walk_W" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 32 LX LY
+}
+$origin 0 0 0 -90
+$Animation "a_walk_E" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 36 LX LY
+}
+$origin 0 0 0 180
+$Animation "a_walk_S" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 38 LX LY
+}
+$origin 0 0 0 135
+$Animation "a_walk_SW" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 38 LX LY
+}
+$origin 0 0 0 -135
+$Animation "a_walk_SE" "tank_anims\tank_move_slow_N.smd" {
+	fps 15
+	loop
+	walkframe 38 LX LY
+}
+
+$origin 0 0 0 0
+
+
+$Animation "a_fire" "tank_anims\fire.smd" {
+	fps 30
+	subtract "a_idle" 0
+}
+$Animation "a_open" "tank_anims\tank_powerdown.smd" {
+	fps 30
+	subtract "a_idle" 0
+}
+$Animation "a_close" "tank_anims\tank_powerup.smd" {
+	fps 30
+	subtract "a_idle" 0
+}
+
+// RAGDOLL
+
+
+$sequence "aimlayer_turret_yaw" {
+	"aim_mid_right" "aim_mid_center"  "aim_mid_left"
+	blend "aim_yaw" -180 180
+	blendwidth 3
+	delta
+	fadein 0.3
+	fadeout 0.3
+	hidden
+	weightlist	"weights_turret"
+}
+
+$sequence "aimlayer_turret_pitch" {
+	"aim_up_center" "aim_mid_center"  "aim_down_center"
+	blend "aim_pitch" -45 45
+	blendwidth 3
+	delta
+	fadein 0.3
+	fadeout 0.3
+	hidden
+	weightlist	"weights_cannon"
+}
+
+
+$sequence "power_up" {
+	"tank_anims\tank_powerup.smd"
+	activity "ACT_OBJ_STARTUP" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+}
+
+$sequence "fire" {
+	"a_fire"
+	activity "ACT_RANGE_ATTACK1" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	delta
+	walkframe 165 LX LY
+}
+
+$sequence "power_down" {
+	"tank_anims\tank_powerdown.smd"
+	activity "ACT_OBJ_DISMANTLING" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+}
+
+$sequence "power_down_pose" {
+	"tank_anims\tank_poweredoff.smd"
+	activity "ACT_OBJ_IDLE" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+}
+
+$Sequence "move" {
+	"a_walk_NW"
+	"a_walk_N"
+	"a_walk_NE"
+	"a_walk_W"
+	"a_idle"
+	"a_walk_E"
+	"a_walk_SW"
+	"a_walk_S"
+	"a_walk_SE"
+	activity "ACT_RUN" 1
+	addlayer	"aimlayer_turret_yaw"
+	addlayer	"aimlayer_turret_pitch"
+	blend "move_y" -1 1
+	blend "move_x" 1 -1
+	snap
+	loop
+	fps 30
+	node "movement"
+	walkframe 145 LX LY
+}
+
+$Sequence "move_slow" {
+	"a_walk_NW"
+	"a_walk_N"
+	"a_walk_NE"
+	"a_walk_W"
+	"a_idle"
+	"a_walk_E"
+	"a_walk_SW"
+	"a_walk_S"
+	"a_walk_SE"
+	activity "ACT_WALK" 1
+	addlayer	"aimlayer_turret_yaw"
+	addlayer	"aimlayer_turret_pitch"
+	blend "move_y" -1 1
+	blend "move_x" 1 -1
+	snap
+	loop
+	fps 15
+	node "movement"
+	walkframe 145 LX LY
+}
+
+$sequence "idle" {
+	"tank_anims\reference.smd"
+	activity "ACT_IDLE" 1
+	addlayer	"aimlayer_turret_yaw"
+	addlayer	"aimlayer_turret_pitch"
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+
+}
 
 $Sequence "reference" {
 	"Goblin Hull.smd"

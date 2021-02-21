@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_Talon/drop_engine"
+	"$color2"		"[1 1 1]"
+	"$detail" "models/mechassault_2/vehicles/Military/VMIL_Talon/drop_engine"
+	"$detailscale" "1"
+	"$detailblendfactor" "1"
+	"$detailblendmode" "5"
+	"$additive"	"0"
+}
+

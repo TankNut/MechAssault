@@ -5,12 +5,14 @@ $attachment "Turret" "Hull" -1.00 -39.00 200.50 rotate -90 -0 0
 $attachment "Contrail_Left" "Wing Left" 100.00 45.00 -5.00 rotate 0 90 0
 $attachment "Contrail_Right" "Wing Right" -100.00 45.00 8.00 rotate -0 90 0
 $attachment "Light_Back" "Hull" 3.00 125.00 -260.00 rotate -0 0 0
+$attachment "airboat_seat_bone" "airboat_seat_bone" 0.00 0.00 0.00 rotate 0 0 -90
+$bonemerge "airboat_seat_bone"
 $scale 30
 //$origin 0 0 -38 0
 
 $BodyGroup "Hull"
 {
-	studio "VTOL Body.smd"
+	studio "Vtol Mesh.smd"
 }
 
 
@@ -24,13 +26,127 @@ $cdmaterials "models\mechassault_2\vehicles\Military\VMIL_VTOL\"
 
 $texturegroup "skinfamilies"
 {
-	{ "VMIL_VTOL"}
-	{ "VMIL_VTOL_WOB"}
-	{ "VMIL_VTOL_MP"}
+	{ "VMIL_VTOL"		"Emit"}
+	{ "VMIL_VTOL_WOB"	"Emit_WOB"}
+	{ "VMIL_VTOL_MP"	"Emit_MP"}
 }
 
 // RAGDOLL
+$Animation "a_idle" "vtol_anims\reference.smd" {
+	fps 15
+	loop
+}
+$Animation "a_hover" "vtol_anims\hover.smd" {
+	fps 15
+	loop
+}
+$Animation "a_fly_N" "vtol_anims\fly_N.smd" {
+	fps 15
+	loop
+	walkframe 68 LX LY
+}
 
+$Animation "a_fly_NW" "vtol_anims\fly_NW.smd" {
+	fps 15
+	loop
+	walkframe 68 LX LY
+}
+
+$Animation "a_fly_NE" "vtol_anims\fly_NE.smd" {
+	fps 15
+	loop
+	walkframe 68 LX LY
+}
+$Animation "a_fly_W" "vtol_anims\fly_W.smd" {
+	fps 15
+	loop
+	walkframe 32 LX LY
+}
+$Animation "a_fly_E" "vtol_anims\fly_E.smd" {
+	fps 15
+	loop
+	walkframe 36 LX LY
+}
+$Animation "a_fly_S" "vtol_anims\fly_N.smd" {
+	fps 15
+	loop
+	walkframe 38 LX LY
+}
+$Animation "a_fly_SW" "vtol_anims\fly_SW.smd" {
+	fps 15
+	loop
+	walkframe 38 LX LY
+}
+$Animation "a_fly_SE" "vtol_anims\fly_SE.smd" {
+	fps 15
+	loop
+	walkframe 38 LX LY
+}
+
+$Animation "a_open" "vtol_anims\hatch_open.smd" {
+	fps 30
+	subtract "a_idle" 0
+}
+$Animation "a_close" "vtol_anims\hatch_close.smd" {
+	fps 30
+	subtract "a_idle" 0
+}
+
+$Sequence "move_slow" {
+	"a_fly_NW"
+	"a_fly_N"
+	"a_fly_NE"
+	"a_fly_W"
+	"a_hover"
+	"a_fly_E"
+	"a_fly_SW"
+	"a_fly_S"
+	"a_fly_SE"
+	activity "ACT_WALK" 1
+	blend "move_y" -1 1
+	blend "move_x" 1 -1
+	snap
+	loop
+	fps 15
+	node "movement"
+	walkframe 145 LX LY
+}
+
+$sequence "idle" {
+	"vtol_anims\reference.smd"
+	activity "ACT_IDLE" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+
+}
+
+
+$sequence "power_up" {
+	"vtol_anims\hatch_close.smd"
+	activity "ACT_OBJ_STARTUP" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+}
+
+$sequence "power_down" {
+	"vtol_anims\hatch_open.smd"
+	activity "ACT_OBJ_DISMANTLING" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+}
+
+$sequence "power_down_pose" {
+	"vtol_anims\hatch_opened.smd"
+	activity "ACT_OBJ_IDLE" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+}
 
 $Sequence "reference" {
 	"VTOL Body.smd"
