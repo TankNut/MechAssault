@@ -25,7 +25,7 @@ function ENT:Initialize()
 	self.Hit = false
 
 	if self.ParticleAttach then
-		ParticleEffectAttach("gm_MA2_laser_lvl1", PATTACH_ABSORIGIN_FOLLOW, self, 0)
+		ParticleEffectAttach(self.ParticleAttach, PATTACH_ABSORIGIN_FOLLOW, self, 0)
 	end
 end
 
