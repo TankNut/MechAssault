@@ -6,7 +6,7 @@ ENT.States[STATE_POWERUP] = {
 }
 
 function ENT:SwitchToPowerup()
-	self:EmitSound("MECHASSAULT_2/mech_start.ogg")
+	self:EmitSound("mechassault_2/mechs/mech_start.ogg")
 
 	self:SetCycle(0)
 	self:SetSequence("power_up")

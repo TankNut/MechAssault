@@ -11,9 +11,9 @@ ENT.WeaponTypes.Laser = {
 	},
 	Mounts = {2, 4},
 	Sound = {
-		Sound("MECHASSAULT_2/laser_lvl1.ogg"),
-		Sound("MECHASSAULT_2/laser_lvl2.ogg"),
-		Sound("MECHASSAULT_2/laser_lvl3.ogg")
+		Sound("mechassault_2/weapons/laser_lvl1.ogg"),
+		Sound("mechassault_2/weapons/laser_lvl2.ogg"),
+		Sound("mechassault_2/weapons/laser_lvl3.ogg")
 	},
 	Effect = {
 		"gm_MA2_muzzleflash_laser_lvl1",
