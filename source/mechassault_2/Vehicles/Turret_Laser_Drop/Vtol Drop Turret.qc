@@ -147,7 +147,7 @@ $sequence "aimlayer_turret_pitch" {
 
 
 
-$origin 0 0 0 180
+$origin 0 0 0 0
 $sequence "deploy" {
 	"anims\deploy.smd"
 	activity "ACT_DEPLOY" 1
