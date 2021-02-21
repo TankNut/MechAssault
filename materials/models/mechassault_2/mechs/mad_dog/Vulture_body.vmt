@@ -7,7 +7,7 @@
 	$ambientocclusion	1
 	$halflambert		1
 	$diffuseexp			1.5
-	$envmaptint "[1 1 1]"
+	$envmaptint "[.3 .3 .3]"
 	"$model" 1
 	"$phong" 1
 	"$phongboost" .05
