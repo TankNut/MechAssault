@@ -86,6 +86,30 @@ function ENT:Initialize()
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
 		self:CreateBoneFollowers()
+
+		local seat = ents.Create("prop_vehicle_prisoner_pod")
+
+		seat:SetModel("models/props_lab/cactus.mdl")
+		seat:SetPos(self:GetPos())
+		seat:SetAngles(self:GetAngles())
+		seat:SetKeyValue("limitview", 0, 0)
+		seat:SetNoDraw(true)
+		seat:Spawn()
+		--seat:SetParent(self)
+
+		seat.PhysgunDisabled = false
+		seat.m_tblToolsAllowed = {}
+
+		seat.Mechseat = true
+
+		local phys = seat:GetPhysicsObject()
+
+		if IsValid(phys) then
+			phys:EnableMotion(false)
+		end
+
+		self:DeleteOnRemove(seat)
+		self:SetSeat(seat)
 	end
 
 	for k, v in ipairs(self.WeaponLoadout) do
@@ -104,6 +128,7 @@ end
 
 function ENT:SetupDataTables()
 	self:NetworkVar("Entity", 0, "Player")
+	self:NetworkVar("Entity", 1, "Seat")
 
 	self:NetworkVar("Vector", 0, "MoveSpeed")
 
@@ -161,6 +186,18 @@ function ENT:Think()
 
 	self:UpdateAnimation()
 	self:UpdateState()
+
+	local seat = self:GetSeat()
+
+	if IsValid(seat) then
+		if CLIENT then
+			seat:SetRenderOrigin(self:WorldSpaceCenter())
+			seat:SetRenderAngles(angle_zero)
+		else
+			seat:SetPos(self:WorldSpaceCenter())
+			seat:SetAngles(angle_zero)
+		end
+	end
 
 	if SERVER then
 		self:UpdateBoneFollowers()
@@ -241,6 +278,14 @@ function ENT:TestCollision(start, delta, isbox, extends)
 	}
 end
 
+function ENT:OnRemove()
+	local ply = self:GetPlayer()
+
+	if IsValid(ply) then
+		ply:SetObserverMode(OBS_MODE_NONE)
+	end
+end
+
 if CLIENT then
 	function ENT:Draw(studio)
 		self:SetupBones()
@@ -258,15 +303,16 @@ else
 			return
 		end
 
-		self:SetState(STATE_POWERUP)
+		ply:SetNWEntity("mechassault", self)
+		ply:EnterVehicle(self:GetSeat())
 
-		drive.PlayerStartDriving(ply, self, "drive_mechassault")
+		self:SetPlayer(ply)
+
+		self:SetState(STATE_POWERUP)
 	end
 
 	function ENT:OnTakeDamage(dmg)
 		self:SetMechHealth(self:GetMechHealth() - dmg:GetDamage())
-
-		print(self:GetMechHealth())
 
 		if self:GetCurrentState() != STATE_EXPLODING and self:GetMechHealth() <= 0 then
 			self:SetState(STATE_EXPLODING)
