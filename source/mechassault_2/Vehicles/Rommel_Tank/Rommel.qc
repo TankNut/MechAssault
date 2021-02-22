@@ -159,7 +159,11 @@ $Animation "a_walk_SE" "tank_anims\tank_move_slow_N.smd" {
 $origin 0 0 0 0
 
 
-$Animation "a_fire" "tank_anims\fire.smd" {
+$Animation "a_fire_L" "tank_anims\fire_L.smd" {
+	fps 30
+	subtract "a_idle" 0
+}
+$Animation "a_fire_R" "tank_anims\fire_R.smd" {
 	fps 30
 	subtract "a_idle" 0
 }
@@ -206,8 +210,18 @@ $sequence "power_up" {
 	fps 30
 }
 
-$sequence "fire" {
-	"a_fire"
+$sequence "fire_L" {
+	"a_fire_L"
+	activity "ACT_RANGE_ATTACK1" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	delta
+	walkframe 165 LX LY
+}
+
+$sequence "fire_R" {
+	"a_fire_R"
 	activity "ACT_RANGE_ATTACK1" 1
 	fadein 0.2
 	fadeout 0.2

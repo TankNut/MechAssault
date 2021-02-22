@@ -1,0 +1,36 @@
+"UnlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/mechs/cougar/glass"
+	"$color2"		"[5 5 5]"
+	"$blendtintbybasealpha" 1
+
+	Proxies
+	{
+		Clamp
+		{
+			min 0.5
+			max 1
+			srcVar1 "$color"
+			resultVar "$phongtint"
+		}
+		Clamp
+		{
+			min 0.25
+			max 1
+			srcVar1 "$color"
+			resultVar "$envmaptint"
+		}
+		               Sine
+               {
+               sinemin       "0"           // STILL needs to be changed, see later
+               sinemax      "3"      // SEE below why it's 2.99 and not 2
+               sineperiod   "1"         // We want that the time between each peak is 10sec
+               resultVar     "$color2"
+               }
+	}
+}
+
+
+
+
+

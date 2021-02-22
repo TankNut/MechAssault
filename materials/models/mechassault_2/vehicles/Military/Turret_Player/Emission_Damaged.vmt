@@ -1,0 +1,25 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "models/mechassault_2/mechs/cougar/glass"
+	"$color2"		"[4.15 0.15 0]"
+//	"$translucent"	"1"
+//	"$detail" "models/mechassault_2/vehicles/Military/VMIL_Rommel/VP_Tank_01_002_lights"
+//	"$detailscale" "1"
+//	"$detailblendfactor" "5"
+//	"$detailblendmode" "5"
+	"$additive"	"0"
+	"$blendtintbybasealpha"	"1"
+	"$color"		"[10 0 0]"
+	Proxies
+	{
+
+               Sine
+               {
+               sinemin       "0"           // STILL needs to be changed, see later
+               sinemax      "3"      // SEE below why it's 2.99 and not 2
+               sineperiod   "1"         // We want that the time between each peak is 10sec
+               resultVar     "$color"
+               }
+	}
+}
+
