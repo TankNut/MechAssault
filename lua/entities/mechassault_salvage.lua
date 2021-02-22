@@ -33,7 +33,7 @@ if SERVER then
 		local owner = ent:GetOwner()
 
 		if IsValid(owner) and scripted_ents.IsTypeOf(owner:GetClass(), "mechassault_base") then
-			self:EmitSound(self.Sound)
+			owner:EmitSound(self.Sound)
 			self:OnInteract(owner)
 
 			SafeRemoveEntity(self)
