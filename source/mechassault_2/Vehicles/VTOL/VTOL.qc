@@ -67,7 +67,7 @@ $Animation "a_fly_E" "vtol_anims\fly_E.smd" {
 	loop
 	walkframe 36 LX LY
 }
-$Animation "a_fly_S" "vtol_anims\fly_N.smd" {
+$Animation "a_fly_S" "vtol_anims\fly_S.smd" {
 	fps 15
 	loop
 	walkframe 38 LX LY
