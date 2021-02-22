@@ -9,7 +9,6 @@ ENT.WeaponTypes.Laser = {
 		"mechassault_laser_lvl2",
 		"mechassault_laser_lvl3"
 	},
-	Mounts = {2, 4},
 	Sound = {
 		Sound("mechassault_2/weapons/laser_lvl1.ogg"),
 		Sound("mechassault_2/weapons/laser_lvl2.ogg"),
@@ -31,7 +30,7 @@ function ENT:FireLaser(tbl, level)
 	self:EmitSound(tbl.Sound[level])
 
 	if SERVER then
-		for _, v in ipairs(tbl.Mounts) do
+		for _, v in ipairs(attachments) do
 			local attachment = self:GetAttachment(v)
 
 			ParticleEffectAttach(tbl.Effect[level], PATTACH_POINT_FOLLOW, self, v)

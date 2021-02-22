@@ -42,7 +42,7 @@ include("sh_state.lua")
 
 ENT.WeaponTypes = {}
 ENT.WeaponLoadout = {
-	{Type = "PulseLaser", Level = 1}
+	{Type = "PulseLaser", Level = 1, Attachments = {2, 4}}
 }
 
 include("weapons/weapon_laser.lua")
@@ -211,7 +211,7 @@ function ENT:Attack()
 	local weapon = self.WeaponLoadout[index]
 	local class = self.WeaponTypes[weapon.Type]
 
-	self[class.Function](self, class, self:GetWeaponLevel(index))
+	self[class.Function](self, class, self:GetWeaponLevel(index), weapon.Attachments)
 end
 
 function ENT:SecondaryAttack()
