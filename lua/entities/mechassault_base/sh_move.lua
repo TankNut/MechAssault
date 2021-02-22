@@ -123,19 +123,6 @@ function ENT:StopDriving(ply)
 end
 
 if CLIENT then
-	local thirdperson = CreateClientConVar("drivable_mechassault_offset", "170 0 10")
-
-	function ENT:GetOffset()
-		local convar = thirdperson:GetString()
-		local offset = Vector(convar)
-
-		if offset:IsZero() then
-			offset = Vector(convar:GetDefault())
-		end
-
-		return offset
-	end
-
 	function ENT:HandleThirdPersonView(ply, view)
 		local ang = ply:EyeAngles()
 		local pos = self:WorldSpaceCenter()
