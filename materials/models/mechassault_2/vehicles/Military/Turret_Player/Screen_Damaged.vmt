@@ -7,17 +7,33 @@
 	"$detailblendfactor" "1"
 	"$detailblendmode" "5"
 	"$additive"	"0"
-	"$blendtintbybasealpha"	"0"
-	"$color2"		"[75.15 0.15 0.15]"
-	$offset			"[75.15 0.15 0.15]"
-Sine // a proxy which produces a sine wave
-		sine
-		{
-			sineperiod	1.7
-			sinemin		0
-			sinemax		1
-			timeoffset	0
-			resultvar	"$color2"
-		}
+	"$blendtintbybasealpha"	"1"
+//	"$color2"		"[5 0 0]"
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "vgui\white"
+	$emissiveBlendBaseTexture	"models\mechassault_2\vehicles\military\Turret_Player\misc_137_turret_screen"
+	$emissiveBlendFlowTexture     "vgui\white"
+	$emissiveBlendTint "[5 0 0]"
+	$emissiveBlendStrength 40
+	$emissiveBlendScrollVector "[0 0]"
+
+     Proxies
+      {
+               Sine
+               {
+               sinemin       "0"           // STILL needs to be changed, see later
+               sinemax      "0.99"      // SEE below why it's 2.99 and not 2
+               sineperiod   "1"         // We want that the time between each peak is 10sec
+               resultVar     "$detailblendfactor"
+               }
+			   Sine
+               {
+               sinemin       "0"           // STILL needs to be changed, see later
+               sinemax      "2"      // SEE below why it's 2.99 and not 2
+               sineperiod   "1.5"         // We want that the time between each peak is 10sec
+               resultVar     "$emissiveBlendStrength"
+               }
+
+      }
 }
 

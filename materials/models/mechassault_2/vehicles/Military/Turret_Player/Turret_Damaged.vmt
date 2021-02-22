@@ -1,0 +1,36 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault_2\vehicles\military\Turret_Player\turret_006_player_spclr"
+	$bumpmap 		"models\mechassault_2\vehicles\military\Turret_Player\turret_006_player_nrml"
+	$envmap			env_cubemap
+	$normalmapalphaenvmapmask		1
+	$envmaptint "[0.6 0.6 0.6]"
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+	$rimlight               1
+	$rimlightexponent       30
+	$rimlightboost          1	
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "vgui\white"
+	$emissiveBlendBaseTexture	"models\mechassault_2\vehicles\military\Turret_Player\turret_006_player_emis"
+	$emissiveBlendFlowTexture     "vgui\white"
+	$emissiveBlendTint "[100 0 0 ]"
+	$emissiveBlendStrength 40
+	$emissiveBlendScrollVector "[0 0]"
+	$blendtintbybasealpha	1
+	$color2		"{155 200 100}"
+
+	Proxies
+	{
+
+               Sine
+               {
+               sinemin       "0"           // STILL needs to be changed, see later
+               sinemax      "2"      // SEE below why it's 2.99 and not 2
+               sineperiod   "1"         // We want that the time between each peak is 10sec
+               resultVar     "$emissiveBlendStrength"
+               }
+	}
+}
