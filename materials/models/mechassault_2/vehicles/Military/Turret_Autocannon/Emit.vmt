@@ -1,15 +1,24 @@
-"UnlitGeneric"
+"VertexLitGeneric"
 {
 	"$baseTexture" "models/mechassault_2/mechs/cougar/mech_color_reactor"
-	"$color2"		"[2 0.15 0.15]"
+	"$color2"		"[.4 0.15 0.15]"
 	"$translucent"	"1"
-//	"$detail" "models/mechassault_2/vehicles/Military/VMIL_Rommel/VP_Tank_01_002_lights"
-//	"$detailscale" "1"
-//	"$detailblendfactor" "5"
-//	"$detailblendmode" "5"
-	"$additive"	"0"
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "models\mechassault_2\bosses\spider\shield_scan_line_vert_large"
+	$emissiveBlendBaseTexture	"models/mechassault_2/mechs/cougar/mech_color_reactor"
+	$emissiveBlendFlowTexture     "vgui/white"
+	$emissiveBlendTint "[2 0 0 ]"
+	$emissiveBlendStrength 55
+	$emissiveBlendScrollVector "[1 0]"
+	"$additive"	"1"
 	"$blendtintbybasealpha"	"1"
 
-
+Sine
+               {
+               sinemin       "0"           // STILL needs to be changed, see later
+               sinemax      "3"      // SEE below why it's 2.99 and not 2
+               sineperiod   "1"         // We want that the time between each peak is 10sec
+               resultVar     "$emissiveBlendStrength"
+               }
 }
 
