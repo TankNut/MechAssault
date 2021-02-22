@@ -19,72 +19,74 @@ function scripted_ents.IsTypeOf(name, base)
 	return name == base or scripted_ents.IsBasedOn(name, base)
 end
 
+include("mechassault/sh_sound.lua")
+
 game.AddParticles("particles/gm_mechassault_2_projectile_effects.pcf")
 game.AddParticles("particles/gm_mechassault_2_muzzleflash_effects.pcf")
 game.AddParticles("particles/gm_mechassault_2_explosions.pcf")
 
-sound.Add({
-	name = "MA2_Mech.Step",
-	channel = CHAN_AUTO,
-	volume = 1,
-	level = 90,
-	pitch = {95, 110},
-	sound = {
-		"mechassault_2/mechs/mech_step_1.ogg",
-		"mechassault_2/mechs/mech_step_2.ogg",
-		"mechassault_2/mechs/mech_step_3.ogg",
-		"mechassault_2/mechs/mech_step_4.ogg"
-	}
-})
+hook.Add("SetupMove", "mechassault", function(ply, mv, cmd)
+	local ent = ply:GetNWEntity("mechassault")
 
-hook.Add("EntityEmitSound", "mechassault", function(snd)
-	if snd.OriginalSoundName == "MA2_Mech.Step" then
-		snd.SoundName = string.format("mechassault_2/mechs/mech_step_%s.ogg", math.random(1, 4)) -- We just want something random, not mech_step_1 through 4 in order
+	if not IsValid(ent) then
+		return
+	end
 
-		return true
+	if ent:AllowInput() and ent:StartMove(ply, mv, cmd) then
+		ent.PlayerExiting = true
 	end
 end)
 
-drive.Register("drive_mechassault", {
-	Init = function(self, cmd)
-		self.Entity:SetPlayer(self.Player)
-	end,
-	Stop = function(self)
-		self.StopDriving = true
-		self.Entity:SetPlayer(NULL)
-	end,
-	StartMove = function(self, mv, cmd)
-		self.Player:SetObserverMode(OBS_MODE_CHASE)
+hook.Add("VehicleMove", "mechassault", function(ply, vehicle, mv)
+	local ent = ply:GetNWEntity("mechassault")
 
-		if self.Entity:AllowInput() and self.Entity:StartMove(self.Player, mv, cmd) then
-			self:Stop()
-		end
-	end,
-	Move = function(self, mv)
-		if self.Entity:AllowInput() then
-			self.Entity:Move(mv)
-		end
-	end,
-	FinishMove = function(self, mv)
-		if self.Entity:AllowInput() then
-			self.Entity:FinishMove(mv)
-
-			if self.StopDriving then
-				self.Entity:StopDriving(self.Player)
-			end
-		end
-	end,
-	CalcView = function(self, view)
-		self.Entity:CalcView(self.Player, view)
+	if not IsValid(ent) then
+		return
 	end
-}, "drive_base")
+
+	if ent:AllowInput() then
+		ent:Move(mv)
+	end
+
+	return true
+end)
+
+hook.Add("FinishMove", "mechassault", function(ply, mv)
+	local ent = ply:GetNWEntity("mechassault")
+
+	if not IsValid(ent) then
+		return
+	end
+
+	if ent:AllowInput() then
+		ent:FinishMove(mv)
+
+		if ent.PlayerExiting then
+			ent:StopDriving(ply)
+			ent.PlayerExiting = nil
+		end
+	end
+
+	return true
+end)
 
 if CLIENT then
-	hook.Add("PreDrawHUD", "mechassault", function()
-		local ent = LocalPlayer():GetDrivingEntity()
-		local mode = util.NetworkIDToString(LocalPlayer():GetDrivingMode())
+	hook.Add("CalcVehicleView", "mechassault", function(vehicle, ply, view)
+		local ent = ply:GetNWEntity("mechassault")
 
-		if not IsValid(ent) or mode != "drive_mechassault" then
+		if not IsValid(ent) or ply:GetViewEntity() != ply then
+			return
+		end
+
+		ply:SetObserverMode(OBS_MODE_CHASE)
+
+		ent:CalcView(ply, view)
+	end)
+
+	hook.Add("PreDrawHUD", "mechassault", function()
+		local ent = LocalPlayer():GetNWEntity("mechassault")
+
+		if not IsValid(ent) then
 			return
 		end
 
@@ -95,5 +97,11 @@ if CLIENT then
 			surface.DrawLine(screen.x - 5, screen.y, screen.x + 5, screen.y)
 			surface.DrawLine(screen.x, screen.y - 5, screen.x, screen.y + 5)
 		cam.End2D()
+	end)
+else
+	hook.Add("CanExitVehicle", "mechassault", function(vehicle, ply)
+		if vehicle.Mechseat then
+			return false
+		end
 	end)
 end

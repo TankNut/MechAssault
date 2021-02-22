@@ -38,6 +38,8 @@ function ENT:UpdateState()
 
 		if time > 0 and time <= CurTime() then
 			self:Invoke(state.TimerFinished)
+
+			self:SetStateTimer(0)
 		end
 
 		self:Invoke(state.Think)

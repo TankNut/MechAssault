@@ -10,9 +10,9 @@ ENT.WeaponTypes.PulseLaser = {
 		"mechassault_pulselaser_lvl3"
 	},
 	Sound = {
-		Sound("mechassault_2/weapons/pulse_laser_lvl1.ogg"),
-		Sound("mechassault_2/weapons/pulse_laser_lvl2.ogg"),
-		Sound("mechassault_2/weapons/pulse_laser_lvl3.ogg")
+		Sound("MA2_Weapon.PulseLaser1"),
+		Sound("MA2_Weapon.PulseLaser2"),
+		Sound("MA2_Weapon.PulseLaser3")
 	},
 	Effect = {
 		"gm_MA2_muzzleflash_laser_lvl1",
