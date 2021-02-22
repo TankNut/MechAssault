@@ -63,15 +63,15 @@ function ENT:Think()
 	})
 
 	if tr.Hit or tr.StartSolid or tr.AllSolid then
-		self:StopParticles()
-
 		self:OnHit(tr)
 		self:SetPos(tr.HitPos)
 
 		self.Hit = true
 
-		if SERVER then
-			SafeRemoveEntity(self)
+		if CLIENT then
+			self:StopParticleEmission()
+		else
+			SafeRemoveEntityDelayed(self, 1)
 		end
 
 		return
