@@ -32,9 +32,11 @@ if SERVER then
 	function ENT:StartTouch(ent)
 		local owner = ent:GetOwner()
 
-		if IsValid(owner) and scripted_ents.IsTypeOf(owner:GetClass(), "mechassault_base") then
+		if IsValid(owner) and not self.Used and scripted_ents.IsTypeOf(owner:GetClass(), "mechassault_base") then
 			owner:EmitSound(self.Sound)
+
 			self:OnInteract(owner)
+			self.Used = true
 
 			SafeRemoveEntity(self)
 		end

@@ -9,11 +9,6 @@ ENT.WeaponTypes.PulseLaser = {
 		"mechassault_pulselaser_lvl2",
 		"mechassault_pulselaser_lvl3"
 	},
-	Sound = {
-		Sound("MA2_Weapon.PulseLaser1"),
-		Sound("MA2_Weapon.PulseLaser2"),
-		Sound("MA2_Weapon.PulseLaser3")
-	},
 	Effect = {
 		"gm_MA2_muzzleflash_laser_lvl1",
 		"gm_MA2_muzzleflash_laser_lvl2",
@@ -27,14 +22,12 @@ PrecacheParticleSystem("gm_MA2_muzzleflash_laser_lvl2")
 PrecacheParticleSystem("gm_MA2_muzzleflash_laser_lvl3")
 
 function ENT:FirePulseLaser(tbl, level, attachments)
-	self:EmitSound(tbl.Sound[level])
+	for _, v in ipairs(attachments) do
+		local attachment = self:GetAttachment(v)
 
-	if SERVER then
-		for _, v in ipairs(attachments) do
-			local attachment = self:GetAttachment(v)
+		ParticleEffectAttach(tbl.Effect[level], PATTACH_POINT_FOLLOW, self, v)
 
-			ParticleEffectAttach(tbl.Effect[level], PATTACH_POINT_FOLLOW, self, v)
-
+		if SERVER then
 			local ent = ents.Create(tbl.Class[level])
 
 			ent:SetPos(attachment.Pos)
