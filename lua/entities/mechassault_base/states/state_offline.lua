@@ -17,7 +17,12 @@ function ENT:SwitchToOffline()
 			ply:ExitVehicle()
 		end
 
+		local ang = Angle(0, self:GetAngles().y, 0)
+
 		ply:SetPos(self:GetPos())
-		ply:SetAngles(Angle(0, self:GetAngles().y, 0))
+		ply:SetAngles(ang)
+		ply:SetEyeAngles(ang)
 	end
+
+	self:SetPlayer(NULL)
 end

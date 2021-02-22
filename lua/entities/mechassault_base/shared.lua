@@ -27,6 +27,7 @@ ENT.HullMin 				= Vector(-140, -140, 0)
 ENT.HullMax 				= Vector(140, 140, 420)
 
 ENT.Model 					= Model("models/mechassault_2/mechs/mad_dog.mdl")
+ENT.Skin 					= 0
 
 ENT.ViewOffset 				= Vector(-500, 0, 240)
 
@@ -81,6 +82,8 @@ end
 
 function ENT:Initialize()
 	self:SetModel(self.Model)
+	self:SetSkin(self.Skin)
+
 	self:SetupPhysics(self.HullMin, self.HullMax)
 
 	if SERVER then

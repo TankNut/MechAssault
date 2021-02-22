@@ -27,6 +27,10 @@ function ENT:Initialize()
 	if self.ParticleAttach then
 		ParticleEffectAttach(self.ParticleAttach, PATTACH_ABSORIGIN_FOLLOW, self, 0)
 	end
+
+	if self.FireSound then
+		self:EmitSound(self.FireSound)
+	end
 end
 
 function ENT:Think()
@@ -44,14 +48,15 @@ function ENT:Think()
 
 	local blacklist = {
 		[self] = true,
-		[self:GetOwner()] = true
+		[self:GetOwner()] = true,
+		["phys_bone_follower"] = true
 	}
 
 	local tr = util.TraceHull({
 		start = self:GetPos(),
 		endpos = pos,
 		filter = function(ent)
-			if blacklist[ent] or ent:GetClass() == self:GetClass() then
+			if blacklist[ent] or blacklist[ent:GetClass()] or ent:GetClass() == self:GetClass() then
 				return false
 			end
 
@@ -62,7 +67,7 @@ function ENT:Think()
 		maxs = Vector(0.5, 0.5, 0.5) * self.HullSize
 	})
 
-	if tr.Hit or tr.StartSolid or tr.AllSolid then
+	if tr.Fraction != 1 then
 		self:OnHit(tr)
 		self:SetPos(tr.HitPos)
 

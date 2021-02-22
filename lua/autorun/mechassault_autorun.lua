@@ -32,6 +32,10 @@ hook.Add("SetupMove", "mechassault", function(ply, mv, cmd)
 		return
 	end
 
+	if CLIENT and not ent:GetPredictable() then
+		ent:SetPredictable(true)
+	end
+
 	if ent:AllowInput() and ent:StartMove(ply, mv, cmd) then
 		ent.PlayerExiting = true
 	end
@@ -64,6 +68,10 @@ hook.Add("FinishMove", "mechassault", function(ply, mv)
 		if ent.PlayerExiting then
 			ent:StopDriving(ply)
 			ent.PlayerExiting = nil
+
+			if CLIENT then
+				ent:SetPredictable(false)
+			end
 		end
 	end
 
