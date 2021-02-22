@@ -5,6 +5,8 @@ $attachment "Turret" "Hull" -1.00 -39.00 200.50 rotate -90 -0 0
 $attachment "Contrail_Left" "Wing Left" 100.00 45.00 -5.00 rotate 0 90 0
 $attachment "Contrail_Right" "Wing Right" -100.00 45.00 8.00 rotate -0 90 0
 $attachment "Light_Back" "Hull" 3.00 125.00 -260.00 rotate -0 0 0
+$attachment "battlearmor_attach_1" "Hull" 52.00 -25.00 14.00 rotate 0 -90 0
+$attachment "battlearmor_attach_2" "Hull" -52.00 -25.00 14.00 rotate 0 -90 0
 $attachment "airboat_seat_bone" "airboat_seat_bone" 0.00 0.00 0.00 rotate 0 0 -90
 $bonemerge "airboat_seat_bone"
 $scale 30
@@ -122,6 +124,15 @@ $sequence "idle" {
 
 }
 
+$sequence "hover" {
+	"vtol_anims\hover.smd"
+	activity "ACT_HOVER" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+
+}
 
 $sequence "power_up" {
 	"vtol_anims\hatch_close.smd"

@@ -1,9 +1,9 @@
 VertexLitGeneric
 {
 	$baseTexture		"models\mechassault_2\mechs\battle_armor\BattleArmor"
-	$bumpmap 		"models\mechassault_2\mechs\battle_armor\BattleArmor_normal"
-	$normalmapalphaenvmapmask 		1
+	$normalmapalphaenvmapmask 		"models\mechassault_2\mechs\battle_armor\BattleArmor_normal"
 	$envmap			env_cubemap
+	$envmapmask		"models\mechassault_2\mechs\battle_armor\battlearmor_mask"
 	$envmaptint "[0.6 0.6 0.6]"
 	$ambientocclusion	1
 	$halflambert		1
@@ -13,10 +13,10 @@ VertexLitGeneric
 	$rimlightexponent       30
 	$rimlightboost          1	
 	$emissiveBlendEnabled 1
-	$emissiveBlendTexture     "vgui\white"
+	$emissiveBlendTexture     "models\mechassault_2\mechs\battle_armor\BattleArmor"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\battle_armor\battlearmor_illum"
-	$emissiveBlendFlowTexture     "vgui\white"
-	$emissiveBlendTint "[0.2 0.8 1 ]"
+	$emissiveBlendFlowTexture     "models\mechassault_2\mechs\battle_armor\particle_glow_04"
+	$emissiveBlendTint "[0 4 2 ]"
 	$emissiveBlendStrength 14
 	$emissiveBlendScrollVector "[0 0]"
 

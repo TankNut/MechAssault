@@ -5,6 +5,9 @@ $scale 1.35
 $attachment "MG_Right" "Cann" 21.00 0.00 32.00 rotate -90 0 0
 $attachment "MG_Left" "Cann"  -21.00 0.00 32.00 rotate -90 0 0
 $attachment "Rocket" "Cann" 0.00 10.00 20.00 rotate -90 90 0
+$scale	1
+$attachment "battlearmor_attach_1" "Tread L Upper" -5.00 50.00 37.00 rotate -90 0 0
+$attachment "battlearmor_attach_2" "Tread R Upper" 5.00 50.00 37.00 rotate -90 0 0
 $scale 42
 //$origin 0 0 -38 0
 
