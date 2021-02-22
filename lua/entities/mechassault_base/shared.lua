@@ -42,10 +42,11 @@ include("sh_state.lua")
 
 ENT.WeaponTypes = {}
 ENT.WeaponLoadout = {
-	{Type = "Laser", Level = 1}
+	{Type = "PulseLaser", Level = 1}
 }
 
 include("weapons/weapon_laser.lua")
+include("weapons/weapon_pulselaser.lua")
 
 ENT.States = {}
 
