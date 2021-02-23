@@ -9,7 +9,7 @@ ENT.HullSize 				= 10
 
 ENT.ParticleAttach 			= "gm_MA2_pulselaser_lvl1"
 
-ENT.ImpactSound 			= Sound("mechassault_2/weapons/laser_impact_mech.ogg")
+ENT.ImpactSound 			= Sound("MA2_Weapon.LaserHit")
 ENT.FireSound 				= Sound("MA2_Weapon.PulseLaser1")
 
 PrecacheParticleSystem("gm_MA2_pulselaser_lvl1")

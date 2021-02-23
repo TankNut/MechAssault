@@ -10,6 +10,7 @@ ENT.HullSize 				= 10
 ENT.ParticleAttach 			= "gm_MA2_tracer_autocannon_lvl1"
 ENT.ImpactEffect 			= "gm_MA2_autocannon_impact_lvl1"
 
+ENT.ImpactSound 			= Sound("MA2_Weapon.AutocannonHit")
 ENT.FireSound 				= Sound("MA2_Weapon.Autocannon1")
 
 ENT.AngOffset 				= Angle(180, 0, 0)

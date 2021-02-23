@@ -50,7 +50,7 @@ end
 
 sound.Add({
 	name = "MA2_Weapon.MissileHit",
-	channel = CHAN_WEAPON,
+	channel = CHAN_AUTO,
 	volume = 1,
 	level = 140,
 	pitch = {95, 110},
@@ -59,5 +59,28 @@ sound.Add({
 		Sound("mechassault_2/weapons/explosion_generic_2.ogg"),
 		Sound("mechassault_2/weapons/explosion_generic_3.ogg"),
 		Sound("mechassault_2/weapons/explosion_generic_4.ogg")
+	}
+})
+
+sound.Add({
+	name = "MA2_Weapon.LaserHit",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 90,
+	pitch = {75, 90},
+	sound = Sound("mechassault_2/weapons/laser_impact_mech.ogg")
+})
+
+sound.Add({
+	name = "MA2_Weapon.AutocannonHit",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 90,
+	pitch = {95, 110},
+	sound = {
+		Sound("mechassault_2/weapons/bullet_ric_4.ogg"),
+		Sound("mechassault_2/weapons/bullet_ric_11.ogg"),
+		Sound("mechassault_2/weapons/bullet_ric_17.ogg"),
+		Sound("mechassault_2/weapons/bullet_ric_18.ogg")
 	}
 })

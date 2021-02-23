@@ -126,13 +126,11 @@ if SERVER then
 end
 
 function ENT:OnHit(tr)
-	if SERVER then
-		if self.ImpactSound then
-			self:EmitSound(self.ImpactSound)
-		end
+	if self.ImpactSound then
+		self:EmitSound(self.ImpactSound)
+	end
 
-		if IsValid(tr.Entity) then
-			self:DealDamage(tr.Entity)
-		end
+	if SERVER and IsValid(tr.Entity) then
+		self:DealDamage(tr.Entity)
 	end
 end

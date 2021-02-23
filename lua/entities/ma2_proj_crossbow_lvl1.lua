@@ -21,13 +21,13 @@ ENT.AngOffset 				= Angle(180, 0, 0)
 PrecacheParticleSystem("gm_MA2_crossbow")
 
 function ENT:OnHit(tr)
+	if self.ImpactSound then
+		self:EmitSound(self.ImpactSound)
+	end
+
+	ParticleEffect("gm_MA2_explosion_crossbow", tr.HitPos, angle_zero)
+
 	if SERVER then
-		if self.ImpactSound then
-			self:EmitSound(self.ImpactSound)
-		end
-
-		ParticleEffect("gm_MA2_explosion_crossbow", tr.HitPos, angle_zero)
-
 		local mech = self:GetOwner()
 
 		if IsValid(mech) and IsValid(self.Player) then

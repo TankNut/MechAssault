@@ -64,11 +64,9 @@ include("states/state_exploding.lua")
 
 if SERVER then
 	function ENT:SpawnFunction(ply, tr, class)
-		local ang = Angle(0, -ply:EyeAngles().y, 0)
 		local ent = ents.Create(class)
 
-		ent:SetCreator(ply)
-		ent:SetAngles(ang)
+		ent:SetAngles(Angle(0, ply:EyeAngles().y - 180, 0))
 
 		ent:Spawn()
 		ent:Activate()

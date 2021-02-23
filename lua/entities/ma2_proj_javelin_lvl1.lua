@@ -68,13 +68,13 @@ function ENT:Process(delta)
 end
 
 function ENT:OnHit(tr)
+	if self.ImpactSound then
+		self:EmitSound(self.ImpactSound)
+	end
+
+	ParticleEffect("gm_MA2_explosion_javelin", tr.HitPos, angle_zero)
+
 	if SERVER then
-		if self.ImpactSound then
-			self:EmitSound(self.ImpactSound)
-		end
-
-		ParticleEffect("gm_MA2_explosion_javelin", tr.HitPos, angle_zero)
-
 		local mech = self:GetOwner()
 
 		if IsValid(mech) and IsValid(self.Player) then
