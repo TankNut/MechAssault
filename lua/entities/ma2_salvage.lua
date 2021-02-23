@@ -32,7 +32,7 @@ if SERVER then
 	function ENT:StartTouch(ent)
 		local owner = ent:GetOwner()
 
-		if IsValid(owner) and not self.Used and scripted_ents.IsTypeOf(owner:GetClass(), "mechassault_base") then
+		if IsValid(owner) and not self.Used and scripted_ents.IsTypeOf(owner:GetClass(), "ma2_mech") then
 			owner:EmitSound(self.Sound)
 
 			self:OnInteract(owner)
