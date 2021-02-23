@@ -96,6 +96,12 @@ if CLIENT then
 		ent:CalcView(ply, view)
 	end)
 
+	hook.Add("PrePlayerDraw", "mechassault", function(ply)
+		if IsValid(ply:GetNWEntity("mechassault")) then
+			return true
+		end
+	end)
+
 	hook.Add("PreDrawHUD", "mechassault", function()
 		local ent = LocalPlayer():GetNWEntity("mechassault")
 
