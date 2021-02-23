@@ -13,10 +13,10 @@ VertexLitGeneric
 	$rimlightexponent       30
 	$rimlightboost          1	
 	$emissiveBlendEnabled 1
-	$emissiveBlendTexture     "models\mechassault_2\mechs\battle_armor\BattleArmor"
+	$emissiveBlendTexture     "vgui\white"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\battle_armor\battlearmor_illum"
-	$emissiveBlendFlowTexture     "models\mechassault_2\mechs\battle_armor\particle_glow_04"
-	$emissiveBlendTint "[0 4 2 ]"
+	$emissiveBlendFlowTexture     "vgui\white"
+	$emissiveBlendTint "[0 1 0.6 ]"
 	$emissiveBlendStrength 14
 	$emissiveBlendScrollVector "[0 0]"
 

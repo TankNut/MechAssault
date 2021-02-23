@@ -16,7 +16,7 @@ VertexLitGeneric
 	$emissiveBlendTexture     "vgui\white"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\elemental\elemental_illum"
 	$emissiveBlendFlowTexture     "vgui\white"
-	$emissiveBlendTint "[10 0 0 ]"
+	$emissiveBlendTint "[1 0 0 ]"
 	$emissiveBlendStrength 40
 	$emissiveBlendScrollVector "[0 0]"
 	$blendtintbybasealpha	1
