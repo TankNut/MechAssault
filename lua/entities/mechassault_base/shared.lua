@@ -14,11 +14,7 @@ AddCSLuaFile()
 ENT.Type 					= "anim"
 ENT.AutomaticFrameAdvance 	= true
 
-ENT.PrintName 				= "Mad Dog"
 ENT.Author 					= "TankNut"
-
-ENT.Category 				= "MechAssault"
-ENT.Spawnable 				= true
 
 ENT.PhysgunDisabled 		= false
 ENT.m_tblToolsAllowed 		= nil
@@ -41,13 +37,18 @@ include("sh_move.lua")
 include("sh_step.lua")
 include("sh_state.lua")
 
+if CLIENT then
+	include("cl_hud.lua")
+else
+	AddCSLuaFile("cl_hud.lua")
+end
+
 ENT.WeaponTypes = {}
-ENT.WeaponLoadout = {
-	{Type = "PulseLaser", Level = 1, Attachments = {2, 4}}
-}
+ENT.WeaponLoadout = {}
 
 include("weapons/weapon_laser.lua")
 include("weapons/weapon_pulselaser.lua")
+include("weapons/weapon_javelin.lua")
 
 ENT.States = {}
 
@@ -213,12 +214,16 @@ function ENT:GetAimOrigin()
 	return self:WorldSpaceCenter() + Vector(0, 0, self.ViewOffset.z)
 end
 
-function ENT:GetAimPos()
+function ENT:GetAimTrace()
 	return util.TraceLine({
 		start = self:GetAimOrigin(),
 		endpos = self:GetAimOrigin() + self:GetAimAngle():Forward() * 32768,
 		filter = {self}
-	}).HitPos
+	})
+end
+
+function ENT:GetAimPos()
+	return self:GetAimTrace().HitPos
 end
 
 function ENT:AllowInput()
@@ -237,7 +242,6 @@ function ENT:UpgradeWeapon(weaponType)
 
 		if class.Type == weaponType then
 			self:SetWeaponLevel(k, math.min(self:GetWeaponLevel(k) + 1, class.MaxLevel))
-
 		end
 	end
 end
@@ -312,6 +316,7 @@ else
 		self:SetPlayer(ply)
 
 		self:SetState(STATE_POWERUP)
+		self:SetCurrentWeapon(1)
 	end
 
 	function ENT:OnTakeDamage(dmg)

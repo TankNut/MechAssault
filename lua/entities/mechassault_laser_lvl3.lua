@@ -1,26 +1,12 @@
-DEFINE_BASECLASS("mechassault_proj_base")
+DEFINE_BASECLASS("mechassault_laser_lvl1")
 AddCSLuaFile()
 
-ENT.Base 					= "mechassault_proj_base"
+ENT.Base 					= "mechassault_laser_lvl1"
 
 ENT.Damage 					= 117
-ENT.Velocity 				= 6000
-ENT.HullSize 				= 10
 
 ENT.ParticleAttach 			= "gm_MA2_laser_lvl3"
 
-ENT.ImpactSound 			= Sound("mechassault_2/weapons/laser_impact_mech.ogg")
 ENT.FireSound 				= Sound("mechassault_2/weapons/laser_lvl3.ogg")
 
 PrecacheParticleSystem("gm_MA2_laser_lvl3")
-
-function ENT:Initialize()
-	BaseClass.Initialize(self)
-
-	self:DrawShadow(false)
-end
-
-if CLIENT then
-	function ENT:Draw()
-	end
-end

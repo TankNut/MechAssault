@@ -3,7 +3,7 @@ AddCSLuaFile()
 
 ENT.Base 					= "mechassault_base"
 
-ENT.PrintName 				= "Catapult"
+ENT.PrintName 				= "Mad Dog"
 
 ENT.Category 				= "MechAssault"
 ENT.Spawnable 				= true
@@ -11,7 +11,7 @@ ENT.Spawnable 				= true
 ENT.HullMin 				= Vector(-140, -140, 0)
 ENT.HullMax 				= Vector(140, 140, 420)
 
-ENT.Model 					= Model("models/mechassault_2/mechs/catapult.mdl")
+ENT.Model 					= Model("models/mechassault_2/mechs/mad_dog.mdl")
 ENT.Skin 					= 0
 
 ENT.ViewOffset 				= Vector(-500, 0, 240)
@@ -19,12 +19,11 @@ ENT.ViewOffset 				= Vector(-500, 0, 240)
 ENT.MaxHealth 				= 3750
 
 ENT.WeaponLoadout = {
-	{Type = "PulseLaser", Level = 1, Attachments = {1, 2, 3, 4}},
-	{Type = "Javelin", Level = 1, Attachments = {5, 6, 5, 6}}
+	{Type = "PulseLaser", Level = 1, Attachments = {2, 4}}
 }
 
 function ENT:GetAnimationSpeeds()
-	return 300, 450
+	return 200, 350
 end
 
 function ENT:GetSpeeds()

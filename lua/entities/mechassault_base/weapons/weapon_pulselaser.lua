@@ -1,6 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.PulseLaser = {
+	Name = "Pulse Laser",
 	Type = "Energy",
 	Function = "FirePulseLaser",
 	Cooldown = {0.25, 0.2, 0.15},

@@ -82,11 +82,15 @@ if CLIENT then
 	hook.Add("CalcVehicleView", "mechassault", function(vehicle, ply, view)
 		local ent = ply:GetNWEntity("mechassault")
 
-		if not IsValid(ent) or ply:GetViewEntity() != ply then
+		if not IsValid(ent) then
 			return
 		end
 
-		ply:SetObserverMode(OBS_MODE_CHASE)
+		if ply:GetViewEntity() != ply then
+			ply:SetObserverMode(OBS_MODE_NONE)
+		else
+			ply:SetObserverMode(OBS_MODE_CHASE)
+		end
 
 		ent:CalcView(ply, view)
 	end)
@@ -98,13 +102,7 @@ if CLIENT then
 			return
 		end
 
-		local screen = ent:GetAimPos():ToScreen()
-
-		cam.Start2D()
-			surface.SetDrawColor(255, 0, 0)
-			surface.DrawLine(screen.x - 5, screen.y, screen.x + 5, screen.y)
-			surface.DrawLine(screen.x, screen.y - 5, screen.x, screen.y + 5)
-		cam.End2D()
+		ent:DrawHUD()
 	end)
 else
 	hook.Add("CanExitVehicle", "mechassault", function(vehicle, ply)

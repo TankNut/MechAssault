@@ -35,6 +35,20 @@ function ENT:StartMove(ply, mv, cmd)
 	mv:SetOrigin(self:GetNetworkOrigin())
 	mv:SetVelocity(self:GetMoveSpeed())
 
+	local wheel = cmd:GetMouseWheel()
+
+	if wheel != 0 then
+		local new = self:GetCurrentWeapon() - wheel
+
+		if new > #self.WeaponLoadout then
+			new = 1
+		elseif new < 1 then
+			new = #self.WeaponLoadout
+		end
+
+		self:SetCurrentWeapon(new)
+	end
+
 	return mv:KeyPressed(IN_USE)
 end
 

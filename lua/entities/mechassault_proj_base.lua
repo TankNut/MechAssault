@@ -14,12 +14,14 @@ ENT.HullSize 				= 10
 
 ENT.GravityMultiplier 		= 0
 
+ENT.AngOffset 				= Angle()
+
 function ENT:Initialize()
 	self:SetModel(self.Model)
 
 	self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
 
-	self.Vel = self:GetForward() * self.Velocity
+	self:SetVel(self:GetForward() * self.Velocity)
 	self.LastThink = CurTime()
 
 	self.Hit = false
@@ -33,6 +35,10 @@ function ENT:Initialize()
 	end
 end
 
+function ENT:SetupDataTables()
+	self:NetworkVar("Vector", 0, "Vel")
+end
+
 function ENT:Think()
 	if self.Hit then
 		return
@@ -41,10 +47,10 @@ function ENT:Think()
 	local gravity = physenv.GetGravity() * self.GravityMultiplier
 	local delta = CurTime() - self.LastThink
 
-	self.Vel = self.Vel + (gravity * delta)
-	self:Process()
+	self:SetVel(self:GetVel() + (gravity * delta))
+	self:Process(delta)
 
-	local pos = self:GetPos() + (self.Vel * delta)
+	local pos = self:GetPos() + (self:GetVel() * delta)
 
 	local blacklist = {
 		[self] = true,
@@ -82,10 +88,14 @@ function ENT:Think()
 		return
 	end
 
+	local ang = self:GetVel():Angle() + self.AngOffset
+
 	if CLIENT then
 		self:SetRenderOrigin(pos)
+		self:SetRenderAngles(ang)
 	else
 		self:SetPos(pos)
+		self:SetAngles(ang)
 	end
 
 	self.LastThink = CurTime()
