@@ -54,15 +54,14 @@ function ENT:Think()
 
 	local blacklist = {
 		[self] = true,
-		[self:GetOwner()] = true,
-		["phys_bone_follower"] = true
+		[self:GetOwner()] = true
 	}
 
 	local tr = util.TraceHull({
 		start = self:GetPos(),
 		endpos = pos,
 		filter = function(ent)
-			if blacklist[ent] or blacklist[ent:GetClass()] or ent:GetClass() == self:GetClass() then
+			if blacklist[ent] or ent:GetOwner() == self:GetOwner() then
 				return false
 			end
 
