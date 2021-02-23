@@ -51,55 +51,55 @@ $Animation "aim_mid_center" "aa_anims\aim_mid_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_turret"
+	weightlist	"weights_cannon"
 }
 $Animation "aim_mid_left" "aa_anims\aim_mid_left.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_turret"
+	weightlist	"weights_cannon"
 }
 $Animation "aim_mid_right" "aa_anims\aim_mid_right.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_turret"
+	weightlist	"weights_cannon"
 }
 $Animation "aim_up_center" "aa_anims\aim_up_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_cannon"
+	weightlist	"weights_turret"
 }
 $Animation "aim_up_left" "aa_anims\aim_up_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_cannon"
+	weightlist	"weights_turret"
 }
 $Animation "aim_up_right" "aa_anims\aim_up_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_cannon"
+	weightlist	"weights_turret"
 }
 $Animation "aim_down_center" "aa_anims\aim_down_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_cannon"
+	weightlist	"weights_turret"
 }
 $Animation "aim_down_left" "aa_anims\aim_down_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_cannon"
+	weightlist	"weights_turret"
 }
 $Animation "aim_down_right" "aa_anims\aim_down_center.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-	weightlist	"weights_cannon"
+	weightlist	"weights_turret"
 }
 
 $origin 0 0 0 0
@@ -116,7 +116,7 @@ $sequence "aimlayer_turret_yaw" {
 	fadein 0.3
 	fadeout 0.3
 	hidden
-	weightlist	"weights_turret"
+	weightlist	"weights_cannon"
 }
 
 $sequence "aimlayer_turret_pitch" {
@@ -127,7 +127,7 @@ $sequence "aimlayer_turret_pitch" {
 	fadein 0.3
 	fadeout 0.3
 	hidden
-	weightlist	"weights_cannon"
+	weightlist	"weights_turret"
 }
 
 $sequence "idle" {
