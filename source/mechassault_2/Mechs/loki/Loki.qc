@@ -346,7 +346,7 @@ $Sequence "walk_limp" {
 	"a_walk_limp_N"
 	"a_walk_limp_NE"
 	"a_walk_limp_W"
-	"loki_anims\lok_standrgimppose.smd"
+	"loki_anims\lok_standrgimp.smd"
 	"a_walk_limp_E"
 	"a_walk_limp_SW"
 	"a_walk_limp_S"
@@ -452,7 +452,6 @@ $sequence "hit_back" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -463,7 +462,6 @@ $sequence "hit_front" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -486,7 +484,6 @@ $sequence "land" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 }
 
 $sequence "idle" {
@@ -501,7 +498,7 @@ $sequence "idle" {
 }
 
 $sequence "idle_limp" {
-	"loki_anims\lok_standrgimp.smd"
+	"loki_anims\lok_standrgimp2.smd"
 	activity "ACT_IDLE_ON_FIRE" 1
 	addlayer	"aimlayer_generic"
 	fadein 0.2

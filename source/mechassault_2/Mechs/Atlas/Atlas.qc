@@ -343,7 +343,7 @@ $Sequence "walk_limp" {
 	"a_walk_limp_N"
 	"a_walk_limp_NE"
 	"a_walk_limp_W"
-	"atlas_anims\atl_standrgimppose.smd"
+	"atlas_anims\atl_standrgimp.smd"
 	"a_walk_limp_E"
 	"a_walk_limp_SW"
 	"a_walk_limp_S"
@@ -449,7 +449,6 @@ $sequence "hit_back" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -460,7 +459,6 @@ $sequence "hit_front" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -483,7 +481,6 @@ $sequence "land" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 }
 
 $sequence "idle" {
@@ -498,7 +495,7 @@ $sequence "idle" {
 }
 
 $sequence "idle_limp" {
-	"atlas_anims\atl_standrgimppose2.smd"
+	"atlas_anims\atl_standrgimp2.smd"
 	activity "ACT_IDLE_ON_FIRE" 1
 	addlayer	"aimlayer_generic"
 	fadein 0.2

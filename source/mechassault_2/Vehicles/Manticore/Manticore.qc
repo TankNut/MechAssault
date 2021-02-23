@@ -159,7 +159,6 @@ $sequence "fire" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
 }
 
 

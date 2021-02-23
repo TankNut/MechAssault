@@ -31,7 +31,10 @@ $texturegroup "skinfamilies"
 	{ "uller_MP"  "Reac_Glow_MP" }
 	{ "kitfox_MP" "Reac_Glow_MP" }
 }
-
+$scale	1
+$attachment "autocannon_R" "joint_rgun" 0.00 -70.00 -18.00 rotate -0 -90 0
+$attachment "autocannon_L" "joint_lgun" -2.00 -70.00 -18.00 rotate -0 -90 0
+$scale	1.3
 $attachment "pulse_laser_R" "joint_rgun" 7 -83 -31 rotate 0 -90 0
 $attachment "pulse_laser_L" "joint_lgun" -9 -83 -31 rotate 0 -90 0
 $attachment "rocketpod_L" "joint_torso" 34 -10 70.5 rotate 0 -90 0
@@ -41,6 +44,7 @@ $attachment "jumpjets_L" "joint_torso" 21 52 24 rotate 30 40 0
 $attachment "jumpjets_R" "joint_torso" -21 52 24 rotate 30 140 0
 $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "battlearmor_attach" "joint_torso" 0.00 85.00 30.00 rotate -0 -90 0
+$scale		1
 $cbox 0 0 0 0 0 0
 
 $bbox -87.362 -129.223 0.895 115.004 130.05 317.234
