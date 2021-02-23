@@ -9,7 +9,7 @@ VertexLitGeneric
 	$rimlight               1
 	$rimlightexponent       30
 	$rimlightboost          1	
-
+	$color2		"[.3 .45 .8]"
 
 
 }
