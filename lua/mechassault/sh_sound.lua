@@ -22,30 +22,22 @@ sound.Add({
 	}
 })
 
-local pulse = {
+local sounds = {
 	{"MA2_Weapon.PulseLaser1", Sound("mechassault_2/weapons/pulse_laser_lvl1.ogg")},
 	{"MA2_Weapon.PulseLaser2", Sound("mechassault_2/weapons/pulse_laser_lvl2.ogg")},
 	{"MA2_Weapon.PulseLaser3", Sound("mechassault_2/weapons/pulse_laser_lvl3.ogg")},
-}
-
-for _, v in pairs(pulse) do
-	sound.Add({
-		name = v[1],
-		channel = CHAN_WEAPON,
-		volume = 1,
-		level = 140,
-		pitch = {95, 110},
-		sound = v[2]
-	})
-end
-
-local javelin = {
 	{"MA2_Weapon.Javelin1", Sound("mechassault_2/weapons/javelin_lvl1.ogg")},
 	{"MA2_Weapon.Javelin2", Sound("mechassault_2/weapons/javelin_lvl2.ogg")},
 	{"MA2_Weapon.Javelin3", Sound("mechassault_2/weapons/javelin_lvl3.ogg")},
+	{"MA2_Weapon.Crossbow1", Sound("mechassault_2/weapons/crossbow_lvl1.ogg")},
+	{"MA2_Weapon.Crossbow2", Sound("mechassault_2/weapons/crossbow_lvl2.ogg")},
+	{"MA2_Weapon.Crossbow3", Sound("mechassault_2/weapons/crossbow_lvl3.ogg")},
+	{"MA2_Weapon.Autocannon1", Sound("mechassault_2/weapons/autocannon_lvl1.ogg")},
+	{"MA2_Weapon.Autocannon2", Sound("mechassault_2/weapons/autocannon_lvl2.ogg")},
+	{"MA2_Weapon.Autocannon3", Sound("mechassault_2/weapons/autocannon_lvl3.ogg")}
 }
 
-for _, v in pairs(javelin) do
+for _, v in pairs(sounds) do
 	sound.Add({
 		name = v[1],
 		channel = CHAN_WEAPON,
