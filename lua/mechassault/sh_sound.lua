@@ -22,29 +22,65 @@ sound.Add({
 	}
 })
 
+local sounds = {
+	{"MA2_Weapon.PulseLaser1", Sound("mechassault_2/weapons/pulse_laser_lvl1.ogg")},
+	{"MA2_Weapon.PulseLaser2", Sound("mechassault_2/weapons/pulse_laser_lvl2.ogg")},
+	{"MA2_Weapon.PulseLaser3", Sound("mechassault_2/weapons/pulse_laser_lvl3.ogg")},
+	{"MA2_Weapon.Javelin1", Sound("mechassault_2/weapons/javelin_lvl1.ogg")},
+	{"MA2_Weapon.Javelin2", Sound("mechassault_2/weapons/javelin_lvl2.ogg")},
+	{"MA2_Weapon.Javelin3", Sound("mechassault_2/weapons/javelin_lvl3.ogg")},
+	{"MA2_Weapon.Crossbow1", Sound("mechassault_2/weapons/crossbow_lvl1.ogg")},
+	{"MA2_Weapon.Crossbow2", Sound("mechassault_2/weapons/crossbow_lvl2.ogg")},
+	{"MA2_Weapon.Crossbow3", Sound("mechassault_2/weapons/crossbow_lvl3.ogg")},
+	{"MA2_Weapon.Autocannon1", Sound("mechassault_2/weapons/autocannon_lvl1.ogg")},
+	{"MA2_Weapon.Autocannon2", Sound("mechassault_2/weapons/autocannon_lvl2.ogg")},
+	{"MA2_Weapon.Autocannon3", Sound("mechassault_2/weapons/autocannon_lvl3.ogg")}
+}
+
+for _, v in pairs(sounds) do
+	sound.Add({
+		name = v[1],
+		channel = CHAN_WEAPON,
+		volume = 1,
+		level = 140,
+		pitch = {95, 110},
+		sound = v[2]
+	})
+end
+
 sound.Add({
-	name = "MA2_Weapon.PulseLaser1",
-	channel = CHAN_WEAPON,
+	name = "MA2_Weapon.MissileHit",
+	channel = CHAN_AUTO,
 	volume = 1,
 	level = 140,
 	pitch = {95, 110},
-	sound = Sound("mechassault_2/weapons/pulse_laser_lvl1.ogg")
+	sound = {
+		Sound("mechassault_2/weapons/explosion_generic_1.ogg"),
+		Sound("mechassault_2/weapons/explosion_generic_2.ogg"),
+		Sound("mechassault_2/weapons/explosion_generic_3.ogg"),
+		Sound("mechassault_2/weapons/explosion_generic_4.ogg")
+	}
 })
 
 sound.Add({
-	name = "MA2_Weapon.PulseLaser2",
-	channel = CHAN_WEAPON,
+	name = "MA2_Weapon.LaserHit",
+	channel = CHAN_AUTO,
 	volume = 1,
-	level = 140,
-	pitch = {95, 110},
-	sound = Sound("mechassault_2/weapons/pulse_laser_lvl2.ogg")
+	level = 90,
+	pitch = {75, 90},
+	sound = Sound("mechassault_2/weapons/laser_impact_mech.ogg")
 })
 
 sound.Add({
-	name = "MA2_Weapon.PulseLaser3",
-	channel = CHAN_WEAPON,
+	name = "MA2_Weapon.AutocannonHit",
+	channel = CHAN_AUTO,
 	volume = 1,
-	level = 140,
+	level = 90,
 	pitch = {95, 110},
-	sound = Sound("mechassault_2/weapons/pulse_laser_lvl3.ogg")
+	sound = {
+		Sound("mechassault_2/weapons/bullet_ric_4.ogg"),
+		Sound("mechassault_2/weapons/bullet_ric_11.ogg"),
+		Sound("mechassault_2/weapons/bullet_ric_17.ogg"),
+		Sound("mechassault_2/weapons/bullet_ric_18.ogg")
+	}
 })
