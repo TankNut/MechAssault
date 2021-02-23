@@ -14,6 +14,7 @@ ENT.HullSize 				= 10
 ENT.ParticleAttach 			= "gm_MA2_javelin_lvl1"
 
 ENT.FireSound 				= Sound("MA2_Weapon.Javelin1")
+ENT.ImpactSound 			= Sound("MA2_Weapon.MissileHit")
 
 ENT.TurnRate 				= 25
 
@@ -67,23 +68,27 @@ function ENT:Process(delta)
 end
 
 function ENT:OnHit(tr)
-	ParticleEffect("gm_MA2_explosion_javelin", tr.HitPos, angle_zero)
-
-	local mech = self:GetOwner()
-
-	if IsValid(mech) and IsValid(self.Player) then
-		local dmg = DamageInfo()
-
-		dmg:SetDamageType(DMG_BLAST)
-		dmg:SetInflictor(mech)
-		dmg:SetAttacker(self.Player)
-		dmg:SetDamage(self.Damage)
-		dmg:SetDamagePosition(self:GetPos())
-
-		util.BlastDamageInfo(dmg, tr.HitPos, self.BlastRadius)
-	end
-
 	if SERVER then
-		SafeRemoveEntity(self)
+		if self.ImpactSound then
+			self:EmitSound(self.ImpactSound)
+		end
+
+		ParticleEffect("gm_MA2_explosion_javelin", tr.HitPos, angle_zero)
+
+		local mech = self:GetOwner()
+
+		if IsValid(mech) and IsValid(self.Player) then
+			local dmg = DamageInfo()
+
+			dmg:SetDamageType(DMG_BLAST)
+			dmg:SetInflictor(mech)
+			dmg:SetAttacker(self.Player)
+			dmg:SetDamage(self.Damage)
+			dmg:SetDamagePosition(self:GetPos())
+
+			util.BlastDamageInfo(dmg, tr.HitPos, self.BlastRadius)
+		end
+
+		self:Remove()
 	end
 end

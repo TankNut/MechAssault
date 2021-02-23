@@ -55,3 +55,17 @@ for _, v in pairs(javelin) do
 		sound = v[2]
 	})
 end
+
+sound.Add({
+	name = "MA2_Weapon.MissileHit",
+	channel = CHAN_WEAPON,
+	volume = 1,
+	level = 140,
+	pitch = {95, 110},
+	sound = {
+		Sound("mechassault_2/weapons/explosion_generic_1.ogg"),
+		Sound("mechassault_2/weapons/explosion_generic_2.ogg"),
+		Sound("mechassault_2/weapons/explosion_generic_3.ogg"),
+		Sound("mechassault_2/weapons/explosion_generic_4.ogg")
+	}
+})
