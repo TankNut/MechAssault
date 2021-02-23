@@ -583,7 +583,6 @@ $sequence "land" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 }
 
 $sequence "idle" {

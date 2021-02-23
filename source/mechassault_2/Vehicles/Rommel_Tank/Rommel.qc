@@ -217,7 +217,6 @@ $sequence "fire_L" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
 }
 
 $sequence "fire_R" {
@@ -227,7 +226,6 @@ $sequence "fire_R" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
 }
 
 $sequence "power_down" {

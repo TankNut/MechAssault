@@ -11,6 +11,9 @@ $attachment "rocketpod" "joint_torso" 75.00 -80.00 95.00 rotate -0 -90 0
 $attachment "lavagun" "joint_torso" -85.00 -90.00 175.00 rotate -0 -90 0
 $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $scale	1
+$attachment "machinegun_L" "joint_torso" 71.00 -115.00 -2.00 rotate -0 -90 0
+$attachment "machinegun_R" "joint_torso" -71.00 -115.00 -2.00 rotate -0 -90 0
+$scale	1
 $attachment "battlearmor_attach" "joint_torso" 0.00 85.00 20.00 rotate -0 -90 0
 $scale 42
 //$origin 0 0 0 0
@@ -339,7 +342,7 @@ $Sequence "walk_limp" {
 	"a_walk_limp_N"
 	"a_walk_limp_NE"
 	"a_walk_limp_W"
-	"rag_anims\ubr_standrgimppose.smd"
+	"rag_anims\ubr_lgimp.smd"
 	"a_walk_limp_E"
 	"a_walk_limp_SW"
 	"a_walk_limp_S"
@@ -445,7 +448,6 @@ $sequence "hit_back" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -456,7 +458,6 @@ $sequence "hit_front" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -479,7 +480,6 @@ $sequence "land" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 }
 
 $sequence "idle" {
@@ -494,7 +494,7 @@ $sequence "idle" {
 }
 
 $sequence "idle_limp" {
-	"rag_anims\ubr_standrgimppose2.smd"
+	"rag_anims\ubr_lgimp2.smd"
 	activity "ACT_IDLE_ON_FIRE" 1
 	addlayer	"aimlayer_generic"
 	fadein 0.2

@@ -127,6 +127,12 @@ $Animation "a_claw_attack" "pa_anims\pa_clawattack.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
+	weightlist	"weights_damage_upper"
+}
+$Animation "a_fire" "pa_anims\fire.smd" {
+	fps 30
+	subtract "a_idle" 0
+	weightlist	"weights_damage_upper"
 }
 
 
@@ -357,8 +363,18 @@ $sequence "attack_claw" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
-//	weightlist	"weights_damage_upper"
+	weightlist	"weights_damage_upper"
+}
+
+$sequence "fire" {
+	"a_fire"
+	activity "ACT_RANGE_ATTACK1" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	delta
+	weightlist	"weights_damage_upper"
+
 }
 
 $sequence "hit_back" {
@@ -368,7 +384,6 @@ $sequence "hit_back" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 165 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -379,7 +394,6 @@ $sequence "hit_front" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 //	weightlist	"weights_damage_upper"
 }
 
@@ -466,7 +480,6 @@ $sequence "land" {
 	fadeout 0.2
 	fps 30
 	delta
-	walkframe 145 LX LY
 }
 
 $sequence "idle" {
