@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_Talon/Generic_Light_Sprite"
+	"$color2"		"[1 1 1]"
+	"$detail" "models/mechassault_2/vehicles/Military/VMIL_Talon/Generic_Light_Sprite"
+	"$detailscale" "1"
+	"$detailblendfactor" "5"
+	"$detailblendmode" "5"
+	"$translucent"	"1"
+}
+

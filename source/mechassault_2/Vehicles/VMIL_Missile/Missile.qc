@@ -1,6 +1,10 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/vehicles/vmil_antiair.mdl"
+$attachment "Missile_1" "Missile 1" 0 0 0 rotate -90 -0 0
+$attachment "Missile_2" "Missile 2" 0 0 0 rotate -90 -0 0
+$attachment "Missile_3" "Missile 3" 0 0 0 rotate -90 -0 0
+$attachment "Missile_4" "Missile 4" 0 0 0 rotate -90 -0 0
 $scale 250
 //$origin 0 0 -38 0
 

@@ -57,9 +57,9 @@ $Animation "a_hover" "heli_anims\hover.smd" {
 	
 }
 $Animation "a_rotors" "heli_anims\rotors_spin.smd" {
-	fps 60
+	fps 100
 	loop
-	subtract	"a_idle"	0
+//	subtract	"a_idle"	0
 	weightlist	"weights_rotors"
 }
 $Animation "a_fly_N" "heli_anims\fly_N.smd" {
@@ -109,8 +109,8 @@ $sequence "rotors_layer" {
 	"a_rotors"
 	fadein 0.2
 	fadeout 0.2
-	fps 60
-	delta
+	fps 120
+//	delta
 	loop
 	weightlist	"weights_rotors"
 
@@ -126,13 +126,13 @@ $Sequence "move_slow" {
 	"a_fly_SW"
 	"a_fly_S"
 	"a_fly_SE"
-	activity "ACT_WALK" 1
-	addlayer	"rotors_layer"
+	activity "ACT_WALK" 1	
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
 	snap
 	loop
 	fps 30
+	addlayer	"rotors_layer"
 	node "movement"
 	walkframe 145 LX LY
 }

@@ -24,7 +24,7 @@
 		}
 		Clamp
 		{
-			min 0.45
+			min 0.25
 			max 0.7
 			srcVar1 "$color"
 			resultVar "$envmaptint"
