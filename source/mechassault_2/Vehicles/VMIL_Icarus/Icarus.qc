@@ -71,7 +71,7 @@ $sequence "power_up" {
 	activity "ACT_OBJ_STARTUP" 1
 	fadein 0.2
 	fadeout 0.2
-	fps 30
+	fps 10
 }
 
 $sequence "power_down" {
@@ -79,7 +79,7 @@ $sequence "power_down" {
 	activity "ACT_OBJ_DISMANTLING" 1
 	fadein 0.2
 	fadeout 0.2
-	fps 30
+	fps 10
 }
 
 $sequence "power_down_pose" {

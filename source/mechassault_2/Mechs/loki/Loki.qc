@@ -29,6 +29,7 @@ $BodyGroup "Torso"
 $BodyGroup "JumpJets"
 {
 	studio "Jump Jets.smd"
+	blank
 }
 
 $surfaceprop "metalvehicle"

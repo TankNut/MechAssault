@@ -27,6 +27,7 @@ $BodyGroup "Body"
 $BodyGroup "Jumpjets"
 {
 	studio "Jump Jets.smd"
+	blank
 }	
 	
 
