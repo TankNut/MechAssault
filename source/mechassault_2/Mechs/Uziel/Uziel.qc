@@ -1,10 +1,10 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/uziel.mdl"
-$attachment "pulse_laser_R1" "joint_rgun" -25.00 -138.00 0.50 rotate 0 -90 0
-$attachment "pulse_laser_R2" "joint_rgun" -16.00 -60.00 -30.50 rotate -0 -90 0
-$attachment "pulse_laser_L1" "joint_lgun" 23.00 -138.00 0.50 rotate -0 -90 0
-$attachment "pulse_laser_L2" "joint_lgun" 15.00 -60.00 -30.50 rotate -0 -90 0
+$attachment "pulse_laser_R1" "joint_ruarm" -93.00 -138.00 -19.00 rotate -0 -90 0
+$attachment "pulse_laser_R2" "joint_ruarm" -83.00 -60.00 -52.50 rotate -0 -90 0
+$attachment "pulse_laser_L1" "joint_luarm" 90.00 -138.00 -19.00 rotate -0 -90 0
+$attachment "pulse_laser_L2" "joint_luarm" 83.00 -60.00 -52.50 rotate -0 -90 0
 $attachment "machinegun_R" "joint_torsoabove" 53.00 -70.00 84.50 rotate 0 -90 0
 $attachment "machinegun_L" "joint_torsoabove" -53.00 -70.00 84.50 rotate 0 -90 0
 $attachment "rocket_pod" "joint_torsoabove" 0.00 -45.00 106.50 rotate -0 -90 0
@@ -62,8 +62,8 @@ $weightlist weights_proportions {
 $weightlist weights_damage_arms {
 
 "joint_torso" 0
-"joint_rgun" 1
-"joint_lgun" 1
+"joint_ruarm" 1
+"joint_luarm" 1
 
 }
 
@@ -72,8 +72,8 @@ $weightlist weights_damage_upper {
 "joint_ROOT" 0
 "joint_torso" 1
 "joint_hipabove" 1
-"joint_rgun" 1
-"joint_lgun" 1
+"joint_ruarm" 1
+"joint_luarm" 1
 }
 
 $PoseParameter "aim_pitch" -1 1 0
