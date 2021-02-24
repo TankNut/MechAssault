@@ -20,6 +20,12 @@ $illumposition -1.971 -4.53 10.738
 
 $cdmaterials "models\mechassault_2\vehicles\Military\VMIL_partisan\"
 
+$texturegroup "skinfamilies"
+{
+	{ "Vmil_Partisan"}
+	{ "Vmil_Partisan_MP"}
+}
+
 // RAGDOLL
 
 
