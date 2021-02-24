@@ -1,0 +1,8 @@
+"UnlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_Talon/Generic_Light_Sprite"
+	"$color2"		"[1 0 0]"
+	"$translucent"	"1"
+	"$nocull"		"1"
+}
+
