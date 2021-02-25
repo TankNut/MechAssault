@@ -269,12 +269,12 @@ $Sequence "walk" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 8 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 19 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 20 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 8 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 19 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 20 "MA2_Mech.MiniStep" }
 }
 
 $Sequence "run" {
@@ -296,12 +296,12 @@ $Sequence "run" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 8 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 19 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 20 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 8 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 19 "MA2_Mech.MiniStep" }
+	{ event AE_CL_PLAYSOUND 20 "MA2_Mech.MiniStep" }
 }
 
 $sequence "mech_grab_front" {
