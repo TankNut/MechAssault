@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_AntiAir/vmil_lights_group"
+	"$color2"		"[1 1 1]"
+	"$detail" "models/mechassault_2/vehicles/Military/VMIL_AntiAir/vmil_lights_group"
+	"$detailscale" "1"
+	"$detailblendfactor" "5"
+	"$detailblendmode" "5"
+	"$additive"	"0"
+}
+
