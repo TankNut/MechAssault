@@ -2,7 +2,7 @@
 
 $modelname "mechassault_2/vehicles/vmil_WOB_Warship_skybox.mdl"
 //$attachment "Cannon" "Cann_end" 2.00 20.00 -0.50 rotate 0 90 180
-$scale 2
+$scale 10
 //$origin 0 0 -38 0
 
 $BodyGroup "Hull"
@@ -46,14 +46,4 @@ $Sequence "ragdoll" {
 	fps 10
 }
 
-// COLLISION
 
-$collisionmodel "HOB Warship FFFF.smd"
-{
-	$mass 9000000
-	$inertia 1
-	$damping 0
-	$rotdamping 0
-	$rootbone " "
-
-}
