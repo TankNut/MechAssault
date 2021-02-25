@@ -14,7 +14,7 @@ VertexLitGeneric
 	$rimlightboost          1	
 	$emissiveBlendEnabled 1
 	$emissiveBlendTexture     "vgui\white"
-	$emissiveBlendBaseTexture	"models\mechassault_2\bosses\minispider\minisb_emit"
+	$emissiveBlendBaseTexture	"models\mechassault_2\bosses\minispider\minisb_emit_low"
 	$emissiveBlendFlowTexture     "vgui\white"
 	$emissiveBlendTint "[0.5 0.1 25 ]"
 	$emissiveBlendStrength 14
@@ -36,7 +36,13 @@ VertexLitGeneric
 			srcVar1 "$color"
 			resultVar "$envmaptint"
 		}
-		
+		Clamp
+		{
+			min 0
+			max 2
+			srcVar1 "$color"
+			resultVar "$emissiveBlendTint"
+		}
 	}
 
 
