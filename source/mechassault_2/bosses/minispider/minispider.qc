@@ -20,7 +20,11 @@ $illumposition -1.971 -4.53 10.738
 
 $cdmaterials "models\mechassault_2\bosses\minispider\"
 
-
+$texturegroup "skinfamilies"
+{
+	{ "Spider_Mini"   "Gradient" }
+	{ "Spider_Mini_MP"   "Gradient_MP" }
+}
 
 $weightlist weights_turret {
 

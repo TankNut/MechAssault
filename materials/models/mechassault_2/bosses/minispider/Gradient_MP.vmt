@@ -4,7 +4,7 @@ UnlitGeneric
 	$normalmapalphaenvmapmask	1
 	$envmap			env_cubemap
 	$envmaptint "[0.3 0.3 0.3]"
-	$color2		"[0.2 0 1]"
+//	$color2		"[0 0 1]"
 	$ambientocclusion	1
 	$halflambert		1
 	$diffuseexp			1.5
@@ -12,8 +12,24 @@ UnlitGeneric
 	$rimlight               1
 	$rimlightexponent       30
 	$rimlightboost          1	
+	$blendtintbybasealpha		1
 	Proxies
 	{
+		
+		Clamp
+		{
+			min 0.15
+			max 1
+			srcVar1 "$color"
+			resultVar "$phongtint"
+		}
+		Clamp
+		{
+			min 0.8
+			max 1
+			srcVar1 "$color"
+			resultVar "$envmaptint"
+		}
 		TextureScroll
 		{
 		textureScrollVar	"$baseTextureTransform"

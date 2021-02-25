@@ -1,0 +1,43 @@
+VertexLitGeneric
+{
+	$baseTexture		"models\mechassault_2\bosses\minispider\minisb_body_low"
+	$bumpmap 		"models\mechassault_2\bosses\minispider\minisb_body_nrml"
+	$normalmapalphaenvmapmask	1
+	$envmap			env_cubemap
+	$envmaptint "[0.3 0.3 0.3]"
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+	$rimlight               1
+	$rimlightexponent       30
+	$rimlightboost          1	
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "vgui\white"
+	$emissiveBlendBaseTexture	"models\mechassault_2\bosses\minispider\minisb_emit"
+	$emissiveBlendFlowTexture     "vgui\white"
+	$emissiveBlendTint "[0.5 0.1 25 ]"
+	$emissiveBlendStrength 14
+	$emissiveBlendScrollVector "[0 0]"
+	$blendtintbybasealpha		1
+	Proxies
+	{
+		Clamp
+		{
+			min 0.15
+			max 1
+			srcVar1 "$color"
+			resultVar "$phongtint"
+		}
+		Clamp
+		{
+			min 0.8
+			max 1
+			srcVar1 "$color"
+			resultVar "$envmaptint"
+		}
+		
+	}
+
+
+}
