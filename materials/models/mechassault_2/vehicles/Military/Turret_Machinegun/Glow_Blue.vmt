@@ -1,4 +1,4 @@
-"UnlitGeneric"
+"VertexlitGeneric"
 {
 	"$baseTexture" "models/mechassault_2/vehicles/Military/VMIL_Rommel/VP_Tank_01_002_lights"
 	"$color2"		"[0.2 1 15]"
@@ -8,7 +8,13 @@
 //	"$detailblendmode" "5"
 	"$additive"	"0"
 	"$blendtintbybasealpha"	"1"
-
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "models\mechassault_2\bosses\minispider\Gradient_Spid"
+	$emissiveBlendBaseTexture	"vgui\white"
+	$emissiveBlendFlowTexture     "models\mechassault_2\bosses\minispider\Gradient_Spid"
+	$emissiveBlendTint "[0 0 25 ]"
+	$emissiveBlendStrength 5
+	$emissiveBlendScrollVector "[.5 .5]"
 
 }
 

@@ -13,12 +13,12 @@ VertexLitGeneric
 	$rimlightexponent       30
 	$rimlightboost          1	
 	$emissiveBlendEnabled 1
-	$emissiveBlendTexture     "vgui\white"
-	$emissiveBlendBaseTexture	"models\mechassault_2\bosses\minispider\Gradient_Spid"
-	$emissiveBlendFlowTexture     "vgui\white"
+	$emissiveBlendTexture     "models\mechassault_2\bosses\minispider\Gradient_Spid"
+	$emissiveBlendBaseTexture	"vgui\white"
+	$emissiveBlendFlowTexture     "models\mechassault_2\bosses\minispider\Gradient_Spid"
 	$emissiveBlendTint "[0 0.2 25 ]"
 	$emissiveBlendStrength 5
-	$emissiveBlendScrollVector "[0.5 0]"
+	$emissiveBlendScrollVector "[.25 1]"
 
 
 
