@@ -1,0 +1,25 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_WOB_Warship/Set_Ready_Room_005_landingbezel"
+	"$bumpmap" "models/mechassault_2/vehicles/Military/VMIL_WOB_Warship/Set_Ready_Room_005_landingbezel_nrml"
+	$normalmapalphaenvmapmask 		1
+	$envmap			env_cubemap
+	$envmaptint "[0.25 0.25 0.25]"
+	"$model" 1
+	"$phong" 1
+	"$phongboost" .09
+	"$rimlight" 1
+	"$rimlightexponent"       11
+	"$phongfresnelranges" "[1.2 3 8]"
+	$emissiveBlendEnabled 1
+	$emissiveBlendTexture     "vgui\white"
+	$emissiveBlendBaseTexture	"models/mechassault_2/vehicles/Military/VMIL_WOB_Warship/Set_Ready_Room_005_landingbezel_emit"
+	$emissiveBlendFlowTexture     "vgui\white"
+	$emissiveBlendTint "[0.4 1 25 ]"
+	$emissiveBlendStrength 14
+	$emissiveBlendScrollVector "[0 0]"
+}
+
+
+
+
