@@ -1,14 +1,17 @@
-DEFINE_BASECLASS("ma2_proj")
+DEFINE_BASECLASS("ma2_proj_tracking")
 AddCSLuaFile()
 
-ENT.Base 					= "ma2_proj"
+ENT.Base 					= "ma2_proj_tracking"
 
 ENT.Model 					= Model("models/mechassault_2/weapons/crossbow_rocket.mdl")
 
 ENT.Damage 					= 44
 ENT.BlastRadius 			= 50
 
-ENT.Velocity 				= 4000
+ENT.Lifespan 				= 2.85
+ENT.TurnRate 				= 22.5
+
+ENT.Velocity 				= 2000
 ENT.HullSize 				= 10
 
 ENT.ParticleAttach 			= "gm_MA2_crossbow"

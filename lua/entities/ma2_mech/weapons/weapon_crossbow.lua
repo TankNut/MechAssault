@@ -32,6 +32,14 @@ function ENT:FireCrossbow(tbl, level, attachments)
 
 					ent:Spawn()
 					ent:Activate()
+
+					local tr = self:GetAimTrace()
+
+					if IsValid(tr.Entity) and tr.Entity:MapCreationID() == -1 then
+						ent:SetTracked(tr.Entity)
+					else
+						ent:SetTargetPos(tr.HitPos)
+					end
 				end)
 			end
 		end

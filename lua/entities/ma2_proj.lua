@@ -33,6 +33,10 @@ function ENT:Initialize()
 	if self.FireSound then
 		self:EmitSound(self.FireSound)
 	end
+
+	if SERVER and self.Lifespan then
+		SafeRemoveEntityDelayed(self, self.Lifespan)
+	end
 end
 
 function ENT:SetupDataTables()
