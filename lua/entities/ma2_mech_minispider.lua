@@ -25,9 +25,9 @@ ENT.WeaponLoadout = {
 }
 
 function ENT:GetAnimationSpeeds()
-	return 100, 250
+	return 120, 250
 end
 
 function ENT:GetSpeeds()
-	return 350, 750
+	return 300, 750
 end
