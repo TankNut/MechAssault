@@ -52,10 +52,8 @@ function ENT:AbortPPC(tbl, level, attachments)
 	self:StopSound(tbl.ChargeSound)
 	self:StopSound(tbl.ChargeLoop)
 
-	if CLIENT then
-		self:StopParticlesNamed(tbl.ChargingEffect[level])
-	elseif game.SinglePlayer() then
-		net.Start("nMAStopPPC")
+	if SERVER then
+		net.Start("nMAStopEffect")
 			net.WriteEntity(self)
 			net.WriteString(tbl.ChargingEffect[level])
 		net.Broadcast()
@@ -66,10 +64,8 @@ function ENT:FirePPC(tbl, level, attachments)
 	self:StopSound(tbl.ChargeSound)
 	self:StopSound(tbl.ChargeLoop)
 
-	if CLIENT then
-		self:StopParticlesNamed(tbl.ChargingEffect[level])
-	elseif game.SinglePlayer() then
-		net.Start("nMAStopPPC")
+	if SERVER then
+		net.Start("nMAStopEffect")
 			net.WriteEntity(self)
 			net.WriteString(tbl.ChargingEffect[level])
 		net.Broadcast()

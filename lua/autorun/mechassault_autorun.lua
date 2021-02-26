@@ -76,7 +76,7 @@ hook.Add("FinishMove", "mechassault", function(ply, mv)
 end)
 
 if CLIENT then
-	net.Receive("nMAStopPPC", function(len)
+	net.Receive("nMAStopEffect", function(len)
 		net.ReadEntity():StopParticlesNamed(net.ReadString())
 	end)
 
@@ -106,7 +106,7 @@ if CLIENT then
 		ent:DrawHUD()
 	end)
 else
-	util.AddNetworkString("nMAStopPPC")
+	util.AddNetworkString("nMAStopEffect")
 
 	hook.Add("PlayerDeath", "mechassault", function(ply)
 		local ent = ply:GetNWEntity("mechassault")
