@@ -40,5 +40,5 @@ function ENT:FireJavelin(tbl, level, attachments)
 		end
 	end
 
-	self:SetNextAttack(CurTime() + tbl.Cooldown)
+	self:SetNextAttack(CurTime() + (#attachments * tbl.FireRate) + tbl.Cooldown)
 end
