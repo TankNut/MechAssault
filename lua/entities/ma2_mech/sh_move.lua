@@ -94,6 +94,54 @@ function ENT:Move(mv)
 	mv:SetVelocity(vel)
 end
 
+function ENT:GetSurfacePoint(start, endpos)
+	local tr
+	local trace = {
+		mask = MASK_PLAYERSOLID,
+		filter = function(ent)
+			return ent:IsWorld() or (ent != self and scripted_ents.IsTypeOf(ent:GetClass(), "mechassault_base"))
+		end
+	}
+
+	trace.start = self:WorldSpaceCenter()
+	trace.endpos = start
+
+	tr = util.TraceLine(trace)
+
+	if tr.Hit then
+		return tr.HitPos
+	end
+
+	trace.start = start
+	trace.endpos = endpos
+
+	return util.TraceLine(trace).HitPos
+end
+
+local function atan(a, b)
+	return math.deg(math.atan2(a, b))
+end
+
+function ENT:GetSurfaceAngle(ang, fl, fr, bl, br)
+	local p = self:WorldToLocal((fl + fr) / 2 - (bl + br) / 2 + self:GetPos())
+	local r = self:WorldToLocal((fr + br) / 2 - (fl + bl) / 2 + self:GetPos())
+
+	local ret = self:LocalToWorldAngles(Angle(atan(p.x, p.z) - 90, 0, atan(-r.y, r.z) - 90))
+
+	ret.y = ang.y
+
+	return ret
+end
+
+local function setZ(vec, z)
+	return Vector(vec.x, vec.y, z)
+end
+
+local frontLeft = Vector(ENT.HullMax.x, ENT.HullMax.y, MOVE_HEIGHT_EPSILON)
+local frontRight = Vector(ENT.HullMax.x, ENT.HullMin.y, MOVE_HEIGHT_EPSILON)
+local backLeft = Vector(ENT.HullMin.x, ENT.HullMax.y, MOVE_HEIGHT_EPSILON)
+local backRight = Vector(ENT.HullMin.x, ENT.HullMin.y, MOVE_HEIGHT_EPSILON)
+
 function ENT:FinishMove(mv)
 	local pos = mv:GetOrigin()
 
@@ -103,10 +151,12 @@ function ENT:FinishMove(mv)
 		local ang = mv:GetVelocity():Angle()
 
 		if self.Spider then
-			local up = self:TraceHull(pos, pos - Vector(0, 0, 1000)).HitNormal
+			local fl = self:GetSurfacePoint(self:LocalToWorld(frontLeft), self:LocalToWorld(setZ(backRight, -self.HullMax.z)))
+			local fr = self:GetSurfacePoint(self:LocalToWorld(frontRight), self:LocalToWorld(setZ(backLeft, -self.HullMax.z)))
+			local bl = self:GetSurfacePoint(self:LocalToWorld(backLeft), self:LocalToWorld(setZ(frontRight, -self.HullMax.z)))
+			local br = self:GetSurfacePoint(self:LocalToWorld(backRight), self:LocalToWorld(setZ(frontLeft, -self.HullMax.z)))
 
-			ang = up:Angle() + Angle(90, 0, 0)
-			ang:RotateAroundAxis(up, mv:GetVelocity():Angle().y - ang.y)
+			ang = self:GetSurfaceAngle(ang, fl, fr, bl, br)
 		end
 
 		self:SetAngles(ang)
@@ -129,9 +179,9 @@ end
 if CLIENT then
 	function ENT:HandleThirdPersonView(ply, view)
 		local ang = ply:EyeAngles()
-		local pos = self:WorldSpaceCenter()
+		local pos = self:GetAimOrigin()
 
-		local target = LocalToWorld(self.ViewOffset, angle_zero, pos, ang)
+		local target = LocalToWorld(Vector(self.ViewOffset.x, 0, 0), angle_zero, pos, ang)
 
 		local tr = util.TraceHull({
 			start = pos,

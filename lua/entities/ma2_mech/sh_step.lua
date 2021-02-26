@@ -1,5 +1,9 @@
 AddCSLuaFile()
 
+LOCAL_STEP_SIZE = 16
+LOCAL_STEP_HEIGHT = 18
+MOVE_HEIGHT_EPSILON = 0.0625
+
 function ENT:TraceHull(start, endpos)
 	if self.Spider then
 		return self:TraceLine(start, endpos)
