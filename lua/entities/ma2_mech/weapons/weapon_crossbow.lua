@@ -37,5 +37,5 @@ function ENT:FireCrossbow(tbl, level, attachments)
 		end
 	end
 
-	self:SetNextAttack(CurTime() + (tbl.Repeats[level] * #attachments * tbl.FireRate) + tbl.Cooldown[level])
+	self:SetNextAttack(CurTime() + (level * #attachments * tbl.FireRate) + tbl.Cooldown[level])
 end
