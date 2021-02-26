@@ -1,0 +1,26 @@
+UnlitGeneric
+{
+	$baseTexture		"models\mechassault_2\bosses\spider\shield_scan_line_vert_large"
+	$normalmapalphaenvmapmask	1
+	$envmap			env_cubemap
+	$envmaptint "[0.3 0.3 0.3]"
+	$color2		"[5 0 0]"
+	$ambientocclusion	1
+	$halflambert		1
+	$diffuseexp			1.5
+	$nocull		1
+	$rimlight               1
+	$rimlightexponent       30
+	$rimlightboost          1	
+	Proxies
+	{
+		TextureScroll
+		{
+		textureScrollVar	"$baseTextureTransform"
+		textureScrollRate	.6
+		textureScrollAngle 0
+		}
+	}
+
+
+}
