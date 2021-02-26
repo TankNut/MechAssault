@@ -19,8 +19,6 @@ ENT.AngOffset 				= Angle()
 function ENT:Initialize()
 	self:SetModel(self.Model)
 
-	self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
-
 	self:SetVel(self:GetForward() * self.Velocity)
 	self.LastThink = CurTime()
 
@@ -58,21 +56,19 @@ function ENT:Think()
 
 	local blacklist = {
 		[self] = true,
-		[self:GetOwner()] = true,
-		["phys_bone_follower"] = true
+		[self:GetOwner()] = true
 	}
 
 	local tr = util.TraceHull({
 		start = self:GetPos(),
 		endpos = pos,
 		filter = function(ent)
-			if blacklist[ent] or blacklist[ent:GetClass()] or ent:GetClass() == self:GetClass() then
+			if blacklist[ent] or ent:GetOwner() == self:GetOwner() or scripted_ents.IsTypeOf(ent:GetClass(), "ma2_proj") then
 				return false
 			end
 
 			return true
 		end,
-		collisiongroup = COLLISION_GROUP_PROJECTILE,
 		mins = Vector(-0.5, -0.5, -0.5) * self.HullSize,
 		maxs = Vector(0.5, 0.5, 0.5) * self.HullSize
 	})
