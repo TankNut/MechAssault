@@ -4,8 +4,6 @@ AddCSLuaFile()
 ENT.Base 					= "ma2_proj_pulselaser_lvl1"
 
 ENT.Damage 					= 16
-ENT.Velocity 				= 8000
-ENT.HullSize 				= 10
 
 ENT.ParticleAttach 			= "gm_MA2_pulselaser_lvl3"
 

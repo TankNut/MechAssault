@@ -32,12 +32,12 @@ ENT.StandRate 				= 0.5
 
 ENT.MaxHealth 				= 3571
 
-ENT.CoreAttachment 			= 9
-
 include("sh_animation.lua")
 include("sh_move.lua")
 include("sh_step.lua")
-include("sh_state.lua")
+include("sh_states.lua")
+include("sh_weapons.lua")
+include("sh_player.lua")
 
 if CLIENT then
 	include("cl_hud.lua")
@@ -53,6 +53,7 @@ include("weapons/weapon_pulselaser.lua")
 include("weapons/weapon_javelin.lua")
 include("weapons/weapon_crossbow.lua")
 include("weapons/weapon_autocannon.lua")
+include("weapons/weapon_ppc.lua")
 
 ENT.States = {}
 
@@ -100,13 +101,13 @@ function ENT:Initialize()
 		seat:SetAngles(self:GetAngles())
 		seat:SetKeyValue("limitview", 0, 0)
 		seat:SetNoDraw(true)
+		seat:SetOwner(self)
 		seat:Spawn()
-		--seat:SetParent(self)
 
 		seat.PhysgunDisabled = false
 		seat.m_tblToolsAllowed = {}
 
-		seat.Mechseat = true
+		seat.MAMech = self
 
 		local phys = seat:GetPhysicsObject()
 
@@ -146,6 +147,7 @@ function ENT:SetupDataTables()
 
 	self:NetworkVar("Float", 0, "StateTimer")
 	self:NetworkVar("Float", 1, "NextAttack")
+	self:NetworkVar("Float", 2, "WeaponTimer")
 
 	self:NetworkVar("Int", 0, "CurrentWeapon")
 	self:NetworkVar("Int", 1, "CurrentState")
@@ -158,12 +160,12 @@ function ENT:SetupDataTables()
 	end
 end
 
-function ENT:GetWeaponLevel(index)
-	return self["GetWeaponLevel" .. index](self)
-end
+function ENT:Invoke(func, ...)
+	if not func or not self[func] then
+		return
+	end
 
-function ENT:SetWeaponLevel(index, level)
-	self["SetWeaponLevel" .. index](self, level)
+	return self[func](self, ...)
 end
 
 function ENT:SetupPhysics(mins, maxs)
@@ -220,7 +222,13 @@ function ENT:GetAimTrace()
 	return util.TraceLine({
 		start = self:GetAimOrigin(),
 		endpos = self:GetAimOrigin() + self:GetAimAngle():Forward() * 32768,
-		filter = {self}
+		filter = function(ent)
+			if ent == self or ent:GetOwner() == self then
+				return false
+			end
+
+			return true
+		end
 	})
 end
 
@@ -236,31 +244,6 @@ function ENT:AllowInput()
 	end
 
 	return false
-end
-
-function ENT:UpgradeWeapon(weaponType)
-	for k, v in ipairs(self.WeaponLoadout) do
-		local class = self.WeaponTypes[v.Type]
-
-		if class.Type == weaponType then
-			self:SetWeaponLevel(k, math.min(self:GetWeaponLevel(k) + 1, class.MaxLevel))
-		end
-	end
-end
-
-function ENT:Attack()
-	if self:GetNextAttack() > CurTime() then
-		return
-	end
-
-	local index = self:GetCurrentWeapon()
-	local weapon = self.WeaponLoadout[index]
-	local class = self.WeaponTypes[weapon.Type]
-
-	self[class.Function](self, class, self:GetWeaponLevel(index), weapon.Attachments)
-end
-
-function ENT:SecondaryAttack()
 end
 
 function ENT:TestCollision(start, delta, isbox, extends)
@@ -301,26 +284,6 @@ if CLIENT then
 		self:DrawModel()
 	end
 else
-	function ENT:CanEnter(ply)
-		return self:GetCurrentState() == STATE_OFFLINE
-	end
-
-	function ENT:Use(ply)
-		if not self:CanEnter(ply) then
-			self:EmitSound("mechassault_2/ui/ui_low_hp.ogg")
-
-			return
-		end
-
-		ply:SetNWEntity("mechassault", self)
-		ply:EnterVehicle(self:GetSeat())
-
-		self:SetPlayer(ply)
-
-		self:SetState(STATE_POWERUP)
-		self:SetCurrentWeapon(1)
-	end
-
 	function ENT:OnTakeDamage(dmg)
 		self:SetMechHealth(self:GetMechHealth() - dmg:GetDamage())
 

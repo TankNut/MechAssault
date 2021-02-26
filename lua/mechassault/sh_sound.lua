@@ -15,11 +15,20 @@ sound.Add({
 	level = 100,
 	pitch = {95, 110},
 	sound = {
-		"mechassault_2/mechs/mech_step_1.ogg",
-		"mechassault_2/mechs/mech_step_2.ogg",
-		"mechassault_2/mechs/mech_step_3.ogg",
-		"mechassault_2/mechs/mech_step_4.ogg"
+		Sound("mechassault_2/mechs/mech_step_1.ogg"),
+		Sound("mechassault_2/mechs/mech_step_2.ogg"),
+		Sound("mechassault_2/mechs/mech_step_3.ogg"),
+		Sound("mechassault_2/mechs/mech_step_4.ogg")
 	}
+})
+
+sound.Add({
+	name = "MA2_Misc.Salvage",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/items/salvage.ogg")
 })
 
 local sounds = {
@@ -34,7 +43,10 @@ local sounds = {
 	{"MA2_Weapon.Crossbow3", Sound("mechassault_2/weapons/crossbow_lvl3.ogg")},
 	{"MA2_Weapon.Autocannon1", Sound("mechassault_2/weapons/autocannon_lvl1.ogg")},
 	{"MA2_Weapon.Autocannon2", Sound("mechassault_2/weapons/autocannon_lvl2.ogg")},
-	{"MA2_Weapon.Autocannon3", Sound("mechassault_2/weapons/autocannon_lvl3.ogg")}
+	{"MA2_Weapon.Autocannon3", Sound("mechassault_2/weapons/autocannon_lvl3.ogg")},
+	{"MA2_Weapon.PPC1", Sound("mechassault_2/weapons/ppc_lvl1.ogg")},
+	{"MA2_Weapon.PPC2", Sound("mechassault_2/weapons/ppc_lvl2.ogg")},
+	{"MA2_Weapon.PPC3", Sound("mechassault_2/weapons/ppc_lvl3.ogg")}
 }
 
 for _, v in pairs(sounds) do

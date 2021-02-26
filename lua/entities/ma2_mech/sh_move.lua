@@ -38,15 +38,7 @@ function ENT:StartMove(ply, mv, cmd)
 	local wheel = cmd:GetMouseWheel()
 
 	if wheel != 0 then
-		local new = self:GetCurrentWeapon() - wheel
-
-		if new > #self.WeaponLoadout then
-			new = 1
-		elseif new < 1 then
-			new = #self.WeaponLoadout
-		end
-
-		self:SetCurrentWeapon(new)
+		self:SwitchWeapon(wheel)
 	end
 
 	return mv:KeyPressed(IN_USE)
@@ -74,9 +66,11 @@ function ENT:Move(mv)
 		self:Attack()
 	end
 
-	if mv:KeyPressed(IN_ATTACK2) then
+	if mv:KeyDown(IN_ATTACK2) then
 		self:SecondaryAttack()
 	end
+
+	self:UpdateWeapon(mv)
 
 	mv:SetMoveAngles(ang)
 
@@ -101,14 +95,21 @@ function ENT:Move(mv)
 end
 
 function ENT:FinishMove(mv)
-	local ang = mv:GetMoveAngles()
+	local pos = mv:GetOrigin()
 
-	ang.p = 0
-
-	self:SetNetworkOrigin(mv:GetOrigin())
+	self:SetNetworkOrigin(pos)
 
 	if self:HasMoveInput(mv) then
-		self:SetAngles(mv:GetVelocity():Angle())
+		local ang = mv:GetVelocity():Angle()
+
+		if self.Spider then
+			local up = self:TraceHull(pos, pos - Vector(0, 0, 1000)).HitNormal
+
+			ang = up:Angle() + Angle(90, 0, 0)
+			ang:RotateAroundAxis(up, mv:GetVelocity():Angle().y - ang.y)
+		end
+
+		self:SetAngles(ang)
 	end
 
 	self:SetMoveSpeed(mv:GetVelocity())
@@ -116,22 +117,11 @@ function ENT:FinishMove(mv)
 	local walk = self:GetSpeeds()
 
 	self:SetRunning(mv:GetVelocity():Length() > walk * self.Margin)
-
-	if SERVER then
-		local phys = self:GetPhysicsObject()
-
-		if IsValid(phys) then
-			phys:EnableMotion(true)
-
-			phys:SetPos(mv:GetOrigin())
-			phys:Wake()
-
-			phys:EnableMotion(false)
-		end
-	end
 end
 
-function ENT:StopDriving(ply)
+function ENT:StopDriving()
+	self:AbortWeaponTimer()
+
 	self:SetMoveSpeed(vector_origin)
 	self:SetState(STATE_POWERDOWN)
 end
@@ -151,8 +141,8 @@ if CLIENT then
 			mask = MASK_SOLID_BRUSHONLY
 		})
 
-		view.origin		= tr.HitPos
-		view.angles		= ang
+		view.origin = tr.HitPos
+		view.angles = ang
 	end
 
 	function ENT:CalcView(ply, view)

@@ -1,11 +1,26 @@
 AddCSLuaFile()
 
 function ENT:TraceHull(start, endpos)
+	if self.Spider then
+		return self:TraceLine(start, endpos)
+	end
+
 	return util.TraceHull({
 		start = start,
 		endpos = endpos,
 		mins = self.HullMin,
 		maxs = self.HullMax,
+		mask = MASK_PLAYERSOLID,
+		filter = function(ent)
+			return ent:IsWorld() or (ent != self and scripted_ents.IsTypeOf(ent:GetClass(), "mechassault_base"))
+		end
+	})
+end
+
+function ENT:TraceLine(start, endpos)
+	return util.TraceLine({
+		start = start,
+		endpos = endpos,
 		mask = MASK_PLAYERSOLID,
 		filter = function(ent)
 			return ent:IsWorld() or (ent != self and scripted_ents.IsTypeOf(ent:GetClass(), "mechassault_base"))

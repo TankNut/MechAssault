@@ -67,12 +67,8 @@ hook.Add("FinishMove", "mechassault", function(ply, mv)
 		ent:FinishMove(mv)
 
 		if ent.PlayerExiting then
-			ent:StopDriving(ply)
+			ent:StopDriving()
 			ent.PlayerExiting = nil
-
-			if CLIENT then
-				ent:SetPredictable(false)
-			end
 		end
 	end
 
@@ -80,6 +76,10 @@ hook.Add("FinishMove", "mechassault", function(ply, mv)
 end)
 
 if CLIENT then
+	net.Receive("nMAStopPPC", function(len)
+		net.ReadEntity():StopParticlesNamed(net.ReadString())
+	end)
+
 	hook.Add("CalcVehicleView", "mechassault", function(vehicle, ply, view)
 		local ent = ply:GetNWEntity("mechassault")
 
@@ -106,8 +106,26 @@ if CLIENT then
 		ent:DrawHUD()
 	end)
 else
+	util.AddNetworkString("nMAStopPPC")
+
+	hook.Add("PlayerDeath", "mechassault", function(ply)
+		local ent = ply:GetNWEntity("mechassault")
+
+		if not IsValid(ent) then
+			return
+		end
+
+		ent:StopDriving()
+	end)
+
+	hook.Add("CanPlayerEnterVehicle", "mechassault", function(ply, vehicle, role)
+		if vehicle.MAMech and not vehicle.MAMech.AllowEnter then
+			return false
+		end
+	end)
+
 	hook.Add("CanExitVehicle", "mechassault", function(vehicle, ply)
-		if vehicle.Mechseat then
+		if vehicle.MAMech then
 			return false
 		end
 	end)

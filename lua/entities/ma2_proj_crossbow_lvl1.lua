@@ -19,6 +19,7 @@ ENT.FireSound 				= Sound("MA2_Weapon.Crossbow1")
 ENT.AngOffset 				= Angle(180, 0, 0)
 
 PrecacheParticleSystem("gm_MA2_crossbow")
+PrecacheParticleSystem("gm_MA2_explosion_crossbow")
 
 function ENT:OnHit(tr)
 	if self.ImpactSound then

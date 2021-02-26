@@ -79,9 +79,9 @@ function ENT:Think()
 
 		self.Hit = true
 
-		if CLIENT then
-			self:StopParticleEmission()
-		else
+		self:StopParticles()
+
+		if SERVER then
 			SafeRemoveEntityDelayed(self, 1)
 		end
 

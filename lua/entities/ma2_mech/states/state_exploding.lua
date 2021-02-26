@@ -14,7 +14,9 @@ function ENT:SwitchToExploding()
 	self:SetCycle(0)
 	self:SetPlaybackRate(1)
 
-	ParticleEffectAttach("gm_MA2_mech_explosion_rays", PATTACH_POINT_FOLLOW, self, 9)
+	if self.CoreAttachment then
+		ParticleEffectAttach("gm_MA2_mech_explosion_rays", PATTACH_POINT_FOLLOW, self, self.CoreAttachment)
+	end
 
 	self:SetStateTimer(CurTime() + 1.5)
 end
