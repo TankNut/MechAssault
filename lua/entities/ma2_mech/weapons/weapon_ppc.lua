@@ -6,7 +6,7 @@ ENT.WeaponTypes.PPC = {
 	Function = "PrimePPC",
 	Succeed = "FirePPC",
 	Abort = "AbortPPC",
-	Cooldown = 2.32,
+	ChargeTimer = 2.32,
 	Class = {
 		"ma2_proj_ppc_lvl1",
 		"ma2_proj_ppc_lvl2",
@@ -22,6 +22,8 @@ ENT.WeaponTypes.PPC = {
 		"gm_MA2_PPC_lvl2_charging",
 		"gm_MA2_PPC_lvl3_charging"
 	},
+	ChargeSound = Sound("MA2_Weapon.PPCCharging"),
+	ChargeLoop = Sound("MA2_Weapon.PPCChargeLoop"),
 	MaxLevel = 3
 }
 
@@ -35,7 +37,10 @@ PrecacheParticleSystem("gm_MA2_PPC_lvl3_charging")
 
 function ENT:PrimePPC(tbl, level, attachments)
 	if self:GetWeaponTimer() == 0 then
-		self:SetWeaponTimer(CurTime() + 1)
+		self:EmitSound(tbl.ChargeSound)
+		self:EmitSound(tbl.ChargeLoop)
+
+		self:SetWeaponTimer(CurTime() + tbl.ChargeTimer)
 
 		for _, v in ipairs(attachments) do
 			ParticleEffectAttach(tbl.ChargingEffect[level], PATTACH_POINT_FOLLOW, self, v)
@@ -44,6 +49,9 @@ function ENT:PrimePPC(tbl, level, attachments)
 end
 
 function ENT:AbortPPC(tbl, level, attachments)
+	self:StopSound(tbl.ChargeSound)
+	self:StopSound(tbl.ChargeLoop)
+
 	if CLIENT then
 		self:StopParticlesNamed(tbl.ChargingEffect[level])
 	elseif game.SinglePlayer() then
@@ -55,6 +63,9 @@ function ENT:AbortPPC(tbl, level, attachments)
 end
 
 function ENT:FirePPC(tbl, level, attachments)
+	self:StopSound(tbl.ChargeSound)
+	self:StopSound(tbl.ChargeLoop)
+
 	if CLIENT then
 		self:StopParticlesNamed(tbl.ChargingEffect[level])
 	elseif game.SinglePlayer() then
@@ -82,6 +93,4 @@ function ENT:FirePPC(tbl, level, attachments)
 			ent:Activate()
 		end
 	end
-
-	self:SetNextAttack(CurTime() + tbl.Cooldown)
 end

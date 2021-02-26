@@ -46,13 +46,15 @@ local sounds = {
 	{"MA2_Weapon.Autocannon3", Sound("mechassault_2/weapons/autocannon_lvl3.ogg")},
 	{"MA2_Weapon.PPC1", Sound("mechassault_2/weapons/ppc_lvl1.ogg")},
 	{"MA2_Weapon.PPC2", Sound("mechassault_2/weapons/ppc_lvl2.ogg")},
-	{"MA2_Weapon.PPC3", Sound("mechassault_2/weapons/ppc_lvl3.ogg")}
+	{"MA2_Weapon.PPC3", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
+	{"MA2_Weapon.PPCCharging", {Sound("mechassault_2/weapons/ppc_charge.ogg"), Sound("mechassault_2/weapons/ppc_charge_1.ogg"), Sound("mechassault_2/weapons/ppc_charge_2.ogg")}},
+	{"MA2_Weapon.PPCChargeLoop", {Sound("mechassault_2/weapons/ppc_charge_loop_1.ogg"), Sound("mechassault_2/weapons/ppc_charge_loop_2.ogg")}, CHAN_AUTO}
 }
 
 for _, v in pairs(sounds) do
 	sound.Add({
 		name = v[1],
-		channel = CHAN_WEAPON,
+		channel = v[3] or CHAN_WEAPON,
 		volume = 1,
 		level = 140,
 		pitch = {95, 110},
@@ -95,4 +97,13 @@ sound.Add({
 		Sound("mechassault_2/weapons/bullet_ric_17.ogg"),
 		Sound("mechassault_2/weapons/bullet_ric_18.ogg")
 	}
+})
+
+sound.Add({
+	name = "MA2_Weapon.PPCHit",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 90,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/weapons/ppc_impact.ogg")
 })
