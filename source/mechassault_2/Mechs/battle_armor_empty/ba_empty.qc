@@ -31,8 +31,6 @@ $sequence "power_up" {
 	fadein 0.2
 	fadeout 0.2
 	fps 30
-	{ event AE_CL_PLAYSOUND 17 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 29 "MA2_Mech.Step" }
 }
 
 $sequence "power_down" {
@@ -41,8 +39,6 @@ $sequence "power_down" {
 	fadein 0.2
 	fadeout 0.2
 	fps 30
-	{ event AE_CL_PLAYSOUND 15 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 22 "MA2_Mech.Step" }
 }
 
 $sequence "power_down_pose" {
