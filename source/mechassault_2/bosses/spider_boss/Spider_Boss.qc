@@ -53,7 +53,10 @@ $BodyGroup "Leg Back Left"
 	studio "Spider_Boss_Leg_LB.smd"
 	blank
 }
-
+$BodyGroup "Hatch"
+{
+	studio "Spider_Boss_Hatch.smd"
+}
 
 $surfaceprop "metalvehicle"
 
@@ -597,7 +600,7 @@ $sequence "idle" {
 }
 
 $sequence "power_up" {
-	"sb_anims\sb_base.smd"
+	"sb_anims\sb_Powerup.smd"
 	activity "ACT_OBJ_STARTUP" 1
 	fadein 0.2
 	fadeout 0.2
@@ -605,7 +608,7 @@ $sequence "power_up" {
 }
 
 $sequence "power_down" {
-	"sb_anims\sb_base.smd"
+	"sb_anims\sb_powerdown.smd"
 	activity "ACT_OBJ_DISMANTLING" 1
 	fadein 0.2
 	fadeout 0.2
@@ -613,7 +616,7 @@ $sequence "power_down" {
 }
 
 $sequence "power_down_pose" {
-	"sb_anims\sb_base.smd"
+	"sb_anims\sb_poweredoff.smd"
 	activity "ACT_OBJ_IDLE" 1
 	fadein 0.2
 	fadeout 0.2
