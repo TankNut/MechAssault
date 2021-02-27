@@ -77,7 +77,11 @@ end)
 
 if CLIENT then
 	net.Receive("nMAStopEffect", function(len)
-		net.ReadEntity():StopParticlesNamed(net.ReadString())
+		local ent = net.ReadEntity()
+
+		if IsValid(ent) then
+			ent:StopParticlesNamed(net.ReadString())
+		end
 	end)
 
 	hook.Add("CalcVehicleView", "mechassault", function(vehicle, ply, view)
@@ -104,6 +108,14 @@ if CLIENT then
 		end
 
 		ent:DrawHUD()
+	end)
+
+	hook.Add("PrePlayerDraw", "mechassault", function(ply)
+		local ent = ply:GetNWEntity("mechassault")
+
+		if IsValid(ent) then
+			return true
+		end
 	end)
 else
 	util.AddNetworkString("nMAStopEffect")
