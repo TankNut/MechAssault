@@ -331,7 +331,7 @@ $Sequence "walk" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 0 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 17 "MA2_Mech.Step" }
 }
 
