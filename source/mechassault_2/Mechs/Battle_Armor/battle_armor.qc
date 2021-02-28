@@ -134,7 +134,11 @@ $Animation "a_fire" "pa_anims\fire.smd" {
 	subtract "a_idle" 0
 	weightlist	"weights_damage_upper"
 }
-
+$Animation "a_fire_mortar" "pa_anims\fire_mortar.smd" {
+	fps 30
+	subtract "a_idle" 0
+	weightlist	"weights_damage_upper"
+}
 
 $Animation "a_walk_N" "pa_anims\pa_walk.smd" {
 	fps 15
@@ -376,6 +380,19 @@ $sequence "fire" {
 	weightlist	"weights_damage_upper"
 
 }
+
+$sequence "fire_mortar" {
+	"a_fire_mortar"
+	activity "ACT_RANGE_ATTACK2" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	delta
+	weightlist	"weights_damage_upper"
+
+}
+
+
 
 $sequence "hit_back" {
 	"a_hit_back"
