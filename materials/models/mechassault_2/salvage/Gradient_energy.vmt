@@ -1,6 +1,7 @@
 VertexLitGeneric
 {
-	$baseTexture		"models\mechassault_2\mechs\cougar\glass"
+	$baseTexture		"models\mechassault_2\bosses\minispider\gradient_spid"
+	$color2		"[0 .4 1]"
 	$ambientocclusion	1
 	$halflambert		1
 	$diffuseexp			1.5
@@ -9,13 +10,21 @@ VertexLitGeneric
 	$rimlightexponent       30
 	$rimlightboost          1	
 	$emissiveBlendEnabled 1
-	$emissiveBlendTexture     "models\mechassault_2\bosses\spider\shield_scan_line_vert_large"
+	$emissiveBlendTexture     "vgui\white"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\cougar\glass"
-	$emissiveBlendFlowTexture     "models\mechassault_2\bosses\spider\shield_scan_line_vert_large"
-	$emissiveBlendTint "[.5 1 5 ]"
+	$emissiveBlendFlowTexture     "vgui\white"
+	$emissiveBlendTint "[0.25 0.5 5 ]"
 	$emissiveBlendStrength 55
 	$emissiveBlendScrollVector "[1 0]"
-
-
+	
+	Proxies
+	{
+		TextureScroll
+		{
+		textureScrollVar	"$baseTextureTransform"
+		textureScrollRate	0.1
+		textureScrollAngle 90
+		}
+	}
 
 }

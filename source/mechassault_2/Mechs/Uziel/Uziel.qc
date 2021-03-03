@@ -433,8 +433,8 @@ $Sequence "getup" {
 	fadeout 0.5
 	fps 30
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 33 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 55 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 21 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 45 "MA2_Mech.Step" }
 }
 
 $Sequence "getup_right" {
@@ -444,8 +444,8 @@ $Sequence "getup_right" {
 	fadeout 0.5
 	fps 30
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 33 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 55 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 21 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 45 "MA2_Mech.Step" }
 }
 
 $sequence "hit_back" {
