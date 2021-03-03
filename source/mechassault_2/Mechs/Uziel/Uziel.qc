@@ -340,7 +340,8 @@ $Sequence "walk" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 19 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 15 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 31 "MA2_Mech.Step" }
 }
 
 $Sequence "walk_limp" {
@@ -362,7 +363,8 @@ $Sequence "walk_limp" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 17 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 23 "MA2_Mech.Step" }
 }
 
 $Sequence "run" {
@@ -384,8 +386,8 @@ $Sequence "run" {
 	fps 15
 	node "movement"
 	walkframe 145 LX LY
-	{ event AE_CL_PLAYSOUND 6 "MA2_Mech.Step" }
-	{ event AE_CL_PLAYSOUND 23 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 14 "MA2_Mech.Step" }
 }
 
 $Sequence "fall_forward" {
