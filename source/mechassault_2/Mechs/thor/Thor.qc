@@ -1,15 +1,16 @@
 // Created by Crowbar 0.56
 
 $modelname "mechassault_2/mechs/thor.mdl"
-$scale	1.1
-$attachment "pulse_laser_R" "joint_rgun" -4.00 -166.00 3.50 rotate -0 -90 0
-$attachment "pulse_laser_L" "joint_lgun" 26.00 -130.00 -6.50 rotate -0 -90 0
-$attachment "machinegun_1" "joint_torso" -56.00 -62.00 28.50 rotate -0 -90 0
-$attachment "machinegun_2" "joint_torso" 56.00 -62.00 28.50 rotate -0 -90 0
-$attachment "rocketpod" "joint_missile" 0.00 -110.00 30.00 rotate -0 -90 0
-$attachment "jumpjets_main" "joint_torso" -1.00 52.00 8.00 rotate 90 -0 0
-$attachment "jumpjets_L" "joint_torso" 48.00 77.00 55.00 rotate 30 40 0
-$attachment "jumpjets_R" "joint_torso" -48.00 77.00 55.00 rotate 30 140 0
+$scale	1
+$attachment "pulse_laser_R1" "joint_rgun" -4.40 -152.60 6.85 rotate -0 -90 0
+$attachment "pulse_laser_R2" "joint_rgun" -4.40 -144.60 -14.85 rotate -0 -90 0
+$attachment "pulse_laser_L" "joint_lgun" 28.60 -113.00 -7.15 rotate -0 -90 0
+$attachment "machinegun_1" "joint_torso" -61.60 -42.20 31.35 rotate -0 -90 0
+$attachment "machinegun_2" "joint_torso" 60.60 -42.20 31.35 rotate -0 -90 0
+$attachment "rocketpod" "joint_missile" 0.00 -85.00 35.00 rotate -0 -90 0
+$attachment "jumpjets_main" "joint_torso" -1.00 84.00 8.00 rotate 90 -0 0
+$attachment "jumpjets_L" "joint_torso" 53.00 112.00 60.00 rotate 30 40 0
+$attachment "jumpjets_R" "joint_torso" -53.00 112.00 60.00 rotate 30 140 0
 $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "battlearmor_attach" "joint_torso" 0.00 104.50 50.00 rotate -0 -90 0
 $scale 35

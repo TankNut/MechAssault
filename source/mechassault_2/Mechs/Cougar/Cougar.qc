@@ -45,21 +45,21 @@ $texturegroup "skinfamilies"
 	{ "Cougar_MP" "Reac_Glow_2" }
 	{ "Puma_MP"   "Reac_Glow_2" }
 }
-$scale	1.125
-$attachment "pulse_laser_R" "joint_rgunlower" 15 -18 73.5 rotate -90 0 0
-$attachment "pulse_laser_L" "joint_lgunlower" -22 -18 73.5 rotate -90 0 0
-$attachment "autocannon_R" "joint_rgunlower" 9 -44 105.5 rotate -90 0 0
-$attachment "autocannon_L" "joint_lgunlower" -14 -44 105.5 rotate -90 0 0
-$attachment "missile_pod_R" "joint_torso" 80 -30 38 rotate 0 -90 0
-$attachment "missile_pod_L" "joint_torso" -80 -30 38 rotate 0 -90 0
 $scale	1
-$attachment "machinegun_R" "joint_torso" 72.00 -58.00 7.00 rotate -0 -90 0
-$attachment "machinegun_L" "joint_torso" -80.00 -58.00 7.00 rotate -0 -90 0
+$attachment "pulse_laser_R" "joint_rgunlower" 18.88 -16.25 87.69 rotate -90 -0 0
+$attachment "pulse_laser_L" "joint_lgunlower" -19.75 -15.25 88.69 rotate -90 -0 0
+$attachment "autocannon_R" "joint_rgunlower" 10.13 -45.50 125.69 rotate -90 -0 0
+$attachment "autocannon_L" "joint_lgunlower" -10.75 -45.50 124.69 rotate -90 -0 0
+$attachment "missile_pod_R" "joint_torso" 80 -35 38 rotate 0 -90 0
+$attachment "missile_pod_L" "joint_torso" -80 -35 38 rotate 0 -90 0
+$attachment "machinegun_R" "joint_torso" 76.00 -58.00 7.00 rotate -0 -90 0
+$attachment "machinegun_L" "joint_torso" -76.00 -58.00 7.00 rotate -0 -90 0
 $scale	1.125
 $attachment "defense_system" "joint_torso" -2 12 74 rotate -90 0 0
-$attachment "jumpjets_main" "joint_torso" -3 67 -6 rotate 90 0 0
-$attachment "jumpjets_L" "joint_torso" 24 80 16 rotate 30 40 0
-$attachment "jumpjets_R" "joint_torso" -30 80 16 rotate 30 140 0
+$scale	1
+$attachment "jumpjets_main" "joint_torso" -0.38 76.38 -8.75 rotate 90 -0 0
+$attachment "jumpjets_L" "joint_torso" 31.00 92.00 19.00 rotate 30 40 0
+$attachment "jumpjets_R" "joint_torso" -31.00 92.00 19.00 rotate 30 140 0
 $scale		1
 $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "battlearmor_attach" "joint_torso" -4.00 105.00 15.00 rotate -0 -90 0

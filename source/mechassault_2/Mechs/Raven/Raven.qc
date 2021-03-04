@@ -3,12 +3,12 @@
 $modelname "mechassault_2/mechs/Raven.mdl"
 
 $scale 1
-$attachment "Autocannon" "joint_torso" -66.00 -55.00 37.50 rotate -0 -90 -90
-$attachment "Pulse_Laser_R" "joint_torso" -63.00 -32.00 57.50 rotate -0 -90 -90
-$attachment "Pulse_Laser_L" "joint_torso" 75.00 -24.00 38.50 rotate -0 -90 -90
-$attachment "jumpjets_main" "joint_torso" 7.00 56.00 -7.00 rotate 90 -0 0
-$attachment "jumpjets_L" "joint_torso" 39.00 70.00 23.00 rotate 30 40 0
-$attachment "jumpjets_R" "joint_torso" -24.00 70.00 23.00 rotate 30 140 0
+$attachment "Autocannon" "joint_torso" -72.00 -55.00 37.50 rotate -0 -90 -90
+$attachment "Pulse_Laser_R" "joint_torso" -69.00 -32.00 57.50 rotate -0 -90 -90
+$attachment "Pulse_Laser_L" "joint_torso" 69.00 -24.00 38.50 rotate -0 -90 -90
+$attachment "jumpjets_main" "joint_torso" -1.00 56.00 -7.00 rotate 90 -0 0
+$attachment "jumpjets_L" "joint_torso" 33.00 70.00 23.00 rotate 30 40 0
+$attachment "jumpjets_R" "joint_torso" -30.00 70.00 23.00 rotate 30 140 0
 $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "battlearmor_attach" "joint_torso" 0.00 85.00 20.00 rotate -0 -90 0
 $scale 40
