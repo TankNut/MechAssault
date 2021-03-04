@@ -12,6 +12,10 @@ VertexLitGeneric
 	$rimlight               1
 	$rimlightexponent       30
 	$rimlightboost          1	
+	"$phong" 1
+	"$phongboost" 0.65
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
 	$emissiveBlendEnabled 1
 	$emissiveBlendTexture     "vgui\white"
 	$emissiveBlendBaseTexture	"models\mechassault_2\vehicles\military\Turret_Player\turret_006_player_emis"

@@ -4,8 +4,8 @@
 	"$bumpmap" "models/mechassault_2/mechs/nova_cat/Nova_Cat_nrml"
 	"$model" 1
 	"$phong" 1
-	"$phongboost" .05
-	"$phongexponent" 25
+	"$phongboost" 1
+	"$phongexponent" 15
 	"$phongtint"	"[.5 .5 .5]"
 	"$rimlight" 1
 	"$rimlightexponent"       11

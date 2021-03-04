@@ -23,15 +23,15 @@
 	{
 		Clamp
 		{
-			min 0.15
+			min 0.45
 			max 1
 			srcVar1 "$color"
 			resultVar "$phongtint"
 		}
 		Clamp
 		{
-			min 0.8
-			max 1
+			min 0.2
+			max 0.5
 			srcVar1 "$color"
 			resultVar "$envmaptint"
 		}

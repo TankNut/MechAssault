@@ -4,15 +4,19 @@ VertexLitGeneric
 	$bumpmap 		"models\mechassault_2\bosses\spider\sb_metal_screen_nrml"
 	$normalmapalphaenvmapmask	1
 	$envmap			env_cubemap
-	$envmaptint "[0.3 0.3 0.3]"
+	$envmaptint "[0.15 0.15 0.15]"
 	$translucent	1
 	$ambientocclusion	1
 	$halflambert		1
 	$diffuseexp			1.5
 	$nocull		1
 	$rimlight               1
-	$rimlightexponent       30
-	$rimlightboost          1	
+	$rimlightexponent       5
+	$rimlightboost          1
+	"$phong" 1
+	"$phongboost" 1.65
+	"$phongexponent" 25
+//	"$phongtint"	"[.5 .5 .5]"
 	$emissiveBlendEnabled 1
 	$emissiveBlendTexture     "models\mechassault_2\bosses\spider\Wpn_Shields_Anim"
 	$emissiveBlendBaseTexture	"models\mechassault_2\bosses\spider\Wpn_Shields_Anim"

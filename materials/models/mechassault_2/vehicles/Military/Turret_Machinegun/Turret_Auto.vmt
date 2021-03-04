@@ -4,8 +4,12 @@ VertexLitGeneric
 	$bumpmap 		"models\mechassault_2\vehicles\military\Turret_Machinegun\AutoTurret_Heavy_nrml"
 	$envmap			env_cubemap
 	$normalmapalphaenvmapmask		1
-	$envmaptint "[0.3 0.3 0.3]"
+	$envmaptint "[0.5 0.5 0.5]"
 	$ambientocclusion	1
+	"$phong" 1
+	"$phongboost" 1
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
 	$halflambert		1
 	$diffuseexp			1.5
 	$nocull		1

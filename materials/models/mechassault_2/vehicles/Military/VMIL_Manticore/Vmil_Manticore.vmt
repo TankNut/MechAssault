@@ -1,10 +1,16 @@
 "VertexlitGeneric"
 {
 	"$basetexture" "models/mechassault_2/vehicles/Military/VMIL_Manticore/VMIL_Manticore_Spec"
-//	"$bumpmap" "models/mechassault_2/vehicles/Military/VMIL_Manticore/Vmil_Manticore_norm"
+	"$bumpmap" "models/mechassault_2/vehicles/Military/VMIL_Manticore/vmil_manticore_nrml"
+	"$normalmapalphaenvmapmask" 1
+	$envmap			env_cubemap
+	$envmaptint "[0.125 0.125 0.125]"
+	$envmapfresnel 0.3
 	"$model" 1
 	"$phong" 1
-	"$phongboost" .09
+	"$phongboost" 0.65
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
 	"$rimlight" 1
 	"$rimlightexponent"       11
 	"$phongfresnelranges" "[1.2 3 8]"

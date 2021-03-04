@@ -9,6 +9,10 @@ VertexLitGeneric
 	$halflambert		1
 	$diffuseexp			1.5
 	$nocull		1
+	"$phong" 1
+	"$phongboost" 1
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
 	$rimlight               1
 	$rimlightexponent       30
 	$rimlightboost          1	

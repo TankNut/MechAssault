@@ -8,6 +8,10 @@ VertexLitGeneric
 	$ambientocclusion	1
 	$halflambert		1
 	$diffuseexp			1.5
+	"$phong" 1
+	"$phongboost" 0.65
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
 	$nocull		1
 	$rimlight               1
 	$rimlightexponent       30

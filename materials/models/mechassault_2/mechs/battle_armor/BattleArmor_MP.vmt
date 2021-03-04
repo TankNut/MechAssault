@@ -12,6 +12,10 @@ VertexLitGeneric
 	$rimlight               1
 	$rimlightexponent       30
 	$rimlightboost          1	
+	"$phong" 1
+	"$phongboost" 1
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
 	$emissiveBlendEnabled 1
 	$emissiveBlendTexture     "vgui\white"
 	$emissiveBlendBaseTexture	"models\mechassault_2\mechs\battle_armor\battlearmor_emissive"
@@ -26,15 +30,15 @@ VertexLitGeneric
 	{
 		Clamp
 		{
-			min 0.15
+			min 0.5
 			max 1
 			srcVar1 "$color"
 			resultVar "$phongtint"
 		}
 		Clamp
 		{
-			min 0.45
-			max 0.7
+			min 0.2
+			max 0.4
 			srcVar1 "$color"
 			resultVar "$envmaptint"
 		}

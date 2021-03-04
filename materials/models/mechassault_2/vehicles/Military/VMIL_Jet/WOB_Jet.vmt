@@ -7,7 +7,9 @@
 	$envmaptint "[0.25 0.25 0.25]"
 	"$model" 1
 	"$phong" 1
-	"$phongboost" .09
+	"$phongboost" 1.65
+	"$phongexponent" 15
+	"$phongtint"	"[.5 .5 .5]"
 	"$rimlight" 1
 	"$rimlightexponent"       11
 	"$phongfresnelranges" "[1.2 3 8]"
