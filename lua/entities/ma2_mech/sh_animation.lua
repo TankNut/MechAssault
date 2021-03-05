@@ -7,7 +7,12 @@ function ENT:UpdateAnimation()
 	local yaw = 0
 
 	if IsValid(ply) and self:AllowInput() then
-		yaw = math.NormalizeAngle(self:GetAimAngle().y - self:GetAngles().y)
+		local offset = self:WorldToLocal(self:GetAimPos())
+
+		offset.z = 0
+		offset:Normalize()
+
+		yaw = math.NormalizeAngle(offset:Angle().y)
 		sequence = self:GetRunning() and "run" or "walk"
 
 		local walk, run = self:GetSpeeds()

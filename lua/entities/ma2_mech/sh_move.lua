@@ -34,6 +34,7 @@ end
 function ENT:StartMove(ply, mv, cmd)
 	mv:SetOrigin(self:GetNetworkOrigin())
 	mv:SetVelocity(self:GetMoveSpeed())
+	mv:SetOldAngles(self:GetAngles())
 
 	local wheel = cmd:GetMouseWheel()
 
@@ -108,6 +109,8 @@ function ENT:GetSurfacePoint(start, endpos)
 
 	tr = util.TraceLine(trace)
 
+	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
+
 	if tr.Hit then
 		return tr.HitPos
 	end
@@ -115,7 +118,11 @@ function ENT:GetSurfacePoint(start, endpos)
 	trace.start = start
 	trace.endpos = endpos
 
-	return util.TraceLine(trace).HitPos
+	tr = util.TraceLine(trace)
+
+	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
+
+	return tr.HitPos
 end
 
 local function atan(a, b)

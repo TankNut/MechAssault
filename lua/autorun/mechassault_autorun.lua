@@ -1,4 +1,5 @@
 local vector = FindMetaTable("Vector")
+local angle = FindMetaTable("Angle")
 
 function vector:Approach(target, rate)
 	local diff = target - self
@@ -13,6 +14,12 @@ function vector:Clamp(min, max)
 	self.x = math.Clamp(self.x, min.x, max.x)
 	self.y = math.Clamp(self.y, min.y, max.y)
 	self.z = math.Clamp(self.z, min.z, max.z)
+end
+
+function angle:Approach(target, rate)
+	self.p = math.ApproachAngle(self.p, target.p, rate)
+	self.y = math.ApproachAngle(self.y, target.y, rate)
+	self.r = math.ApproachAngle(self.r, target.r, rate)
 end
 
 function scripted_ents.IsTypeOf(name, base)

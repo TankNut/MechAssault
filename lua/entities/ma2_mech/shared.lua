@@ -84,7 +84,7 @@ function ENT:Initialize()
 	self:SetModel(self.Model)
 	self:SetSkin(self.Skin)
 
-	self:SetupPhysics(self.HullMin, self.HullMax)
+	--self:SetupPhysics(self.HullMin, self.HullMax)
 
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
@@ -176,7 +176,7 @@ function ENT:SetupPhysics(mins, maxs)
 		self:SetRenderBounds(mins, maxs)
 	else
 		self:PhysicsInitBox(mins, maxs)
-		self:SetMoveType(MOVETYPE_STEP)
+		self:SetMoveType(MOVETYPE_NONE)
 		self:SetSolid(SOLID_NONE)
 
 		self:GetPhysicsObject():EnableMotion(false)
@@ -195,10 +195,10 @@ function ENT:Think()
 
 	if IsValid(seat) then
 		if CLIENT then
-			seat:SetRenderOrigin(self:WorldSpaceCenter())
+			seat:SetRenderOrigin(self:LocalToWorld(Vector(0, 0, 100)))
 			seat:SetRenderAngles(angle_zero)
 		else
-			seat:SetPos(self:WorldSpaceCenter())
+			seat:SetPos(self:LocalToWorld(Vector(0, 0, 100)))
 			seat:SetAngles(angle_zero)
 		end
 	end
@@ -211,7 +211,7 @@ function ENT:Think()
 end
 
 function ENT:GetAimOrigin()
-	return self:WorldSpaceCenter() + Vector(0, 0, self.ViewOffset.z)
+	return self:LocalToWorld(Vector(0, 0, self:OBBCenter().z + self.ViewOffset.z))
 end
 
 function ENT:GetAimTrace()
