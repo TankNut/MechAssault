@@ -24,6 +24,12 @@ ENT.AngOffset 				= Angle(180, 0, 0)
 PrecacheParticleSystem("gm_MA2_javelin_lvl1")
 PrecacheParticleSystem("gm_MA2_explosion_javelin")
 
+function ENT:OnDie()
+	self:OnHit({
+		HitPos = self:GetPos()
+	})
+end
+
 function ENT:OnHit(tr)
 	if self.ImpactSound then
 		self:EmitSound(self.ImpactSound)

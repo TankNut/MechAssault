@@ -32,17 +32,31 @@ function ENT:Initialize()
 		self:EmitSound(self.FireSound)
 	end
 
-	if SERVER and self.Lifespan then
-		SafeRemoveEntityDelayed(self, self.Lifespan)
+	if self.Lifespan then
+		self:SetDietime(CurTime() + self.Lifespan)
 	end
 end
 
 function ENT:SetupDataTables()
 	self:NetworkVar("Vector", 0, "Vel")
+
+	self:NetworkVar("Float", 0, "Dietime")
 end
 
 function ENT:Think()
 	if self.Hit then
+		return
+	end
+
+	if self:GetDietime() <= CurTime() then
+		self:OnDie()
+
+		self.Hit = true
+
+		if SERVER then
+			SafeRemoveEntity(self, 1)
+		end
+
 		return
 	end
 
@@ -123,6 +137,9 @@ if SERVER then
 			ent:TakeDamageInfo(dmg)
 		end
 	end
+end
+
+function ENT:OnDie()
 end
 
 function ENT:OnHit(tr)
