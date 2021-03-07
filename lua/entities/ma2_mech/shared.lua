@@ -140,6 +140,7 @@ function ENT:SetupDataTables()
 
 	self:NetworkVar("Bool", 0, "Running")
 	self:NetworkVar("Bool", 1, "ThirdPerson")
+	self:NetworkVar("Bool", 2, "FlippedMode")
 
 	self:NetworkVar("Float", 0, "StateTimer")
 	self:NetworkVar("Float", 1, "NextAttack")

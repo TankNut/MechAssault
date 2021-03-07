@@ -75,6 +75,30 @@ function ENT:GetSurfaceAngle(ang, fl, fr, bl, br)
 	return ret
 end
 
+function ENT:StartMove(ply, mv, cmd)
+	mv:SetOrigin(self:GetNetworkOrigin())
+	mv:SetVelocity(self:GetMoveSpeed())
+	mv:SetOldAngles(self:GetAngles())
+
+	local wheel = cmd:GetMouseWheel()
+
+	if wheel != 0 then
+		self:SwitchWeapon(wheel)
+	end
+
+	local dot = self:GetUp():Dot(self:GetAimAngle():Up())
+
+	if (mv:KeyPressed(IN_MOVELEFT) or mv:KeyPressed(IN_MOVERIGHT)) then
+		self:SetFlippedMode(dot < 0)
+	end
+
+	if self:GetFlippedMode() then
+		mv:SetSideSpeed(-mv:GetSideSpeed())
+	end
+
+	return mv:KeyPressed(IN_USE)
+end
+
 local function setZ(vec, z)
 	return Vector(vec.x, vec.y, z)
 end
