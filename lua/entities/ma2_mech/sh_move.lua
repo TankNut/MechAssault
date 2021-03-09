@@ -31,6 +31,65 @@ function ENT:GetSpeedData(mv)
 	return speed, accel + 1000
 end
 
+function ENT:GetSurfacePoint(vel, center, start, endpos)
+	local tr
+	local trace = {
+		mask = MASK_PLAYERSOLID,
+		filter = function(ent)
+			return ent:IsWorld() or (ent != self and scripted_ents.IsTypeOf(ent:GetClass(), "mechassault_base"))
+		end
+	}
+
+	trace.start = center
+	trace.endpos = start
+
+	tr = util.TraceLine(trace)
+
+	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
+
+	if not self.Spider and tr.Hit then
+		local forwardDot = tr.HitNormal:Dot(vel:GetNormalized())
+		local upDot = tr.HitNormal:Dot(Vector(0, 0, 1))
+		local heightDiff = tr.HitPos.z - start.z
+
+		if math.deg(upDot) < 30 and heightDiff > 10 and forwardDot < 0 then
+			debugoverlay.Cross(tr.HitPos, 10, 1, Color(0, 0, 255), true)
+
+			local dir = vel:GetNormalized() - (tr.HitNormal * vel:GetNormalized():Dot(tr.HitNormal))
+
+			dir.z = 0
+
+			return tr.HitPos, dir * vel:Length()
+		end
+	end
+
+	if tr.Hit then
+		return tr.HitPos
+	end
+
+	trace.start = start
+	trace.endpos = endpos
+
+	tr = util.TraceLine(trace)
+
+	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
+
+	return tr.HitPos
+end
+
+local function atan(a, b)
+	return math.deg(math.atan2(a, b))
+end
+
+function ENT:GetSurfaceAngle(ang, fl, fr, bl, br)
+	local p = self:WorldToLocal((fl + fr) / 2 - (bl + br) / 2 + self:GetPos())
+	local r = self:WorldToLocal((fr + br) / 2 - (fl + bl) / 2 + self:GetPos())
+
+	local ret = self:LocalToWorldAngles(Angle(atan(p.x, p.z) - 90, self:WorldToLocalAngles(ang).y, atan(-r.y, r.z) - 90))
+
+	return ret
+end
+
 function ENT:StartMove(ply, mv, cmd)
 	mv:SetOrigin(self:GetNetworkOrigin())
 	mv:SetVelocity(self:GetMoveSpeed())
@@ -42,8 +101,27 @@ function ENT:StartMove(ply, mv, cmd)
 		self:SwitchWeapon(wheel)
 	end
 
+	local dot = self:GetUp():Dot(self:GetAimAngle():Up())
+
+	if (mv:KeyPressed(IN_MOVELEFT) or mv:KeyPressed(IN_MOVERIGHT)) then
+		self:SetFlippedMode(dot < 0)
+	end
+
+	if self:GetFlippedMode() then
+		mv:SetSideSpeed(-mv:GetSideSpeed())
+	end
+
 	return mv:KeyPressed(IN_USE)
 end
+
+local function setZ(vec, z)
+	return Vector(vec.x, vec.y, z)
+end
+
+local frontLeft = Angle(0, 45, 0):Forward() * 80
+local frontRight = Angle(0, -45, 0):Forward() * 80
+local backLeft = Angle(0, 135, 0):Forward() * 80
+local backRight = Angle(0, -135, 0):Forward() * 80
 
 function ENT:Move(mv)
 	local ang = mv:GetMoveAngles()
@@ -78,96 +156,95 @@ function ENT:Move(mv)
 	local vel = mv:GetVelocity()
 	local speed, accel = self:GetSpeedData(mv)
 
-	if accel > 0 then
-		local dir = Angle(ang)
+	local function LocalToWorldMove(vec)
+		local ret = LocalToWorld(vec, angle_zero, pos + (vel * FrameTime()), mv:GetOldAngles())
 
-		dir.p = 0
-
-		local target = Vector(mv:GetForwardSpeed(), -mv:GetSideSpeed(), 0):GetNormalized()
-
-		target:Rotate(dir)
-		target:Mul(speed)
-
-		vel:Approach(target, accel * FrameTime())
+		return ret
 	end
 
-	mv:SetOrigin(self:TestGroundMove(pos, vel:GetNormalized(), vel:Length() * FrameTime()))
+	if accel > 0 then
+		local aimPos = self:GetAimPos()
+		local offset = WorldToLocal(aimPos, angle_zero, pos, mv:GetOldAngles())
+
+		offset.z = 0
+		offset:Normalize()
+
+		local dir = Vector(mv:GetForwardSpeed(), -mv:GetSideSpeed(), 0):GetNormalized()
+
+		offset:Rotate(dir:Angle())
+		offset:Rotate(mv:GetOldAngles())
+		offset:Normalize()
+		offset:Mul(speed)
+
+		vel:Approach(offset, accel * FrameTime())
+	end
+
+	local wCenter = LocalToWorldMove(self:OBBCenter())
+
+	local traces = {}
+	local center = Vector()
+	local max = 8
+
+	for i = 1, max do
+		local offset = 360 / max
+
+		local pos1 = Angle(0, offset * i, 0):Forward() * 80
+		local pos2 = Angle(0, offset * i + 180, 0):Forward() * 80
+
+		local hitPos, newVel = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(pos1), LocalToWorldMove(setZ(pos2, -self.HullMax.z * 0.5)))
+
+		if newVel then
+			vel = newVel
+		end
+
+		traces[i] = hitPos
+
+		center = center + traces[i]
+	end
+
+	center = center / max
+
+	local height = WorldToLocal(center, angle_zero, pos, mv:GetOldAngles())
+	local newPos = pos
+	local newAng = mv:GetOldAngles()
+
+	if math.abs(height.z) < 50 then
+		local surfAng = vel:Length() > 0 and vel:Angle() or mv:GetOldAngles()
+
+		if self.Spider then
+			local fl = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(frontLeft, 0)), LocalToWorldMove(setZ(backRight, -self.HullMax.z * 0.5)))
+			local fr = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(frontRight, 0)), LocalToWorldMove(setZ(backLeft, -self.HullMax.z * 0.5)))
+			local bl = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(backLeft, 0)), LocalToWorldMove(setZ(frontRight, -self.HullMax.z * 0.5)))
+			local br = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(backRight, 0)), LocalToWorldMove(setZ(frontLeft, -self.HullMax.z * 0.5)))
+
+			surfAng = self:GetSurfaceAngle(surfAng, fl, fr, bl, br)
+		end
+
+		newPos = pos + (vel * FrameTime())
+		newPos = newPos + (surfAng:Up() * height.z)
+
+		newAng = surfAng
+
+		debugoverlay.Cross(newPos, 5, 1, Color(255, 0, 0), true)
+	else
+		local surfAng = mv:GetOldAngles()
+
+		surfAng:Approach(Angle(0, surfAng.y, 0), 180 * FrameTime())
+
+		newPos = pos + physenv.GetGravity() * FrameTime()
+		newAng = surfAng
+	end
+
+	mv:SetOrigin(newPos)
+	mv:SetOldAngles(newAng)
 	mv:SetVelocity(vel)
 end
-
-function ENT:GetSurfacePoint(start, endpos)
-	local tr
-	local trace = {
-		mask = MASK_PLAYERSOLID,
-		filter = function(ent)
-			return ent:IsWorld() or (ent != self and scripted_ents.IsTypeOf(ent:GetClass(), "mechassault_base"))
-		end
-	}
-
-	trace.start = self:WorldSpaceCenter()
-	trace.endpos = start
-
-	tr = util.TraceLine(trace)
-
-	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
-
-	if tr.Hit then
-		return tr.HitPos
-	end
-
-	trace.start = start
-	trace.endpos = endpos
-
-	tr = util.TraceLine(trace)
-
-	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
-
-	return tr.HitPos
-end
-
-local function atan(a, b)
-	return math.deg(math.atan2(a, b))
-end
-
-function ENT:GetSurfaceAngle(ang, fl, fr, bl, br)
-	local p = self:WorldToLocal((fl + fr) / 2 - (bl + br) / 2 + self:GetPos())
-	local r = self:WorldToLocal((fr + br) / 2 - (fl + bl) / 2 + self:GetPos())
-
-	local ret = self:LocalToWorldAngles(Angle(atan(p.x, p.z) - 90, 0, atan(-r.y, r.z) - 90))
-
-	ret.y = ang.y
-
-	return ret
-end
-
-local function setZ(vec, z)
-	return Vector(vec.x, vec.y, z)
-end
-
-local frontLeft = Vector(ENT.HullMax.x, ENT.HullMax.y, MOVE_HEIGHT_EPSILON)
-local frontRight = Vector(ENT.HullMax.x, ENT.HullMin.y, MOVE_HEIGHT_EPSILON)
-local backLeft = Vector(ENT.HullMin.x, ENT.HullMax.y, MOVE_HEIGHT_EPSILON)
-local backRight = Vector(ENT.HullMin.x, ENT.HullMin.y, MOVE_HEIGHT_EPSILON)
 
 function ENT:FinishMove(mv)
 	local pos = mv:GetOrigin()
 
 	self:SetNetworkOrigin(pos)
-
-	if self:HasMoveInput(mv) then
-		local ang = mv:GetVelocity():Angle()
-
-		if self.Spider then
-			local fl = self:GetSurfacePoint(self:LocalToWorld(frontLeft), self:LocalToWorld(setZ(backRight, -self.HullMax.z)))
-			local fr = self:GetSurfacePoint(self:LocalToWorld(frontRight), self:LocalToWorld(setZ(backLeft, -self.HullMax.z)))
-			local bl = self:GetSurfacePoint(self:LocalToWorld(backLeft), self:LocalToWorld(setZ(frontRight, -self.HullMax.z)))
-			local br = self:GetSurfacePoint(self:LocalToWorld(backRight), self:LocalToWorld(setZ(frontLeft, -self.HullMax.z)))
-
-			ang = self:GetSurfaceAngle(ang, fl, fr, bl, br)
-		end
-
-		self:SetAngles(ang)
-	end
+	self:SetAngles(mv:GetOldAngles())
 
 	self:SetMoveSpeed(mv:GetVelocity())
 

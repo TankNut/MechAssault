@@ -28,6 +28,8 @@ ENT.StandRate 				= 0.5
 
 ENT.MaxHealth 				= 3571
 
+ENT.Spider 					= false
+
 include("sh_animation.lua")
 include("sh_move.lua")
 include("sh_step.lua")
