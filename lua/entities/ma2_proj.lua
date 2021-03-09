@@ -48,7 +48,9 @@ function ENT:Think()
 		return
 	end
 
-	if self:GetDietime() <= CurTime() then
+	local die = self:GetDietime()
+
+	if die > 0 and die <= CurTime() then
 		self:OnDie()
 
 		self.Hit = true
