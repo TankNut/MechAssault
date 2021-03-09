@@ -32,7 +32,6 @@ ENT.Spider 					= false
 
 include("sh_animation.lua")
 include("sh_move.lua")
-include("sh_step.lua")
 include("sh_states.lua")
 include("sh_weapons.lua")
 include("sh_player.lua")
