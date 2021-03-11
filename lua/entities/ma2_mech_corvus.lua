@@ -8,6 +8,9 @@ ENT.PrintName 				= "Corvus"
 ENT.Category 				= "MechAssault"
 ENT.Spawnable 				= true
 
+ENT.Radius 					= 100
+ENT.Height 					= 300
+
 ENT.HullMin 				= Vector(-100, -100, 0)
 ENT.HullMax 				= Vector(100, 100, 300)
 

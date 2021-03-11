@@ -1,5 +1,7 @@
 AddCSLuaFile()
 
+local debugTime = engine.TickInterval() * 2
+
 function ENT:HasMoveInput(mv)
 	return mv:GetForwardSpeed() != 0 or mv:GetSideSpeed() != 0
 end
@@ -31,7 +33,11 @@ function ENT:GetSpeedData(mv)
 	return speed, accel + 1000
 end
 
-function ENT:GetSurfacePoint(vel, center, start, endpos)
+local function setZ(vec, z)
+	return Vector(vec.x, vec.y, z)
+end
+
+function ENT:GetSurfacePoint(vel, func, start, endpos)
 	local tr
 	local trace = {
 		mask = MASK_PLAYERSOLID,
@@ -40,20 +46,20 @@ function ENT:GetSurfacePoint(vel, center, start, endpos)
 		end
 	}
 
-	trace.start = center
-	trace.endpos = start
+	trace.start = func(Vector(0, 0, self.Height * 0.5))
+	trace.endpos = func(start)
 
 	tr = util.TraceLine(trace)
 
-	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
+	debugoverlay.Line(tr.StartPos, tr.HitPos, debugTime, color_white, true)
 
 	if not self.Spider and tr.Hit then
 		local forwardDot = tr.HitNormal:Dot(vel:GetNormalized())
 		local upDot = tr.HitNormal:Dot(Vector(0, 0, 1))
-		local heightDiff = tr.HitPos.z - start.z
+		local heightDiff = tr.HitPos.z - func(start).z
 
 		if math.deg(upDot) < 30 and heightDiff > 10 and forwardDot < 0 then
-			debugoverlay.Cross(tr.HitPos, 10, 1, Color(0, 0, 255), true)
+			debugoverlay.Cross(tr.HitPos, 10, debugTime, Color(0, 0, 255), true)
 
 			local dir = vel:GetNormalized() - (tr.HitNormal * vel:GetNormalized():Dot(tr.HitNormal))
 
@@ -67,12 +73,12 @@ function ENT:GetSurfacePoint(vel, center, start, endpos)
 		return tr.HitPos
 	end
 
-	trace.start = start
-	trace.endpos = endpos
+	trace.start = func(start)
+	trace.endpos = func(endpos)
 
 	tr = util.TraceLine(trace)
 
-	debugoverlay.Line(tr.StartPos, tr.HitPos, 1, color_white, true)
+	debugoverlay.Line(tr.StartPos, tr.HitPos, debugTime, color_white, true)
 
 	return tr.HitPos
 end
@@ -114,14 +120,10 @@ function ENT:StartMove(ply, mv, cmd)
 	return mv:KeyPressed(IN_USE)
 end
 
-local function setZ(vec, z)
-	return Vector(vec.x, vec.y, z)
-end
-
-local frontLeft = Angle(0, 45, 0):Forward() * 80
-local frontRight = Angle(0, -45, 0):Forward() * 80
-local backLeft = Angle(0, 135, 0):Forward() * 80
-local backRight = Angle(0, -135, 0):Forward() * 80
+local frontLeft = Angle(0, 45, 0):Forward()
+local frontRight = Angle(0, -45, 0):Forward()
+local backLeft = Angle(0, 135, 0):Forward()
+local backRight = Angle(0, -135, 0):Forward()
 
 function ENT:Move(mv)
 	local ang = mv:GetMoveAngles()
@@ -156,7 +158,7 @@ function ENT:Move(mv)
 	local vel = mv:GetVelocity()
 	local speed, accel = self:GetSpeedData(mv)
 
-	local function LocalToWorldMove(vec)
+	local func = function(vec)
 		local ret = LocalToWorld(vec, angle_zero, pos + (vel * FrameTime()), mv:GetOldAngles())
 
 		return ret
@@ -179,8 +181,6 @@ function ENT:Move(mv)
 		vel:Approach(offset, accel * FrameTime())
 	end
 
-	local wCenter = LocalToWorldMove(self:OBBCenter())
-
 	local traces = {}
 	local center = Vector()
 	local max = 8
@@ -188,10 +188,10 @@ function ENT:Move(mv)
 	for i = 1, max do
 		local offset = 360 / max
 
-		local pos1 = Angle(0, offset * i, 0):Forward() * 80
-		local pos2 = Angle(0, offset * i + 180, 0):Forward() * 80
+		local pos1 = Angle(0, offset * i, 0):Forward() * self.Radius
+		local pos2 = Angle(0, offset * i + 180, 0):Forward() * self.Radius
 
-		local hitPos, newVel = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(pos1), LocalToWorldMove(setZ(pos2, -self.HullMax.z * 0.5)))
+		local hitPos, newVel = self:GetSurfacePoint(vel, func, pos1, setZ(pos2, -self.HullMax.z * 0.5))
 
 		if newVel then
 			vel = newVel
@@ -212,10 +212,10 @@ function ENT:Move(mv)
 		local surfAng = vel:Length() > 0 and vel:Angle() or mv:GetOldAngles()
 
 		if self.Spider then
-			local fl = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(frontLeft, 0)), LocalToWorldMove(setZ(backRight, -self.HullMax.z * 0.5)))
-			local fr = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(frontRight, 0)), LocalToWorldMove(setZ(backLeft, -self.HullMax.z * 0.5)))
-			local bl = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(backLeft, 0)), LocalToWorldMove(setZ(frontRight, -self.HullMax.z * 0.5)))
-			local br = self:GetSurfacePoint(vel, wCenter, LocalToWorldMove(setZ(backRight, 0)), LocalToWorldMove(setZ(frontLeft, -self.HullMax.z * 0.5)))
+			local fl = self:GetSurfacePoint(vel, func, frontLeft * self.Radius, setZ(backRight * self.Radius, -self.HullMax.z * 0.5))
+			local fr = self:GetSurfacePoint(vel, func, frontRight * self.Radius, setZ(backLeft * self.Radius, -self.HullMax.z * 0.5))
+			local bl = self:GetSurfacePoint(vel, func, backLeft * self.Radius, setZ(frontRight * self.Radius, -self.HullMax.z * 0.5))
+			local br = self:GetSurfacePoint(vel, func, backRight * self.Radius, setZ(frontLeft * self.Radius, -self.HullMax.z * 0.5))
 
 			surfAng = self:GetSurfaceAngle(surfAng, fl, fr, bl, br)
 		end
@@ -225,7 +225,7 @@ function ENT:Move(mv)
 
 		newAng = surfAng
 
-		debugoverlay.Cross(newPos, 5, 1, Color(255, 0, 0), true)
+		debugoverlay.Cross(newPos, 5, debugTime, Color(255, 0, 0), true)
 	else
 		local surfAng = mv:GetOldAngles()
 

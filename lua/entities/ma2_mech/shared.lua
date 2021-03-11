@@ -15,6 +15,9 @@ ENT.Author 					= "TankNut"
 ENT.PhysgunDisabled 		= false
 ENT.m_tblToolsAllowed 		= nil
 
+ENT.Radius 					= 140
+ENT.Height 					= 420
+
 ENT.HullMin 				= Vector(-140, -140, 0)
 ENT.HullMax 				= Vector(140, 140, 420)
 
@@ -84,8 +87,6 @@ end
 function ENT:Initialize()
 	self:SetModel(self.Model)
 	self:SetSkin(self.Skin)
-
-	--self:SetupPhysics(self.HullMin, self.HullMax)
 
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
@@ -166,27 +167,6 @@ function ENT:Invoke(func, ...)
 	return self[func](self, ...)
 end
 
-function ENT:SetupPhysics(mins, maxs)
-	if IsValid(self.PhysCollide) then
-		self.PhysCollide:Destroy()
-	end
-
-	self.PhysCollide = CreatePhysCollideBox(mins, maxs)
-	self:SetCollisionBounds(mins, maxs)
-
-	if CLIENT then
-		self:SetRenderBounds(mins, maxs)
-	else
-		self:PhysicsInitBox(mins, maxs)
-		self:SetMoveType(MOVETYPE_NONE)
-		self:SetSolid(SOLID_NONE)
-
-		self:GetPhysicsObject():EnableMotion(false)
-	end
-
-	self:EnableCustomCollisions(true)
-end
-
 function ENT:Think()
 	self:NextThink(CurTime())
 
@@ -242,30 +222,6 @@ function ENT:AllowInput()
 	end
 
 	return false
-end
-
-function ENT:TestCollision(start, delta, isbox, extends)
-	if not IsValid(self.PhysCollide) then
-		return
-	end
-
-	local max = extends
-	local min = -extends
-
-	max.z = max.z - min.z
-	min.z = 0
-
-	local hit, norm, frac = self.PhysCollide:TraceBox(self:GetPos(), angle_zero, start, start + delta, min, max)
-
-	if not hit then
-		return
-	end
-
-	return {
-		HitPos = hit,
-		Normal = norm,
-		Fraction = frac
-	}
 end
 
 function ENT:OnRemove()

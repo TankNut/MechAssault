@@ -8,6 +8,9 @@ ENT.PrintName 				= "Uziel"
 ENT.Category 				= "MechAssault"
 ENT.Spawnable 				= true
 
+ENT.Radius 					= 140
+ENT.Height 					= 420
+
 ENT.HullMin 				= Vector(-140, -140, 0)
 ENT.HullMax 				= Vector(140, 140, 420)
 

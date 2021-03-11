@@ -8,8 +8,11 @@ ENT.PrintName 				= "Mini Spider"
 ENT.Category 				= "MechAssault"
 ENT.Spawnable 				= true
 
-ENT.HullMin 				= Vector(-80, -80, 0)
-ENT.HullMax 				= Vector(80, 80, 100)
+ENT.Radius 					= 120
+ENT.Height 					= 100
+
+ENT.HullMin 				= Vector(-120, -120, 0)
+ENT.HullMax 				= Vector(120, 120, 100)
 
 ENT.Model 					= Model("models/mechassault_2/bosses/minispider.mdl")
 ENT.Skin 					= 0
