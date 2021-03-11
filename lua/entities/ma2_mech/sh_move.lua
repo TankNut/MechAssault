@@ -42,7 +42,7 @@ function ENT:GetSurfacePoint(vel, func, start, endpos)
 	local trace = {
 		mask = MASK_PLAYERSOLID,
 		filter = function(ent)
-			return ent:IsWorld() or (ent != self and scripted_ents.IsTypeOf(ent:GetClass(), "mechassault_base"))
+			return ent != self and ent:GetOwner() != self
 		end
 	}
 
@@ -65,12 +65,12 @@ function ENT:GetSurfacePoint(vel, func, start, endpos)
 
 			dir.z = 0
 
-			return tr.HitPos, dir * vel:Length()
+			return tr, dir * vel:Length()
 		end
 	end
 
 	if tr.Hit then
-		return tr.HitPos
+		return tr
 	end
 
 	trace.start = func(start)
@@ -80,7 +80,7 @@ function ENT:GetSurfacePoint(vel, func, start, endpos)
 
 	debugoverlay.Line(tr.StartPos, tr.HitPos, debugTime, color_white, true)
 
-	return tr.HitPos
+	return tr
 end
 
 local function atan(a, b)
@@ -181,7 +181,6 @@ function ENT:Move(mv)
 		vel:Approach(offset, accel * FrameTime())
 	end
 
-	local traces = {}
 	local center = Vector()
 	local max = 8
 
@@ -191,15 +190,13 @@ function ENT:Move(mv)
 		local pos1 = Angle(0, offset * i, 0):Forward() * self.Radius
 		local pos2 = Angle(0, offset * i + 180, 0):Forward() * self.Radius
 
-		local hitPos, newVel = self:GetSurfacePoint(vel, func, pos1, setZ(pos2, -self.HullMax.z * 0.5))
+		local tr, newVel = self:GetSurfacePoint(vel, func, pos1, setZ(pos2, -self.HullMax.z * 0.5))
 
 		if newVel then
 			vel = newVel
 		end
 
-		traces[i] = hitPos
-
-		center = center + traces[i]
+		center = center + tr.HitPos
 	end
 
 	center = center / max
@@ -212,10 +209,10 @@ function ENT:Move(mv)
 		local surfAng = vel:Length() > 0 and vel:Angle() or mv:GetOldAngles()
 
 		if self.Spider then
-			local fl = self:GetSurfacePoint(vel, func, frontLeft * self.Radius, setZ(backRight * self.Radius, -self.HullMax.z * 0.5))
-			local fr = self:GetSurfacePoint(vel, func, frontRight * self.Radius, setZ(backLeft * self.Radius, -self.HullMax.z * 0.5))
-			local bl = self:GetSurfacePoint(vel, func, backLeft * self.Radius, setZ(frontRight * self.Radius, -self.HullMax.z * 0.5))
-			local br = self:GetSurfacePoint(vel, func, backRight * self.Radius, setZ(frontLeft * self.Radius, -self.HullMax.z * 0.5))
+			local fl = self:GetSurfacePoint(vel, func, frontLeft * self.Radius, setZ(backRight * self.Radius, -self.HullMax.z * 0.5)).HitPos
+			local fr = self:GetSurfacePoint(vel, func, frontRight * self.Radius, setZ(backLeft * self.Radius, -self.HullMax.z * 0.5)).HitPos
+			local bl = self:GetSurfacePoint(vel, func, backLeft * self.Radius, setZ(frontRight * self.Radius, -self.HullMax.z * 0.5)).HitPos
+			local br = self:GetSurfacePoint(vel, func, backRight * self.Radius, setZ(frontLeft * self.Radius, -self.HullMax.z * 0.5)).HitPos
 
 			surfAng = self:GetSurfaceAngle(surfAng, fl, fr, bl, br)
 		end
