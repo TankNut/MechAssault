@@ -17,6 +17,7 @@ ENT.m_tblToolsAllowed 		= nil
 
 ENT.Radius 					= 140
 ENT.Height 					= 420
+ENT.StepHeight 				= 100
 
 ENT.HullMin 				= Vector(-140, -140, 0)
 ENT.HullMax 				= Vector(140, 140, 420)
