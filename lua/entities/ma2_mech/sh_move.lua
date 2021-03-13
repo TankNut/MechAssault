@@ -87,27 +87,39 @@ function ENT:StartMove(ply, mv, cmd)
 	return mv:KeyPressed(IN_USE)
 end
 
-local function setZ(vec, z)
-	return Vector(vec.x, vec.y, z)
+function ENT:Trace(start, endpos)
+	local mins = Vector(-self.Radius, -self.Radius, 0)
+	local maxs = Vector(self.Radius, self.Radius, self.Height)
+	local tr = util.TraceHull({
+		start = start,
+		endpos = endpos,
+		mins = mins,
+		maxs = maxs,
+		mask = MASK_PLAYERSOLID,
+		filter = function(ent)
+			return ent != self and ent:GetOwner() != self
+		end
+	})
+
+	debugoverlay.SweptBox(tr.StartPos, tr.HitPos, mins, maxs, angle_zero, debugTime, color_white)
+
+	return tr
 end
 
 function ENT:Move(mv)
-	local ang = mv:GetMoveAngles()
-	local pos = mv:GetOrigin()
-
 	if mv:KeyDown(IN_WALK) then
 		local forced = self:GetForcedAngle()
 
-		forced = forced.r != 180 and forced or ang
+		forced = forced.r != 180 and forced or mv:GetMoveAngles()
 
 		self:SetForcedAngle(forced)
 
-		ang = forced
+		mv:SetMoveAngles(forced)
 	else
 		self:SetForcedAngle(Angle(0, 0, 180))
 	end
 
-	self:SetAimAngle(ang)
+	self:SetAimAngle(mv:GetMoveAngles())
 
 	if mv:KeyDown(IN_ATTACK) then
 		self:Attack()
@@ -119,20 +131,12 @@ function ENT:Move(mv)
 
 	self:UpdateWeapon(mv)
 
-	mv:SetMoveAngles(ang)
-
 	local vel = mv:GetVelocity()
 	local speed, accel = self:GetSpeedData(mv)
 
-	local func = function(vec)
-		local ret = LocalToWorld(vec, angle_zero, pos + (vel * FrameTime()), mv:GetOldAngles())
-
-		return ret
-	end
-
-	if accel > 0 then
+	if accel > 0 and self:GetFallTimer() == 0 then
 		local aimPos = self:GetAimPos()
-		local offset = WorldToLocal(aimPos, angle_zero, pos, mv:GetOldAngles())
+		local offset = WorldToLocal(aimPos, angle_zero, mv:GetOrigin(), mv:GetOldAngles())
 
 		offset.z = 0
 		offset:Normalize()
@@ -147,58 +151,173 @@ function ENT:Move(mv)
 		vel:Approach(offset, accel * FrameTime())
 	end
 
-	local center
-	local height
+	mv:SetVelocity(vel)
 
-	local newPos
+	local dir = self:HandleMove(mv)
 
-	local mins = Vector(-self.Radius, -self.Radius, self.StepHeight)
-	local maxs = Vector(self.Radius, self.Radius, self.Height)
+	mv:SetVelocity(dir * mv:GetVelocity():Length())
 
-	for i = 1, 8 do
-		center = self:GetSurfacePoint(func, setZ(vector_origin, -50)).HitPos
-		height = WorldToLocal(center, angle_zero, pos, mv:GetOldAngles())
+	if mv:GetVelocity():Length() > 0 then
+		local ang = mv:GetVelocity():Angle()
 
-		newPos = pos + (vel * FrameTime()) + Vector(0, 0, height.z)
+		ang.p = 0
 
-		local tr = util.TraceHull({
-			start = pos,
-			endpos = newPos,
-			mins = mins,
-			maxs = maxs,
-			mask = MASK_PLAYERSOLID,
-			filter = function(ent)
-				return ent != self and ent:GetOwner() != self
+		mv:SetOldAngles(ang)
+	end
+end
+
+local stepOffset = 0.0625
+
+PrecacheParticleSystem("gm_MA2_JumpJets_Main")
+PrecacheParticleSystem("gm_MA2_JumpJets_Small")
+
+function ENT:HandleMove(mv)
+	local pos = mv:GetOrigin()
+	local dist = (mv:GetVelocity() * FrameTime()):Length()
+
+	local cleared = 0
+
+	local start = Vector(pos)
+	local dir = mv:GetVelocity():GetNormalized()
+	local size = 0
+
+	local first = true
+	local flying = false
+
+	if self.JumpJets and mv:KeyDown(IN_JUMP) then
+		flying = true
+
+		start = start + Vector(0, 0, self:GetSpeeds()) * FrameTime()
+
+		if not self:GetUsingJets() then
+			self:SetUsingJets(true)
+
+			ParticleEffectAttach("gm_MA2_JumpJets_Main", PATTACH_POINT_FOLLOW, self, self.JumpJets[1])
+			ParticleEffectAttach("gm_MA2_JumpJets_Small", PATTACH_POINT_FOLLOW, self, self.JumpJets[2])
+			ParticleEffectAttach("gm_MA2_JumpJets_Small", PATTACH_POINT_FOLLOW, self, self.JumpJets[3])
+
+			if SERVER then
+				self:EmitSound("MA2_Mech.JJStart")
+				self:EmitSound("MA2_Mech.JJLoop")
 			end
-		})
+		end
+	elseif self:GetUsingJets() then
+		self:SetUsingJets(false)
 
-		debugoverlay.SweptBox(tr.StartPos, tr.HitPos, mins, maxs, angle_zero, debugTime, color_white)
+		if SERVER then
+			net.Start("nMAStopEffect")
+				net.WriteEntity(self)
+				net.WriteString("gm_MA2_JumpJets_Main")
+			net.Broadcast()
 
-		if tr.Fraction == 1 then
+			net.Start("nMAStopEffect")
+				net.WriteEntity(self)
+				net.WriteString("gm_MA2_JumpJets_Small")
+			net.Broadcast()
+
+			self:StopSound("MA2_Mech.JJLoop")
+			self:EmitSound("MA2_Mech.JJEnd")
+		end
+	end
+
+	while true do
+		size = math.min(16, dist - cleared)
+
+		if size < 0.001 and not first then
 			break
 		end
 
-		local dir = vel:GetNormalized() - (tr.HitNormal * vel:GetNormalized():Dot(tr.HitNormal))
+		first = false
 
-		dir.z = 0
+		for i = 1, 16 do
+			local endPos = start + (dir * size)
+			local normal
 
-		vel = dir * vel:Length()
+			local stepStart = Vector(start.x, start.y, start.z + stepOffset)
+			local stepEnd = Vector(endPos.x, endPos.y, stepStart.z)
+
+			local tr = self:Trace(stepStart, stepEnd)
+
+			if tr.Fraction != 1 then
+				local trStep = self:Trace(tr.HitPos, tr.HitPos + Vector(0, 0, self.StepHeight))
+
+				stepStart = trStep.HitPos
+				stepEnd.z = stepStart.z
+
+				trStep = self:Trace(stepStart, stepEnd)
+
+				if trStep.Fraction < 0.01 then
+					normal = trStep.HitNormal
+				else
+					local width = (self.Radius * 2) / 3
+					local stepDist = stepStart:DistToSqr(stepEnd)
+					local required = width * width
+
+					if stepDist < required then
+						local trLand = self:Trace(stepStart, stepStart + (dir * width))
+
+						if trLand.Fraction < 1 then
+							normal = trLand.HitNormal
+						end
+					elseif trStep.HitPos:DistToSqr(stepStart) < required then
+						normal = trStep.HitNormal
+					end
+				end
+
+				if not normal then
+					tr = trStep
+				end
+
+				if tr.Fraction < 1 then
+					normal = tr.HitNormal
+				end
+			end
+
+			stepStart = Vector(stepEnd)
+			stepEnd.z = start.z - self.StepHeight - stepOffset
+
+			if flying then
+				self:SetFallTimer(FrameTime())
+			else
+				tr = self:Trace(stepStart, stepEnd)
+
+				local pitch = math.NormalizeAngle(tr.HitNormal:Angle().p) + 90
+				local height = tr.HitPos.z - start.z
+
+				if height > 0 and not normal and pitch > 45 then
+					normal = tr.HitNormal
+				end
+
+				if height < 0 and (tr.Fraction > 0.5 and pitch > 45) then
+					self:SetFallTimer(self:GetFallTimer() + FrameTime())
+
+					tr.HitPos = tr.StartPos + (physenv.GetGravity() * FrameTime() * self:GetFallTimer())
+				else
+					self:SetFallTimer(0)
+				end
+			end
+
+			if normal then
+				normal.z = 0
+
+				debugoverlay.Line(self:WorldSpaceCenter(), self:WorldSpaceCenter() + normal * 20, debugTime, Color(255, 0, 0), true)
+
+				dir = dir - (normal * dir:Dot(normal))
+
+				debugoverlay.Line(self:WorldSpaceCenter(), self:WorldSpaceCenter() + dir * 20, debugTime, Color(0, 2555, 0), true)
+			else
+				pos = tr.HitPos + Vector(0, 0, stepOffset)
+
+				break
+			end
+		end
+
+		cleared = cleared + size
 	end
 
-	local newAng = mv:GetOldAngles()
+	mv:SetOrigin(pos)
 
-	if math.abs(height.z) < 20 then
-		newAng = vel:Length() > 0 and vel:Angle() or mv:GetOldAngles()
-	else
-		newAng = mv:GetOldAngles()
-		newAng:Approach(Angle(0, newAng.y, 0), 180 * FrameTime())
-
-		newPos = pos + physenv.GetGravity() * FrameTime()
-	end
-
-	mv:SetOrigin(newPos)
-	mv:SetOldAngles(newAng)
-	mv:SetVelocity(vel)
+	return dir
 end
 
 function ENT:FinishMove(mv)

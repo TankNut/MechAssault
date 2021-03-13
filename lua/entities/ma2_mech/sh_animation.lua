@@ -30,8 +30,14 @@ function ENT:UpdateAnimation()
 			mrate = vel / walk
 		end
 
-		self:SetPoseParameter("move_x", mrate)
-		self:SetPlaybackRate(arate)
+		self:SetPoseParameter("move_x", self:GetFallTimer() != 0 and 0 or mrate)
+		self:SetPlaybackRate(self:GetFallTimer() != 0 and 0 or arate)
+
+		if self:GetFallTimer() != 0 then
+			self:SetLayerWeight(0, 1)
+		else
+			self:SetLayerWeight(0, 0)
+		end
 
 		if sequence != self:GetSequenceName(self:GetSequence()) then
 			self:ResetSequence(sequence)

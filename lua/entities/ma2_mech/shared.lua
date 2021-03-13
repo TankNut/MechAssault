@@ -17,7 +17,7 @@ ENT.m_tblToolsAllowed 		= nil
 
 ENT.Radius 					= 140
 ENT.Height 					= 420
-ENT.StepHeight 				= 100
+ENT.StepHeight 				= 50
 
 ENT.HullMin 				= Vector(-140, -140, 0)
 ENT.HullMax 				= Vector(140, 140, 420)
@@ -31,8 +31,6 @@ ENT.Margin 					= 1.1
 ENT.StandRate 				= 0.5
 
 ENT.MaxHealth 				= 3571
-
-ENT.Spider 					= false
 
 include("sh_animation.lua")
 include("sh_move.lua")
@@ -116,6 +114,15 @@ function ENT:Initialize()
 
 		self:DeleteOnRemove(seat)
 		self:SetSeat(seat)
+
+		timer.Simple(1, function()
+			if not IsValid(self) then
+				return
+			end
+
+			self:AddLayeredSequence(self:LookupSequence("jump"))
+			self:SetLayerWeight(0, 0)
+		end)
 	end
 
 	for k, v in ipairs(self.WeaponLoadout) do
@@ -144,10 +151,12 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Bool", 0, "Running")
 	self:NetworkVar("Bool", 1, "ThirdPerson")
 	self:NetworkVar("Bool", 2, "FlippedMode")
+	self:NetworkVar("Bool", 3, "UsingJets")
 
 	self:NetworkVar("Float", 0, "StateTimer")
 	self:NetworkVar("Float", 1, "NextAttack")
 	self:NetworkVar("Float", 2, "WeaponTimer")
+	self:NetworkVar("Float", 3, "FallTimer")
 
 	self:NetworkVar("Int", 0, "CurrentWeapon")
 	self:NetworkVar("Int", 1, "CurrentState")

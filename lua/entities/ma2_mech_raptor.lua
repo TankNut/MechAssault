@@ -29,6 +29,8 @@ ENT.WeaponLoadout = {
 	{Type = "PulseLaser", Level = 1, Attachments = {2}}
 }
 
+ENT.JumpJets 				= {5, 6, 7}
+
 function ENT:GetAnimationSpeeds()
 	return 500, 800
 end

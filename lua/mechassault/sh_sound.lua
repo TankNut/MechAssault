@@ -23,6 +23,33 @@ sound.Add({
 })
 
 sound.Add({
+	name = "MA2_Mech.JJStart",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/mechs/jumpjets_start.ogg")
+})
+
+sound.Add({
+	name = "MA2_Mech.JJLoop",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/mechs/jumpjets_loop.wav")
+})
+
+sound.Add({
+	name = "MA2_Mech.JJEnd",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/mechs/jumpjets_end.ogg")
+})
+
+sound.Add({
 	name = "MA2_Misc.Salvage",
 	channel = CHAN_AUTO,
 	volume = 1,
