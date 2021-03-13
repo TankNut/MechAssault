@@ -474,6 +474,7 @@ $sequence "jump" {
 	fadeout 0.2
 	fps 30
 	loop
+	addlayer	"aimlayer_generic"
 	walkframe 145 LX LY
 }
 
