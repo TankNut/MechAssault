@@ -293,6 +293,10 @@ function ENT:HandleMove(mv)
 
 					tr.HitPos = tr.StartPos + (physenv.GetGravity() * FrameTime() * self:GetFallTimer())
 				else
+					if SERVER and self:GetFallTimer() > 0 then
+						self:AddGestureSequence(self:LookupSequence("land"))
+					end
+
 					self:SetFallTimer(0)
 				end
 			end
