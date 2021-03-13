@@ -171,23 +171,14 @@ local stepOffset = 0.0625
 PrecacheParticleSystem("gm_MA2_JumpJets_Main")
 PrecacheParticleSystem("gm_MA2_JumpJets_Small")
 
-function ENT:HandleMove(mv)
-	local pos = mv:GetOrigin()
-	local dist = (mv:GetVelocity() * FrameTime()):Length()
-
-	local cleared = 0
-
-	local start = Vector(pos)
-	local dir = mv:GetVelocity():GetNormalized()
-	local size = 0
-
-	local first = true
+function ENT:HandleJumpJets(mv)
 	local flying = false
+	local start = mv:GetOrigin()
 
-	if self.JumpJets and mv:KeyDown(IN_JUMP) then
+	if mv:KeyDown(IN_JUMP) then
 		flying = true
 
-		start = start + Vector(0, 0, self:GetSpeeds()) * FrameTime()
+		start = mv:GetOrigin() + Vector(0, 0, self:GetSpeeds()) * FrameTime()
 
 		if not self:GetUsingJets() then
 			self:SetUsingJets(true)
@@ -218,6 +209,28 @@ function ENT:HandleMove(mv)
 			self:StopSound("MA2_Mech.JJLoop")
 			self:EmitSound("MA2_Mech.JJEnd")
 		end
+	end
+
+	return flying, start
+end
+
+function ENT:HandleMove(mv)
+	local dist = (mv:GetVelocity() * FrameTime()):Length()
+
+	local cleared = 0
+
+	local start
+
+	local dir = mv:GetVelocity():GetNormalized()
+	local size = 0
+
+	local first = true
+	local flying = false
+
+	if self.JumpJets then
+		flying, start = self:HandleJumpJets(mv)
+	else
+		start = mv:GetOrigin()
 	end
 
 	while true do
@@ -310,7 +323,7 @@ function ENT:HandleMove(mv)
 
 				debugoverlay.Line(self:WorldSpaceCenter(), self:WorldSpaceCenter() + dir * 20, debugTime, Color(0, 2555, 0), true)
 			else
-				pos = tr.HitPos + Vector(0, 0, stepOffset)
+				mv:SetOrigin(tr.HitPos + Vector(0, 0, stepOffset))
 
 				break
 			end
@@ -318,8 +331,6 @@ function ENT:HandleMove(mv)
 
 		cleared = cleared + size
 	end
-
-	mv:SetOrigin(pos)
 
 	return dir
 end
