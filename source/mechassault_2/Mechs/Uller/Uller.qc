@@ -413,7 +413,7 @@ $sequence "run" {
 	node "movement"
 	snap
 }
-
+$origin 0 0 180 0
 $sequence "jump" {
 	"uller_anims\jump.smd"
 	activity "ACT_JUMP" 1

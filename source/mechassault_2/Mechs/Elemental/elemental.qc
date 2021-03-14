@@ -461,7 +461,7 @@ $sequence "tank_grab_idle" {
 }
 
 
-
+$origin 0 0 5 0
 $sequence "jump" {
 	"pa_anims\pa_jump.smd"
 	activity "ACT_JUMP" 1
@@ -472,7 +472,7 @@ $sequence "jump" {
 	loop
 	walkframe 145 LX LY
 }
-
+$origin 0 0 0 0
 $sequence "land" {
 //	"pa_anims\pa_landforward.smd"
 	"a_land"

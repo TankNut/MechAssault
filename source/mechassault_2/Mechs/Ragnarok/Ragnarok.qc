@@ -461,6 +461,7 @@ $sequence "hit_front" {
 //	weightlist	"weights_damage_upper"
 }
 
+$origin 0 0 60 0
 
 $sequence "jump" {
 	"rag_anims\ubr_jump.smd"
@@ -472,6 +473,7 @@ $sequence "jump" {
 	loop
 	walkframe 145 LX LY
 }
+$origin 0 0 0 0
 
 $sequence "land" {
 //	"rag_anims\ubr_landforward.smd"
