@@ -3,7 +3,7 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_mech"
 
-ENT.PrintName 				= "Uziel"
+ENT.PrintName 				= "Belial"
 
 ENT.Category 				= "MechAssault"
 ENT.Spawnable 				= true
@@ -12,7 +12,7 @@ ENT.Radius 					= 140
 ENT.Height 					= 420
 
 ENT.Model 					= Model("models/mechassault_2/mechs/uziel.mdl")
-ENT.Skin 					= 0
+ENT.Skin 					= 1
 
 ENT.ViewOffset 				= Vector(-500, 0, 240)
 
@@ -21,8 +21,8 @@ ENT.MaxHealth 				= 3214
 ENT.CoreAttachment 			= 11
 
 ENT.WeaponLoadout = {
-	{Type = "PPC", Level = 1, Attachments = {1, 3}},
-	{Type = "AltMachinegun", Level = 1, Attachments = {5, 6}},
+	{Type = "AltPulseLaser", Level = 1, Attachments = {5, 6}},
+	{Type = "Gauss", Level = 1, Attachments = {1, 3}},
 	{Type = "Crossbow", Level = 1, Attachments = {7}}
 }
 

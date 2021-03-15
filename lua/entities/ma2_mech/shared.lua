@@ -19,9 +19,6 @@ ENT.Radius 					= 140
 ENT.Height 					= 420
 ENT.StepHeight 				= 50
 
-ENT.HullMin 				= Vector(-140, -140, 0)
-ENT.HullMax 				= Vector(140, 140, 420)
-
 ENT.Model 					= Model("models/mechassault_2/mechs/mad_dog.mdl")
 ENT.Skin 					= 0
 
@@ -47,12 +44,20 @@ end
 ENT.WeaponTypes = {}
 ENT.WeaponLoadout = {}
 
-include("weapons/weapon_laser.lua")
-include("weapons/weapon_pulselaser.lua")
-include("weapons/weapon_javelin.lua")
-include("weapons/weapon_crossbow.lua")
 include("weapons/weapon_autocannon.lua")
+include("weapons/weapon_crossbow.lua")
+include("weapons/weapon_flamethrower.lua")
+include("weapons/weapon_gauss.lua")
+include("weapons/weapon_javelin.lua")
+include("weapons/weapon_laser.lua")
+include("weapons/weapon_lava.lua")
+include("weapons/weapon_machinegun.lua")
+include("weapons/weapon_machinegun_alt.lua")
 include("weapons/weapon_ppc.lua")
+include("weapons/weapon_ppc_plasma.lua")
+include("weapons/weapon_pulselaser.lua")
+include("weapons/weapon_pulselaser_alt.lua")
+include("weapons/weapon_warhammer.lua")
 
 ENT.States = {}
 
@@ -161,11 +166,12 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Int", 0, "CurrentWeapon")
 	self:NetworkVar("Int", 1, "CurrentState")
 	self:NetworkVar("Int", 2, "MechHealth")
+	self:NetworkVar("Int", 3, "AttachmentIndex")
 
 	for k, v in ipairs(self.WeaponLoadout) do
 		local name = "WeaponLevel" .. k
 
-		self:NetworkVar("Int", k + 2, name)
+		self:NetworkVar("Int", k + 3, name)
 	end
 end
 

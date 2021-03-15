@@ -59,23 +59,41 @@ sound.Add({
 })
 
 local sounds = {
-	{"MA2_Weapon.PulseLaser1", Sound("mechassault_2/weapons/pulse_laser_lvl1.ogg")},
-	{"MA2_Weapon.PulseLaser2", Sound("mechassault_2/weapons/pulse_laser_lvl2.ogg")},
-	{"MA2_Weapon.PulseLaser3", Sound("mechassault_2/weapons/pulse_laser_lvl3.ogg")},
-	{"MA2_Weapon.Javelin1", Sound("mechassault_2/weapons/javelin_lvl1.ogg")},
-	{"MA2_Weapon.Javelin2", Sound("mechassault_2/weapons/javelin_lvl2.ogg")},
-	{"MA2_Weapon.Javelin3", Sound("mechassault_2/weapons/javelin_lvl3.ogg")},
-	{"MA2_Weapon.Crossbow1", Sound("mechassault_2/weapons/crossbow_lvl1.ogg")},
-	{"MA2_Weapon.Crossbow2", Sound("mechassault_2/weapons/crossbow_lvl2.ogg")},
-	{"MA2_Weapon.Crossbow3", Sound("mechassault_2/weapons/crossbow_lvl3.ogg")},
 	{"MA2_Weapon.Autocannon1", Sound("mechassault_2/weapons/autocannon_lvl1.ogg")},
 	{"MA2_Weapon.Autocannon2", Sound("mechassault_2/weapons/autocannon_lvl2.ogg")},
 	{"MA2_Weapon.Autocannon3", Sound("mechassault_2/weapons/autocannon_lvl3.ogg")},
+	{"MA2_Weapon.Crossbow1", Sound("mechassault_2/weapons/crossbow_lvl1.ogg")},
+	{"MA2_Weapon.Crossbow2", Sound("mechassault_2/weapons/crossbow_lvl2.ogg")},
+	{"MA2_Weapon.Crossbow3", Sound("mechassault_2/weapons/crossbow_lvl3.ogg")},
+	{"MA2_Weapon.Flame1", Sound("mechassault_2/weapons/flamer_lvl1.ogg")},
+	{"MA2_Weapon.Flame2", Sound("mechassault_2/weapons/flamer_lvl2.ogg")},
+	{"MA2_Weapon.Flame3", Sound("mechassault_2/weapons/flamer_lvl3.ogg")},
+	{"MA2_Weapon.Gauss1", Sound("mechassault_2/weapons/gauss_lvl1.ogg")},
+	{"MA2_Weapon.Gauss2", Sound("mechassault_2/weapons/gauss_lvl2.ogg")},
+	{"MA2_Weapon.Gauss3", Sound("mechassault_2/weapons/gauss_lvl3.ogg")},
+	{"MA2_Weapon.Hammer1", Sound("mechassault_2/weapons/hammer_lvl1.ogg")},
+	{"MA2_Weapon.Hammer2", Sound("mechassault_2/weapons/hammer_lvl2.ogg")},
+	{"MA2_Weapon.Hammer3", Sound("mechassault_2/weapons/hammer_lvl3.ogg")},
+	{"MA2_Weapon.Javelin1", Sound("mechassault_2/weapons/javelin_lvl1.ogg")},
+	{"MA2_Weapon.Javelin2", Sound("mechassault_2/weapons/javelin_lvl2.ogg")},
+	{"MA2_Weapon.Javelin3", Sound("mechassault_2/weapons/javelin_lvl3.ogg")},
+	{"MA2_Weapon.Laser1", Sound("mechassault_2/weapons/laser_lvl1.ogg")},
+	{"MA2_Weapon.Laser2", Sound("mechassault_2/weapons/laser_lvl2.ogg")},
+	{"MA2_Weapon.Laser3", Sound("mechassault_2/weapons/laser_lvl3.ogg")},
+	{"MA2_Weapon.Machinegun1", Sound("mechassault_2/weapons/machinegun_lvl1.ogg")},
+	{"MA2_Weapon.Machinegun2", Sound("mechassault_2/weapons/machinegun_lvl2.ogg")},
+	{"MA2_Weapon.Machinegun3", Sound("mechassault_2/weapons/machinegun_lvl3.ogg")},
+	{"MA2_Weapon.PlasmaPPC1", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
+	{"MA2_Weapon.PlasmaPPC2", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
+	{"MA2_Weapon.PlasmaPPC3", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
 	{"MA2_Weapon.PPC1", Sound("mechassault_2/weapons/ppc_lvl1.ogg")},
 	{"MA2_Weapon.PPC2", Sound("mechassault_2/weapons/ppc_lvl2.ogg")},
 	{"MA2_Weapon.PPC3", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
+	{"MA2_Weapon.PPCChargeLoop", {Sound("mechassault_2/weapons/ppc_charge_loop_1.ogg"), Sound("mechassault_2/weapons/ppc_charge_loop_2.ogg")}, CHAN_AUTO},
 	{"MA2_Weapon.PPCCharging", {Sound("mechassault_2/weapons/ppc_charge.ogg"), Sound("mechassault_2/weapons/ppc_charge_1.ogg"), Sound("mechassault_2/weapons/ppc_charge_2.ogg")}},
-	{"MA2_Weapon.PPCChargeLoop", {Sound("mechassault_2/weapons/ppc_charge_loop_1.ogg"), Sound("mechassault_2/weapons/ppc_charge_loop_2.ogg")}, CHAN_AUTO}
+	{"MA2_Weapon.PulseLaser1", Sound("mechassault_2/weapons/pulse_laser_lvl1.ogg")},
+	{"MA2_Weapon.PulseLaser2", Sound("mechassault_2/weapons/pulse_laser_lvl2.ogg")},
+	{"MA2_Weapon.PulseLaser3", Sound("mechassault_2/weapons/pulse_laser_lvl3.ogg")}
 }
 
 for _, v in pairs(sounds) do
@@ -101,6 +119,24 @@ sound.Add({
 		Sound("mechassault_2/weapons/explosion_generic_3.ogg"),
 		Sound("mechassault_2/weapons/explosion_generic_4.ogg")
 	}
+})
+
+sound.Add({
+	name = "MA2_Weapon.HammerImpact",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 90,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/weapons/hammer_impact.ogg")
+})
+
+sound.Add({
+	name = "MA2_Weapon.HammerExplode",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 140,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/weapons/hammer_explode.ogg")
 })
 
 sound.Add({

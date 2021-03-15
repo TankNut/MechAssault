@@ -3,7 +3,7 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_mech"
 
-ENT.PrintName 				= "Catapult"
+ENT.PrintName 				= "Bowman"
 
 ENT.Category 				= "MechAssault"
 ENT.Spawnable 				= true
@@ -21,8 +21,9 @@ ENT.MaxHealth 				= 3750
 ENT.CoreAttachment 			= 10
 
 ENT.WeaponLoadout = {
-	{Type = "PulseLaser", Level = 1, Attachments = {1, 2, 3, 4}},
-	{Type = "Javelin", Level = 1, Attachments = {6, 5, 6, 5}}
+	{Type = "Laser", Level = 1, Attachments = {4, 1}},
+	{Type = "Machinegun", Level = 1, Attachments = {3, 2}},
+	{Type = "Warhammer", Level = 1, Attachments = {6, 5}}
 }
 
 ENT.JumpJets 				= {7, 8, 9}

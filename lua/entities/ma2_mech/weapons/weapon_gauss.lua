@@ -1,28 +1,28 @@
 AddCSLuaFile()
 
-ENT.WeaponTypes.Laser = {
-	Name = "Laser",
-	Type = "Energy",
-	Function = "FireLaser",
-	Cooldown = 1,
+ENT.WeaponTypes.Gauss = {
+	Name = "Gauss",
+	Type = "Ballistic",
+	Function = "FireGauss",
+	Cooldown = 2.5,
 	Class = {
-		"ma2_proj_laser_lvl1",
-		"ma2_proj_laser_lvl2",
-		"ma2_proj_laser_lvl3"
+		"ma2_proj_gauss_lvl1",
+		"ma2_proj_gauss_lvl2",
+		"ma2_proj_gauss_lvl3"
 	},
 	Effect = {
-		"gm_MA2_muzzleflash_laser_lvl1",
-		"gm_MA2_muzzleflash_laser_lvl2",
-		"gm_MA2_muzzleflash_laser_lvl3"
+		"gm_MA2_muzzleflash_Gauss_lvl1",
+		"gm_MA2_muzzleflash_Gauss_lvl2",
+		"gm_MA2_muzzleflash_Gauss_lvl3"
 	},
 	MaxLevel = 3
 }
 
-PrecacheParticleSystem("gm_MA2_muzzleflash_laser_lvl1")
-PrecacheParticleSystem("gm_MA2_muzzleflash_laser_lvl2")
-PrecacheParticleSystem("gm_MA2_muzzleflash_laser_lvl3")
+PrecacheParticleSystem("gm_MA2_muzzleflash_Gauss_lvl1")
+PrecacheParticleSystem("gm_MA2_muzzleflash_Gauss_lvl2")
+PrecacheParticleSystem("gm_MA2_muzzleflash_Gauss_lvl3")
 
-function ENT:FireLaser(tbl, level, attachments)
+function ENT:FireGauss(tbl, level, attachments)
 	for _, v in ipairs(attachments) do
 		local attachment = self:GetAttachment(v)
 

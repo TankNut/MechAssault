@@ -33,6 +33,7 @@ game.AddParticles("particles/gm_mechassault_2_muzzleflash_effects.pcf")
 game.AddParticles("particles/gm_mechassault_2_explosions.pcf")
 game.AddParticles("particles/gm_mechassault_2_ballistic_tracers.pcf")
 game.AddParticles("particles/gm_mechassault_2_jumpjet_effects.pcf")
+game.AddParticles("particles/gm_mechassault_2_machinegun_impact.pcf")
 
 hook.Add("SetupMove", "mechassault", function(ply, mv, cmd)
 	local ent = ply:GetNWEntity("mechassault")

@@ -11,9 +11,6 @@ ENT.Spawnable 				= true
 ENT.Radius 					= 120
 ENT.Height 					= 100
 
-ENT.HullMin 				= Vector(-120, -120, 0)
-ENT.HullMax 				= Vector(120, 120, 100)
-
 ENT.Model 					= Model("models/mechassault_2/bosses/minispider.mdl")
 ENT.Skin 					= 0
 
@@ -22,6 +19,7 @@ ENT.ViewOffset 				= Vector(-300, 0, 100)
 ENT.MaxHealth 				= 1012
 
 ENT.WeaponLoadout = {
+	{Type = "PlasmaPPC", Level = 1, Attachments = {3}},
 	{Type = "Crossbow", Level = 1, Attachments = {1, 2}},
 }
 
@@ -120,7 +118,7 @@ function ENT:Move(mv)
 		local pos1 = Angle(0, offset * i, 0):Forward() * self.Radius
 		local pos2 = Angle(0, offset * i + 180, 0):Forward() * self.Radius
 
-		local tr = self:GetSurfacePoint(func, pos1, setZ(pos2, -self.HullMax.z * 0.5))
+		local tr = self:GetSurfacePoint(func, pos1, setZ(pos2, -self.Height * 0.5))
 
 		center = center + tr.HitPos
 	end
@@ -134,10 +132,10 @@ function ENT:Move(mv)
 	if math.abs(height.z) < 50 then
 		local surfAng = vel:Length() > 0 and vel:Angle() or mv:GetOldAngles()
 
-		local fl = self:GetSurfacePoint(func, frontLeft * self.Radius, setZ(backRight * self.Radius, -self.HullMax.z * 0.5)).HitPos
-		local fr = self:GetSurfacePoint(func, frontRight * self.Radius, setZ(backLeft * self.Radius, -self.HullMax.z * 0.5)).HitPos
-		local bl = self:GetSurfacePoint(func, backLeft * self.Radius, setZ(frontRight * self.Radius, -self.HullMax.z * 0.5)).HitPos
-		local br = self:GetSurfacePoint(func, backRight * self.Radius, setZ(frontLeft * self.Radius, -self.HullMax.z * 0.5)).HitPos
+		local fl = self:GetSurfacePoint(func, frontLeft * self.Radius, setZ(backRight * self.Radius, -self.Height * 0.5)).HitPos
+		local fr = self:GetSurfacePoint(func, frontRight * self.Radius, setZ(backLeft * self.Radius, -self.Height * 0.5)).HitPos
+		local bl = self:GetSurfacePoint(func, backLeft * self.Radius, setZ(frontRight * self.Radius, -self.Height * 0.5)).HitPos
+		local br = self:GetSurfacePoint(func, backRight * self.Radius, setZ(frontLeft * self.Radius, -self.Height * 0.5)).HitPos
 
 		surfAng = self:GetSurfaceAngle(surfAng, fl, fr, bl, br)
 

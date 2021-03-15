@@ -7,6 +7,6 @@ ENT.Damage 					= 91
 
 ENT.ParticleAttach 			= "gm_MA2_laser_lvl2"
 
-ENT.FireSound 				= Sound("mechassault_2/weapons/laser_lvl2.ogg")
+ENT.FireSound 				= Sound("MA2_Weapon.Laser2")
 
 PrecacheParticleSystem("gm_MA2_laser_lvl2")

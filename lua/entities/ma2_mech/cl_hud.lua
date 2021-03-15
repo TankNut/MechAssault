@@ -19,7 +19,11 @@ function ENT:DrawHUD()
 		local weapon = self.WeaponLoadout[index].Type
 		local class = self.WeaponTypes[weapon]
 
+		local level = self:GetWeaponLevel(index)
+
+		self:Invoke(class.DrawHUD, class, level, screen)
+
 		surface.SetTextPos(screen.x + 10, screen.y + 10)
-		surface.DrawText(string.format("%s lvl %s", class.Name, self:GetWeaponLevel(index)))
+		surface.DrawText(string.format("%s lvl %s", class.Name, level))
 	cam.End2D()
 end
