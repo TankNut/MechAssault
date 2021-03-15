@@ -52,7 +52,7 @@ $weightlist weights_damage_upper {
 }
 
 $PoseParameter "aim_pitch" -1 1 0
-$PoseParameter "aim_yaw" -180 180 0
+$PoseParameter "aim_yaw" -45 45 0
 $poseparameter "move_y" -1 1 loop 0
 $poseparameter "move_x" -1 1 loop 0
 
@@ -246,7 +246,7 @@ $sequence "aimlayer_generic" {
 	"aim_up_right" "aim_up_center"  "aim_up_left"
 	"aim_mid_right" "aim_mid_center"  "aim_mid_left"
 	"aim_dpa_right" "aim_dpa_center"  "aim_dpa_left"
-	blend "aim_yaw" -180 180
+	blend "aim_yaw" -45 45
 	blend "aim_pitch" -0.1 0.1
 	blendwidth 3
 	delta

@@ -54,7 +54,7 @@ $weightlist weights_damage_upper {
 }
 
 $PoseParameter "aim_pitch" -1 1 0
-$PoseParameter "aim_yaw" -180 180 0
+$PoseParameter "aim_yaw" -45 45 0
 $poseparameter "move_y" -1 1 loop 0
 $poseparameter "move_x" -1 1 loop 0
 
@@ -129,11 +129,6 @@ $Animation "a_claw_attack" "pa_anims\pa_clawattack.smd" {
 	fps 15
 	loop
 	subtract "a_idle" 0
-}
-$Animation "a_fire" "pa_anims\fire.smd" {
-	fps 30
-	subtract "a_idle" 0
-	weightlist	"weights_damage_upper"
 }
 
 $Animation "a_walk_N" "pa_anims\pa_walk.smd" {
@@ -236,13 +231,22 @@ $Animation "a_run_SE" "pa_anims\pa_run_S.smd" {
 }
 
 $origin 0 0 0 0
-
+$Animation "a_fire" "pa_anims\fire.smd" {
+	fps 30
+	subtract "a_idle" 0
+	weightlist	"weights_damage_upper"
+}
+$Animation "a_fire_mortar" "pa_anims\fire_mortar.smd" {
+	fps 30
+	subtract "a_idle" 0
+	weightlist	"weights_damage_upper"
+}
 
 $sequence "aimlayer_generic" {
 	"aim_up_right" "aim_up_center"  "aim_up_left"
 	"aim_mid_right" "aim_mid_center"  "aim_mid_left"
 	"aim_dpa_right" "aim_dpa_center"  "aim_dpa_left"
-	blend "aim_yaw" -180 180
+	blend "aim_yaw" -45 45
 	blend "aim_pitch" -0.1 0.1
 	blendwidth 3
 	delta
@@ -369,6 +373,17 @@ $sequence "attack_claw" {
 $sequence "fire" {
 	"a_fire"
 	activity "ACT_RANGE_ATTACK1" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	delta
+	weightlist	"weights_damage_upper"
+
+}
+
+$sequence "fire_mortar" {
+	"a_fire_mortar"
+	activity "ACT_RANGE_ATTACK2" 1
 	fadein 0.2
 	fadeout 0.2
 	fps 30
