@@ -460,6 +460,7 @@ $sequence "hit_front" {
 //	weightlist	"weights_damage_upper"
 }
 
+$origin 0 0 60 0
 
 $sequence "jump" {
 	"nova_anims\nov_jump.smd"
@@ -471,6 +472,7 @@ $sequence "jump" {
 	loop
 	walkframe 145 LX LY
 }
+$origin 0 0 0 0
 
 $sequence "land" {
 //	"nova_anims\nov_landforward.smd"

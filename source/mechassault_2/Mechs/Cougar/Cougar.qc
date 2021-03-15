@@ -521,7 +521,7 @@ $sequence "hit_front" {
 	fadein 0.2
 	fadeout 0.2
 }
-
+$origin 0 0 40 0
 $sequence "jump" {
 	"cougar_anims\jump.smd"
 	activity "ACT_JUMP" 1
@@ -532,7 +532,7 @@ $sequence "jump" {
 	loop
 	walkframe 30 LX LY
 }
-
+$origin 0 0 -18 0
 $sequence "land" {
 	"a_land"
 	activity "ACT_LAND" 1

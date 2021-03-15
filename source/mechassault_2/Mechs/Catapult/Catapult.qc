@@ -466,7 +466,7 @@ $sequence "hit_front" {
 //	weightlist	"weights_damage_upper"
 }
 
-
+$origin 0 0 70 0
 $sequence "jump" {
 	"cat_anims\cat_jump.smd"
 	activity "ACT_JUMP" 1
@@ -477,7 +477,7 @@ $sequence "jump" {
 	addlayer	"aimlayer_generic"
 	walkframe 145 LX LY
 }
-
+$origin 0 0 0 0
 $sequence "land" {
 //	"cat_anims\cat_landforward.smd"
 	"a_land"
