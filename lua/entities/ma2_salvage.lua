@@ -13,12 +13,12 @@ function ENT:Initialize()
 
 	if SERVER then
 		self:PhysicsInit(SOLID_VPHYSICS)
-		self:SetMoveType(MOVETYPE_VPHYSICS)
-		self:SetSolid(SOLID_VPHYSICS)
 		self:SetTrigger(true)
 	end
 
-	self:UseTriggerBounds(true, 24)
+	self:SetCollisionGroup(COLLISION_GROUP_WORLD)
+
+	self:UseTriggerBounds(true, 128)
 end
 
 function ENT:Think()
@@ -32,10 +32,9 @@ if SERVER then
 	function ENT:StartTouch(ent)
 		local owner = ent:GetOwner()
 
-		if IsValid(owner) and not self.Used and scripted_ents.IsTypeOf(owner:GetClass(), "ma2_mech") then
+		if IsValid(owner) and not self.Used and scripted_ents.IsTypeOf(owner:GetClass(), "ma2_mech") and self:OnInteract(owner) then
 			owner:EmitSound(self.Sound)
 
-			self:OnInteract(owner)
 			self.Used = true
 
 			SafeRemoveEntity(self)

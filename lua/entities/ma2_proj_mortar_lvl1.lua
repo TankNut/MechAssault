@@ -1,34 +1,27 @@
-DEFINE_BASECLASS("ma2_proj_tracking")
+DEFINE_BASECLASS("ma2_proj")
 AddCSLuaFile()
 
-ENT.Base 					= "ma2_proj_tracking"
+ENT.Base 					= "ma2_proj"
 
-ENT.Model 					= Model("models/mechassault_2/weapons/crossbow_rocket.mdl")
+ENT.Model 					= Model("models/mechassault_2/weapons/mortar_round.mdl")
 
-ENT.Damage 					= 44
+ENT.Damage 					= 150
 ENT.BlastRadius 			= 50
 
-ENT.Lifespan 				= 2.85
-ENT.TurnRate 				= 22.5
-
-ENT.Velocity 				= 3000
+ENT.Velocity 				= 1000
 ENT.HullSize 				= 10
 
-ENT.ParticleAttach 			= "gm_MA2_crossbow"
+ENT.GravityMultiplier 		= 2
 
-ENT.ImpactSound 			= Sound("MA2_Weapon.MissileHit")
-ENT.FireSound 				= Sound("MA2_Weapon.Crossbow1")
+ENT.ParticleAttach 			= "gm_MA2_javelin_lvl1"
+
+ENT.ImpactSound 			= Sound("MA2_Weapon.MortarHit")
+ENT.FireSound 				= Sound("MA2_Weapon.Mortar1")
 
 ENT.AngOffset 				= Angle(180, 0, 0)
 
-PrecacheParticleSystem("gm_MA2_crossbow")
+PrecacheParticleSystem("gm_MA2_javelin_lvl1")
 PrecacheParticleSystem("gm_MA2_explosion_crossbow")
-
-function ENT:OnDie()
-	self:OnHit({
-		HitPos = self:GetPos()
-	})
-end
 
 function ENT:OnHit(tr)
 	if self.ImpactSound then

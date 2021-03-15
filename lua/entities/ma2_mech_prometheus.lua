@@ -22,7 +22,7 @@ ENT.CoreAttachment 			= 11
 
 ENT.WeaponLoadout = {
 	{Type = "Laser", Level = 1, Attachments = {7, 3, 4}},
-	{Type = "Autocannon", Level = 1, Attachments = {6, 2}},
+	{Type = "Gauss", Level = 1, Attachments = {6, 2}},
 	{Type = "Warhammer", Level = 1, Attachments = {10, 9}}
 }
 

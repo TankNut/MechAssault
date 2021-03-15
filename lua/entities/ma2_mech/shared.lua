@@ -53,6 +53,7 @@ include("weapons/weapon_laser.lua")
 include("weapons/weapon_lava.lua")
 include("weapons/weapon_machinegun.lua")
 include("weapons/weapon_machinegun_alt.lua")
+include("weapons/weapon_mortar.lua")
 include("weapons/weapon_ppc.lua")
 include("weapons/weapon_ppc_plasma.lua")
 include("weapons/weapon_pulselaser.lua")
@@ -95,6 +96,7 @@ function ENT:Initialize()
 	if SERVER then
 		self:SetUseType(SIMPLE_USE)
 		self:CreateBoneFollowers()
+		self:UpdateBoneFollowers()
 
 		local seat = ents.Create("prop_vehicle_prisoner_pod")
 
@@ -125,8 +127,7 @@ function ENT:Initialize()
 				return
 			end
 
-			self:AddLayeredSequence(self:LookupSequence("jump"))
-			self:SetLayerWeight(0, 0)
+			self:SetupAnimationLayers()
 		end)
 	end
 
@@ -142,6 +143,11 @@ function ENT:Initialize()
 	self:SetMechHealth(self.MaxHealth)
 
 	self:SetState(STATE_OFFLINE)
+end
+
+function ENT:SetupAnimationLayers()
+	self:AddLayeredSequence(self:LookupSequence("jump"))
+	self:SetLayerWeight(0, 0)
 end
 
 function ENT:SetupDataTables()

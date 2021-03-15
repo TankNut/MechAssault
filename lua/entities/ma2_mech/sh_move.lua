@@ -36,9 +36,12 @@ end
 function ENT:GetSurfacePoint(func, start, endpos)
 	local tr
 	local trace = {
-		mask = MASK_PLAYERSOLID,
 		filter = function(ent)
-			return ent != self and ent:GetOwner() != self
+			if ent == self or ent:GetOwner() == self then
+				return false
+			end
+
+			return not scripted_ents.IsTypeOf(ent:GetClass(), "ma2_salvage")
 		end
 	}
 
@@ -95,9 +98,12 @@ function ENT:Trace(start, endpos)
 		endpos = endpos,
 		mins = mins,
 		maxs = maxs,
-		mask = MASK_PLAYERSOLID,
 		filter = function(ent)
-			return ent != self and ent:GetOwner() != self
+			if ent == self or ent:GetOwner() == self then
+				return false
+			end
+
+			return not scripted_ents.IsTypeOf(ent:GetClass(), "ma2_salvage")
 		end
 	})
 
@@ -166,8 +172,6 @@ function ENT:Move(mv)
 	end
 end
 
-local stepOffset = 0.0625
-
 PrecacheParticleSystem("gm_MA2_JumpJets_Main")
 PrecacheParticleSystem("gm_MA2_JumpJets_Small")
 
@@ -213,6 +217,8 @@ function ENT:HandleJumpJets(mv)
 
 	return flying, start
 end
+
+local stepOffset = 0.0625
 
 function ENT:HandleMove(mv)
 	local dist = (mv:GetVelocity() * FrameTime()):Length()

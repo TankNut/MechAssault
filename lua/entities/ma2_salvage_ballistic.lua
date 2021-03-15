@@ -12,6 +12,6 @@ ENT.Model 					= Model("models/mechassault_2/salvage/ballistic.mdl")
 
 if SERVER then
 	function ENT:OnInteract(mech)
-		mech:UpgradeWeapon("Ballistic")
+		return mech:UpgradeWeapon("Ballistic")
 	end
 end

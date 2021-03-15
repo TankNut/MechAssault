@@ -14,7 +14,7 @@ ENT.Height 					= 420
 ENT.Model 					= Model("models/mechassault_2/mechs/stiletto.mdl")
 ENT.Skin 					= 0
 
-ENT.ViewOffset 				= Vector(-500, 0, 320)
+ENT.ViewOffset 				= Vector(-600, 0, 260)
 
 ENT.MaxHealth 				= 3354
 

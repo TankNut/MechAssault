@@ -23,7 +23,7 @@ ENT.CoreAttachment 			= 13
 ENT.WeaponLoadout = {
 	{Type = "AltPulseLaser", Level = 1, Attachments = {2, 1}},
 	{Type = "Autocannon", Level = 1, Attachments = {3}},
-	{Type = "Crossbow", Level = 1, Attachments = {5, 6}},
+	{Type = "Javelin", Level = 1, Attachments = {5, 6}},
 }
 
 ENT.JumpJets 				= {10, 11, 12}

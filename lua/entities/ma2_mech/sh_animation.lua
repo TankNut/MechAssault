@@ -2,17 +2,9 @@ AddCSLuaFile()
 
 function ENT:UpdateAnimation()
 	local ply = self:GetPlayer()
-
 	local sequence
-	local yaw = 0
 
 	if IsValid(ply) and self:AllowInput() then
-		local offset = self:WorldToLocal(self:GetAimPos())
-
-		offset.z = 0
-		offset:Normalize()
-
-		yaw = math.NormalizeAngle(offset:Angle().y)
 		sequence = self:GetRunning() and "run" or "walk"
 
 		local walk, run = self:GetSpeeds()
@@ -42,6 +34,22 @@ function ENT:UpdateAnimation()
 		if sequence != self:GetSequenceName(self:GetSequence()) then
 			self:ResetSequence(sequence)
 		end
+	end
+
+	self:UpdateAimAngle()
+end
+
+function ENT:UpdateAimAngle()
+	local ply = self:GetPlayer()
+	local yaw = 0
+
+	if IsValid(ply) and self:AllowInput() then
+		local offset = self:WorldToLocal(self:GetAimPos())
+
+		offset.z = 0
+		offset:Normalize()
+
+		yaw = math.NormalizeAngle(offset:Angle().y)
 	end
 
 	self:SetPoseParameter("aim_yaw", yaw)

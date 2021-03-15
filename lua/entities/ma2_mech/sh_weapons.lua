@@ -9,15 +9,24 @@ function ENT:SetWeaponLevel(index, level)
 end
 
 function ENT:UpgradeWeapon(weaponType)
-	self:AbortWeaponTimer()
+	local upgraded = false
 
 	for k, v in ipairs(self.WeaponLoadout) do
 		local class = self.WeaponTypes[v.Type]
+		local level = self:GetWeaponLevel(k)
 
-		if class.Type == weaponType then
-			self:SetWeaponLevel(k, math.min(self:GetWeaponLevel(k) + 1, class.MaxLevel))
+		if class.Type == weaponType and level < class.MaxLevel then
+			upgraded = true
+
+			self:SetWeaponLevel(k, level + 1)
 		end
 	end
+
+	if upgraded then
+		self:AbortWeaponTimer()
+	end
+
+	return upgraded
 end
 
 function ENT:SwitchWeapon(wheel)

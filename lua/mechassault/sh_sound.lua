@@ -83,6 +83,9 @@ local sounds = {
 	{"MA2_Weapon.Machinegun1", Sound("mechassault_2/weapons/machinegun_lvl1.ogg")},
 	{"MA2_Weapon.Machinegun2", Sound("mechassault_2/weapons/machinegun_lvl2.ogg")},
 	{"MA2_Weapon.Machinegun3", Sound("mechassault_2/weapons/machinegun_lvl3.ogg")},
+	{"MA2_Weapon.Mortar1", Sound("mechassault_2/weapons/mortar_lvl1.ogg")},
+	{"MA2_Weapon.Mortar2", Sound("mechassault_2/weapons/mortar_lvl2.ogg")},
+	{"MA2_Weapon.Mortar3", Sound("mechassault_2/weapons/mortar_lvl3.ogg")},
 	{"MA2_Weapon.PlasmaPPC1", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
 	{"MA2_Weapon.PlasmaPPC2", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
 	{"MA2_Weapon.PlasmaPPC3", Sound("mechassault_2/weapons/ppc_lvl3.ogg")},
@@ -137,6 +140,18 @@ sound.Add({
 	level = 140,
 	pitch = {95, 110},
 	sound = Sound("mechassault_2/weapons/hammer_explode.ogg")
+})
+
+sound.Add({
+	name = "MA2_Weapon.MortarHit",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 140,
+	pitch = {95, 110},
+	sound = {
+		Sound("mechassault_2/weapons/mortar_impact_1.ogg"),
+		Sound("mechassault_2/weapons/mortar_impact_2.ogg")
+	}
 })
 
 sound.Add({
