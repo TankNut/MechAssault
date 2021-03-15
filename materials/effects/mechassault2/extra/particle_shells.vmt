@@ -1,0 +1,6 @@
+spritecard
+{
+$basetexture "effects/mechassault2/extra/particle_shells"
+$depthblend 0
+$blendframes 0
+}
