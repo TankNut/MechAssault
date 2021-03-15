@@ -10,17 +10,12 @@ ENT.WeaponTypes.Flamethrower = {
 		"ma2_proj_flame_lvl2",
 		"ma2_proj_flame_lvl3"
 	},
-	Effect = "gm_MA2_flamethrower",
 	MaxLevel = 3
 }
-
-PrecacheParticleSystem("gm_MA2_flamethrower")
 
 function ENT:FireFlamethrower(tbl, level, attachments)
 	for _, v in ipairs(attachments) do
 		local attachment = self:GetAttachment(v)
-
-		--ParticleEffectAttach(tbl.Effect, PATTACH_POINT_FOLLOW, self, v)
 
 		if SERVER then
 			local ent = ents.Create(tbl.Class[level])
