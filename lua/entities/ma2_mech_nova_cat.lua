@@ -5,7 +5,7 @@ ENT.Base 					= "ma2_mech"
 
 ENT.PrintName 				= "Nova Cat"
 
-ENT.Category 				= "MechAssault"
+ENT.Category 				= "MechAssault: Heavy Mechs"
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 160

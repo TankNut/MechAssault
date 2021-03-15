@@ -5,7 +5,7 @@ ENT.Base 					= "ma2_mech"
 
 ENT.PrintName 				= "Raptor"
 
-ENT.Category 				= "MechAssault"
+ENT.Category 				= "MechAssault: Medium Mechs"
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 140

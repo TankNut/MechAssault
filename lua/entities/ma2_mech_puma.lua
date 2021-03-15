@@ -5,7 +5,7 @@ ENT.Base 					= "ma2_mech"
 
 ENT.PrintName 				= "Puma"
 
-ENT.Category 				= "MechAssault"
+ENT.Category 				= "MechAssault: Light Mechs"
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 140

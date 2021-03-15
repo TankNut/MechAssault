@@ -5,14 +5,14 @@ ENT.Base 					= "ma2_mech"
 
 ENT.PrintName 				= "Bowman"
 
-ENT.Category 				= "MechAssault"
+ENT.Category 				= "MechAssault: Heavy Mechs"
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 140
 ENT.Height 					= 420
 
 ENT.Model 					= Model("models/mechassault_2/mechs/catapult.mdl")
-ENT.Skin 					= 0
+ENT.Skin 					= 1
 
 ENT.ViewOffset 				= Vector(-500, 0, 240)
 

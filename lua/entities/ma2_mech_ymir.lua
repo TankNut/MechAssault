@@ -5,7 +5,7 @@ ENT.Base 					= "ma2_mech"
 
 ENT.PrintName 				= "Ymir"
 
-ENT.Category 				= "MechAssault"
+ENT.Category 				= "MechAssault: Assault Mechs"
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 200

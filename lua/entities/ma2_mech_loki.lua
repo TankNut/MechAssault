@@ -5,7 +5,7 @@ ENT.Base 					= "ma2_mech"
 
 ENT.PrintName 				= "Loki"
 
-ENT.Category 				= "MechAssault"
+ENT.Category 				= "MechAssault: Heavy Mechs"
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 160

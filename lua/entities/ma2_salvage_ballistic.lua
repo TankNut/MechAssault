@@ -5,7 +5,7 @@ ENT.Base 					= "ma2_salvage"
 
 ENT.PrintName 				= "Ballistic Upgrade"
 
-ENT.Category 				= "MechAssault Salvage"
+ENT.Category 				= "MechAssault: Misc"
 ENT.Spawnable 				= true
 
 ENT.Model 					= Model("models/mechassault_2/salvage/ballistic.mdl")
