@@ -2,7 +2,7 @@
 
 $modelname "mechassault_2/mechs/battle_armor.mdl"
 $attachment "JumpJets_L" "joint_torso" 4.75 13.00 17.00 rotate 60 70 -180
-$attachment "JumpJets_R" "joint_torso" -6.75 13.00 17.00 rotate 60 140 -180
+$attachment "JumpJets_R" "joint_torso" -6.75 13.00 17.00 rotate 60 120 -180
 $attachment "Mortar" "joint_mortarbarrel" 0.00 -3.00 5.00 rotate -0 -90 0
 $attachment "Pulse_Laser" "joint_rgun" 2.00 2.00 -27.00 rotate 90 -90 0
 $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
@@ -129,7 +129,7 @@ $Animation "a_claw_attack" "pa_anims\pa_clawattack.smd" {
 	subtract "a_idle" 0
 	weightlist	"weights_damage_upper"
 }
-$Animation "a_fire" "pa_anims\fire.smd" {
+$Animation "a_fire" "pa_anims\fire2.smd" {
 	fps 30
 	subtract "a_idle" 0
 	weightlist	"weights_damage_upper"

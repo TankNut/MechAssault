@@ -231,7 +231,7 @@ $Animation "a_run_SE" "pa_anims\pa_run_S.smd" {
 }
 
 $origin 0 0 0 0
-$Animation "a_fire" "pa_anims\fire.smd" {
+$Animation "a_fire" "pa_anims\fire2.smd" {
 	fps 30
 	subtract "a_idle" 0
 	weightlist	"weights_damage_upper"
