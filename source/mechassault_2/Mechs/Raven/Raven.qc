@@ -480,6 +480,10 @@ $sequence "land" {
 //	"rvn_anims\rvn_landforward.smd"
 	"a_land"
 	activity "ACT_LAND" 1
+	{ event AE_CL_PLAYSOUND 1 "MA2_Mech.Step" }
+	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
+	{ event 1100 1 "event_ma2_mech_step" }
+	{ event 1100 2 "event_ma2_mech_step" }
 	fadein 0.2
 	fadeout 0.2
 	fps 30
