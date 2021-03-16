@@ -65,7 +65,7 @@ $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "battlearmor_attach" "joint_torso" -4.00 105.00 15.00 rotate -0 -90 0
 $cbox 0 0 0 0 0 0
 
-$bbox -114.71 -166.668 -37.527 110.163 167.195 367.077
+$bbox -114.71 -166.668 0 110.163 167.195 367.077
 
 $hboxset "default"
 $hbox 2 "joint_hipbelow" -34.038502 -39.662498 -32.660999 28.215 27.084499 25.1465
@@ -131,7 +131,6 @@ $poseparameter "aim_yaw" -180 180 loop 0
 $poseparameter "move_y" -1 1 loop 0
 $poseparameter "move_x" -1 1 loop 0
 
-$origin 0 0 -18 0
 $animation "a_idle" "cougar_anims\a_idle.smd" {
 	fps 15
 	loop
@@ -442,7 +441,6 @@ $sequence "run" {
 	addlayer "aimlayer_generic"
 	node "movement"
 }
-$origin 0 0 -37 0
 $sequence "fall_forward" {
 	"cougar_anims\fall_forward.smd"
 	activity "ACT_DIESIMPLE" 1
@@ -504,7 +502,6 @@ $sequence "getup_right" {
 	fps 30
 	walkframe 75 LX LY
 }
-$origin 0 0 -18 0
 
 $sequence "hit_back" {
 	"a_hit_back"
@@ -521,7 +518,6 @@ $sequence "hit_front" {
 	fadein 0.2
 	fadeout 0.2
 }
-$origin 0 0 40 0
 $sequence "jump" {
 	"cougar_anims\jump.smd"
 	activity "ACT_JUMP" 1
@@ -532,7 +528,6 @@ $sequence "jump" {
 	loop
 	walkframe 30 LX LY
 }
-$origin 0 0 -18 0
 $sequence "land" {
 	"a_land"
 	activity "ACT_LAND" 1
@@ -564,7 +559,6 @@ $sequence "idle_limp" {
 	fps 30
 	loop
 }
-$origin 0 0 -37 0
 $sequence "power_up" {
 	"cougar_anims\power_up.smd"
 	activity "ACT_OBJ_STARTUP" 1
