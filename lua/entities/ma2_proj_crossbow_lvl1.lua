@@ -6,10 +6,10 @@ ENT.Base 					= "ma2_proj_tracking"
 ENT.Model 					= Model("models/mechassault_2/weapons/crossbow_rocket.mdl")
 
 ENT.Damage 					= 44
-ENT.BlastRadius 			= 50
+ENT.BlastRadius 			= 128
 
 ENT.Lifespan 				= 2.85
-ENT.TurnRate 				= 22.5
+ENT.TurnRate 				= 45
 
 ENT.Velocity 				= 3000
 ENT.HullSize 				= 10

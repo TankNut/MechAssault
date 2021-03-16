@@ -8,6 +8,66 @@ function ENT:SetWeaponLevel(index, level)
 	self["SetWeaponLevel" .. index](self, level)
 end
 
+local radius = 64
+
+function ENT:GetTargetLock()
+	self.TargetFrame = self.TargetFrame or 0
+
+	local cmp = CLIENT and FrameNumber() or engine.TickCount()
+
+	if self.TargetFrame != cmp then
+		self.TargetFrame = cmp
+
+		local ply = self:GetPlayer()
+
+		ply:LagCompensation(true)
+
+		local tr = util.TraceHull({
+			start = self:GetAimOrigin(),
+			endpos = self:GetAimPos(),
+			filter = function(ent)
+				local owner = ent:GetOwner()
+
+				if ent:IsWorld() or ent == self or owner == self then
+					return false
+				end
+
+				if ent:IsPlayer() or ent:IsNPC() or ent:IsVehicle() then
+					return true
+				end
+
+				if IsValid(owner) and scripted_ents.IsTypeOf(owner:GetClass(), "ma2_mech") then
+					return true
+				end
+
+				return false
+			end,
+			mins = Vector(-radius, -radius, -radius),
+			maxs = Vector(radius, radius, radius),
+			ignoreworld = true
+		})
+
+		debugoverlay.SweptBox(tr.StartPos, tr.HitPos, Vector(-radius, -radius, -radius), Vector(radius, radius, radius), angle_zero, debugTime, Color(255, 0, 0))
+
+		ply:LagCompensation(false)
+
+		self.TargetCache = tr.Entity
+	end
+
+	return self.TargetCache
+end
+
+function ENT:GetTargetLead(target, pos, velocity)
+	local targetPos = target:WorldSpaceCenter()
+
+	local dist = (pos - targetPos):Length()
+	local time = dist / velocity
+
+	local leadPos = targetPos + (target:GetVelocity() * time)
+
+	return (leadPos - pos):Angle()
+end
+
 function ENT:UpgradeWeapon(weaponType)
 	local upgraded = false
 

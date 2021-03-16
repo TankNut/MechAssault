@@ -6,14 +6,15 @@ ENT.Base 					= "ma2_proj"
 ENT.Model 					= Model("models/mechassault_2/weapons/mortar_round.mdl")
 
 ENT.Damage 					= 150
-ENT.BlastRadius 			= 50
+ENT.BlastRadius 			= 128
 
-ENT.Velocity 				= 1000
+ENT.Velocity 				= 2000
 ENT.HullSize 				= 10
 
-ENT.GravityMultiplier 		= 2
+ENT.GravityMultiplier 		= 1
 
 ENT.ParticleAttach 			= "gm_MA2_javelin_lvl1"
+ENT.ImpactEffect 			= "gm_MA2_explosion_mortar_lvl1"
 
 ENT.ImpactSound 			= Sound("MA2_Weapon.MortarHit")
 ENT.FireSound 				= Sound("MA2_Weapon.Mortar1")
@@ -21,14 +22,14 @@ ENT.FireSound 				= Sound("MA2_Weapon.Mortar1")
 ENT.AngOffset 				= Angle(180, 0, 0)
 
 PrecacheParticleSystem("gm_MA2_javelin_lvl1")
-PrecacheParticleSystem("gm_MA2_explosion_crossbow")
+PrecacheParticleSystem("gm_MA2_explosion_mortar_lvl1")
 
 function ENT:OnHit(tr)
 	if self.ImpactSound then
 		self:EmitSound(self.ImpactSound)
 	end
 
-	ParticleEffect("gm_MA2_explosion_crossbow", tr.HitPos, angle_zero)
+	ParticleEffect(self.ImpactEffect, tr.HitPos, angle_zero)
 
 	if SERVER then
 		local mech = self:GetOwner()

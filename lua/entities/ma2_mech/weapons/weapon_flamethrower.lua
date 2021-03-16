@@ -18,8 +18,16 @@ function ENT:FireFlamethrower(tbl, level, attachments)
 		local attachment = self:GetAttachment(v)
 
 		if SERVER then
+			local target = self:GetTargetLock()
+
 			local ent = ents.Create(tbl.Class[level])
-			local ang = (self:GetAimPos() - attachment.Pos):Angle()
+			local ang
+
+			if IsValid(target) then
+				ang = self:GetTargetLead(target, attachment.Pos, ent.Velocity)
+			else
+				ang = (self:GetAimPos() - attachment.Pos):Angle()
+			end
 
 			ent:SetPos(attachment.Pos)
 			ent:SetAngles(ang)

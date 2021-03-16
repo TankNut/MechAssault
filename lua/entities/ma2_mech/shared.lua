@@ -94,6 +94,8 @@ function ENT:Initialize()
 	self:SetSkin(self.Skin)
 
 	if SERVER then
+		self:SetLagCompensated(true)
+
 		self:SetUseType(SIMPLE_USE)
 		self:CreateBoneFollowers()
 		self:UpdateBoneFollowers()
@@ -219,9 +221,11 @@ function ENT:GetAimOrigin()
 end
 
 function ENT:GetAimTrace()
-	return util.TraceLine({
-		start = self:GetAimOrigin(),
-		endpos = self:GetAimOrigin() + self:GetAimAngle():Forward() * 32768,
+	local start = self:GetAimOrigin()
+
+	local tr = util.TraceLine({
+		start = start,
+		endpos = start + self:GetAimAngle():Forward() * 32768,
 		filter = function(ent)
 			if ent == self or ent:GetOwner() == self then
 				return false
@@ -230,6 +234,8 @@ function ENT:GetAimTrace()
 			return true
 		end
 	})
+
+	return tr
 end
 
 function ENT:GetAimPos()

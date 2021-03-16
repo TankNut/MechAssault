@@ -26,6 +26,8 @@ function scripted_ents.IsTypeOf(name, base)
 	return name == base or scripted_ents.IsBasedOn(name, base)
 end
 
+debugTime = engine.TickInterval() * 2
+
 include("mechassault/sh_sound.lua")
 
 game.AddParticles("particles/gm_mechassault_2_projectile_effects.pcf")

@@ -41,8 +41,16 @@ function ENT:FireWarhammer(tbl, level, attachments)
 		local attachment = self:GetAttachment(v)
 
 		if SERVER then
+			local target = self:GetTargetLock()
+
 			local ent = ents.Create(tbl.Class[level])
-			local ang = (self:GetAimPos() - attachment.Pos):Angle()
+			local ang
+
+			if IsValid(target) then
+				ang = self:GetTargetLead(target, attachment.Pos, ent.Velocity)
+			else
+				ang = (self:GetAimPos() - attachment.Pos):Angle()
+			end
 
 			ent:SetPos(attachment.Pos)
 			ent:SetAngles(ang)
@@ -57,7 +65,7 @@ function ENT:FireWarhammer(tbl, level, attachments)
 	end
 end
 
-function ENT:DrawWarhammerHUD(tbl, level, screen)
+function ENT:DrawWarhammerHUD(tbl, level, attachments, screen)
 	local weaponTimer = self:GetWeaponTimer()
 
 	if weaponTimer > 0 and CurTime() - weaponTimer > 0 then

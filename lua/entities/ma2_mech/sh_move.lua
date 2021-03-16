@@ -1,7 +1,5 @@
 AddCSLuaFile()
 
-local debugTime = engine.TickInterval() * 2
-
 function ENT:HasMoveInput(mv)
 	return mv:GetForwardSpeed() != 0 or mv:GetSideSpeed() != 0
 end

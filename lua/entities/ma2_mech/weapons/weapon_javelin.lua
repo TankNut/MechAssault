@@ -16,6 +16,8 @@ ENT.WeaponTypes.Javelin = {
 
 function ENT:FireJavelin(tbl, level, attachments)
 	if SERVER then
+		local target = self:GetTargetLock() -- Cache early so we re-use the same target in the timer section
+
 		for k, v in ipairs(attachments) do
 			timer.Simple((k - 1) * tbl.FireRate, function()
 				local attachment = self:GetAttachment(v)
@@ -29,12 +31,10 @@ function ENT:FireJavelin(tbl, level, attachments)
 				ent:Spawn()
 				ent:Activate()
 
-				local tr = self:GetAimTrace()
-
-				if IsValid(tr.Entity) and tr.Entity:MapCreationID() == -1 then
-					ent:SetTracked(tr.Entity)
+				if IsValid(target) then
+					ent:SetTracked(target)
 				else
-					ent:SetTargetPos(tr.HitPos)
+					ent:SetTargetPos(self:GetAimTrace().HitPos)
 				end
 			end)
 		end

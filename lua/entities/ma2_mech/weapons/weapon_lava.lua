@@ -13,6 +13,8 @@ ENT.WeaponTypes.Lava = {
 }
 
 function ENT:FireLavaGun(tbl, level, attachments)
+	local target = self:GetTargetLock() -- Cache early so we re-use the same target in the timer section
+
 	for i = 0, tbl.Burst - 1 do
 		for k, v in ipairs(attachments) do
 			local count = k + (i * #attachments)
@@ -24,7 +26,13 @@ function ENT:FireLavaGun(tbl, level, attachments)
 
 				if SERVER then
 					local ent = ents.Create(tbl.Class)
-					local ang = (self:GetAimPos() - attachment.Pos):Angle()
+					local ang
+
+					if IsValid(target) then
+						ang = self:GetTargetLead(target, attachment.Pos, ent.Velocity)
+					else
+						ang = (self:GetAimPos() - attachment.Pos):Angle()
+					end
 
 					ent:SetPos(attachment.Pos)
 					ent:SetAngles(ang)
