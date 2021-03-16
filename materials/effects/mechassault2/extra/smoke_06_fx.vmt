@@ -1,7 +1,7 @@
 "UnlitGeneric"
 {
 	"$basetexture"	"effects/mechassault2/extra/smoke_06_fx"
-	"$additive"	1
+	"$translucent"	1
 	"$vertexcolor"	1
 	"$vertexalpha"	1
 
