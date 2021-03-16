@@ -7,7 +7,7 @@ function ENT:SwitchToOffline()
 end
 
 function ENT:SwitchToPowerdown()
-	self:EmitSound("mechassault_2/mechs/mech_exit.ogg")
+	self:EmitSound("mechassault_2/mechs/battlearmor/battlearmor_exit.ogg")
 
 	self:SetSequence("getup")
 
@@ -24,7 +24,7 @@ function ENT:SwitchToPowerdown()
 end
 
 function ENT:SwitchToPowerup()
-	self:EmitSound("mechassault_2/mechs/mech_start.ogg")
+	self:EmitSound("mechassault_2/mechs/battlearmor/battlearmor_enter.ogg")
 
 	self:SetCycle(0)
 	self:SetSequence("getup")

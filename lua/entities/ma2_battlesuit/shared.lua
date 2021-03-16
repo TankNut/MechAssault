@@ -95,8 +95,8 @@ function ENT:HandleJumpJets(mv)
 			end
 
 			if SERVER then
-				self:EmitSound("MA2_Mech.JJStart")
-				self:EmitSound("MA2_Mech.JJLoop")
+				self:EmitSound("MA2_Mech.BJJStart")
+				self:EmitSound("MA2_Mech.BJJLoop")
 			end
 		end
 	elseif self:GetUsingJets() then
@@ -108,8 +108,8 @@ function ENT:HandleJumpJets(mv)
 				net.WriteString("gm_MA2_BA_JumpJets")
 			net.Broadcast()
 
-			self:StopSound("MA2_Mech.JJLoop")
-			self:EmitSound("MA2_Mech.JJEnd")
+			self:StopSound("MA2_Mech.BJJLoop")
+			self:EmitSound("MA2_Mech.BJJEnd")
 		end
 	end
 

@@ -23,6 +23,15 @@ sound.Add({
 })
 
 sound.Add({
+	name = "MA2_BA.Step",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/mechs/battlearmor/battlearmor_step.ogg")
+})
+
+sound.Add({
 	name = "MA2_Mech.JJStart",
 	channel = CHAN_AUTO,
 	volume = 1,
@@ -47,6 +56,33 @@ sound.Add({
 	level = 100,
 	pitch = {95, 110},
 	sound = Sound("mechassault_2/mechs/jumpjets_end.ogg")
+})
+
+sound.Add({
+	name = "MA2_Mech.BJJStart",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/mechs/battlearmor/jumpjets_start.wav")
+})
+
+sound.Add({
+	name = "MA2_Mech.BJJLoop",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/mechs/battlearmor/jumpjets_loop.wav")
+})
+
+sound.Add({
+	name = "MA2_Mech.BJJEnd",
+	channel = CHAN_AUTO,
+	volume = 1,
+	level = 100,
+	pitch = {95, 110},
+	sound = Sound("mechassault_2/mechs/battlearmor/jumpjets_end.ogg")
 })
 
 sound.Add({
