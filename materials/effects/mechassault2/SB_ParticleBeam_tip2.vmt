@@ -1,6 +1,6 @@
 "UnlitGeneric"
 {
-	"$basetexture"	"effects/mechassault2/extra/mech_flare2"
+	"$basetexture"	"effects/mechassault2/SB_ParticleBeam_tip"
 	"$translucent"	1
 	"$vertexcolor"	1
 	"$vertexalpha"	1
