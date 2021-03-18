@@ -82,7 +82,7 @@ sound.Add({
 	volume = 1,
 	level = 100,
 	pitch = {95, 110},
-	sound = Sound("mechassault_2/mechs/battlearmor/jumpjets_end.ogg")
+	sound = Sound("mechassault_2/mechs/battlearmor/jumpjets_stop.wav")
 })
 
 sound.Add({
