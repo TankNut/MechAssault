@@ -370,7 +370,8 @@ $sequence "aimlayer_generic" {
 	hidden
 }
 
-$sequence "walk" {
+
+$Sequence "walk" {
 	"a_walk_NW"
 	"a_walk_N"
 	"a_walk_NE"
@@ -381,20 +382,19 @@ $sequence "walk" {
 	"a_walk_S"
 	"a_walk_SE"
 	activity "ACT_WALK" 1
+	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
+	snap
+	loop
+	fps 15
+	node "movement"
+	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 14 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
-	{ event 1100 14 "event_ma2_mech_step" }
-	{ event 1100 28 "event_ma2_mech_step" }
-	snap
-	fadein 0.3
-	fadeout 0.5
-	addlayer "aimlayer_generic"
-	node "movement"
 }
 
-$sequence "walk_limp" {
+$Sequence "walk_limp" {
 	"a_walk_limp_NW"
 	"a_walk_limp_N"
 	"a_walk_limp_NE"
@@ -405,23 +405,19 @@ $sequence "walk_limp" {
 	"a_walk_limp_S"
 	"a_walk_limp_SE"
 	activity "ACT_WALK_ON_FIRE" 1
+	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
+	snap
+	loop
+	fps 15
+	node "movement"
+	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
-	{ event 1100 12 "event_ma2_mech_step" }
-	{ event 1100 28 "event_ma2_mech_step" }
-	fadein 0.3
-	fadeout 0.5
-	addlayer "aimlayer_generic"
-	node "movement"
-	snap
-	fps 15
-	loop
-	walkframe 28 LX LY
 }
 
-$sequence "run" {
+$Sequence "run" {
 	"a_run_NW"
 	"a_run_N"
 	"a_run_NE"
@@ -432,18 +428,18 @@ $sequence "run" {
 	"a_run_S"
 	"a_run_SE"
 	activity "ACT_RUN" 1
+	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
+	snap
+	loop
+	fps 15
+	node "movement"
+	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 1 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 13 "MA2_Mech.Step" }
-	{ event 1100 1 "event_ma2_mech_step" }
-	{ event 1100 13 "event_ma2_mech_step" }
-	fadein 0.3
-	fadeout 0.5
-	snap
-	addlayer "aimlayer_generic"
-	node "movement"
 }
+
 $sequence "fall_forward" {
 	"cougar_anims\fall_forward.smd"
 	activity "ACT_DIESIMPLE" 1
