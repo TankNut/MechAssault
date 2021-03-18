@@ -18,10 +18,6 @@ function ENT:GetTargetLock()
 	if self.TargetFrame != cmp then
 		self.TargetFrame = cmp
 
-		local ply = self:GetPlayer()
-
-		ply:LagCompensation(true)
-
 		local tr = util.TraceHull({
 			start = self:GetAimOrigin(),
 			endpos = self:GetAimPos(),
@@ -48,8 +44,6 @@ function ENT:GetTargetLock()
 		})
 
 		debugoverlay.SweptBox(tr.StartPos, tr.HitPos, Vector(-radius, -radius, -radius), Vector(radius, radius, radius), angle_zero, debugTime, Color(255, 0, 0))
-
-		ply:LagCompensation(false)
 
 		self.TargetCache = tr.Entity
 	end

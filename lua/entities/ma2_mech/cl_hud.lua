@@ -1,4 +1,8 @@
 function ENT:DrawHUD()
+	if not self:AllowInput() then
+		return
+	end
+
 	local screen = self:GetAimPos():ToScreen()
 
 	cam.Start2D()
