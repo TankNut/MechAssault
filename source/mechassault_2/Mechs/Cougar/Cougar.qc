@@ -387,6 +387,7 @@ $sequence "walk" {
 	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
 	{ event 1100 14 "event_ma2_mech_step" }
 	{ event 1100 28 "event_ma2_mech_step" }
+	snap
 	fadein 0.3
 	fadeout 0.5
 	addlayer "aimlayer_generic"
@@ -414,6 +415,7 @@ $sequence "walk_limp" {
 	fadeout 0.5
 	addlayer "aimlayer_generic"
 	node "movement"
+	snap
 	fps 15
 	loop
 	walkframe 28 LX LY
@@ -438,6 +440,7 @@ $sequence "run" {
 	{ event 1100 13 "event_ma2_mech_step" }
 	fadein 0.3
 	fadeout 0.5
+	snap
 	addlayer "aimlayer_generic"
 	node "movement"
 }
