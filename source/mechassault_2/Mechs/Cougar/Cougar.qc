@@ -65,7 +65,7 @@ $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "battlearmor_attach" "joint_torso" -4.00 105.00 15.00 rotate -0 -90 0
 $cbox 0 0 0 0 0 0
 
-$bbox -114.71 -166.668 0 110.163 167.195 367.077
+$bbox -114.71 -166.668 -37.527 110.163 167.195 367.077
 
 $hboxset "default"
 $hbox 2 "joint_hipbelow" -34.038502 -39.662498 -32.660999 28.215 27.084499 25.1465
@@ -131,6 +131,7 @@ $poseparameter "aim_yaw" -180 180 loop 0
 $poseparameter "move_y" -1 1 loop 0
 $poseparameter "move_x" -1 1 loop 0
 
+$origin 0 0 -18 0
 $animation "a_idle" "cougar_anims\a_idle.smd" {
 	fps 15
 	loop
@@ -370,8 +371,7 @@ $sequence "aimlayer_generic" {
 	hidden
 }
 
-
-$Sequence "walk" {
+$sequence "walk" {
 	"a_walk_NW"
 	"a_walk_N"
 	"a_walk_NE"
@@ -382,19 +382,19 @@ $Sequence "walk" {
 	"a_walk_S"
 	"a_walk_SE"
 	activity "ACT_WALK" 1
-	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
-	snap
-	loop
-	fps 15
-	node "movement"
-	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 14 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
+	{ event 1100 14 "event_ma2_mech_step" }
+	{ event 1100 28 "event_ma2_mech_step" }
+	fadein 0.3
+	fadeout 0.5
+	addlayer "aimlayer_generic"
+	node "movement"
 }
 
-$Sequence "walk_limp" {
+$sequence "walk_limp" {
 	"a_walk_limp_NW"
 	"a_walk_limp_N"
 	"a_walk_limp_NE"
@@ -405,19 +405,22 @@ $Sequence "walk_limp" {
 	"a_walk_limp_S"
 	"a_walk_limp_SE"
 	activity "ACT_WALK_ON_FIRE" 1
-	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
-	snap
-	loop
-	fps 15
-	node "movement"
-	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
+	{ event 1100 12 "event_ma2_mech_step" }
+	{ event 1100 28 "event_ma2_mech_step" }
+	fadein 0.3
+	fadeout 0.5
+	addlayer "aimlayer_generic"
+	node "movement"
+	fps 15
+	loop
+	walkframe 28 LX LY
 }
 
-$Sequence "run" {
+$sequence "run" {
 	"a_run_NW"
 	"a_run_N"
 	"a_run_NE"
@@ -428,18 +431,18 @@ $Sequence "run" {
 	"a_run_S"
 	"a_run_SE"
 	activity "ACT_RUN" 1
-	addlayer	"aimlayer_generic"
 	blend "move_y" -1 1
 	blend "move_x" 1 -1
-	snap
-	loop
-	fps 15
-	node "movement"
-	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 1 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 13 "MA2_Mech.Step" }
+	{ event 1100 1 "event_ma2_mech_step" }
+	{ event 1100 13 "event_ma2_mech_step" }
+	fadein 0.3
+	fadeout 0.5
+	addlayer "aimlayer_generic"
+	node "movement"
 }
-
+$origin 0 0 -37 0
 $sequence "fall_forward" {
 	"cougar_anims\fall_forward.smd"
 	activity "ACT_DIESIMPLE" 1
@@ -501,6 +504,7 @@ $sequence "getup_right" {
 	fps 30
 	walkframe 75 LX LY
 }
+$origin 0 0 -18 0
 
 $sequence "hit_back" {
 	"a_hit_back"
@@ -517,6 +521,7 @@ $sequence "hit_front" {
 	fadein 0.2
 	fadeout 0.2
 }
+$origin 0 0 40 0
 $sequence "jump" {
 	"cougar_anims\jump.smd"
 	activity "ACT_JUMP" 1
@@ -527,6 +532,7 @@ $sequence "jump" {
 	loop
 	walkframe 30 LX LY
 }
+$origin 0 0 -18 0
 $sequence "land" {
 	"a_land"
 	activity "ACT_LAND" 1
@@ -558,6 +564,7 @@ $sequence "idle_limp" {
 	fps 30
 	loop
 }
+$origin 0 0 -37 0
 $sequence "power_up" {
 	"cougar_anims\power_up.smd"
 	activity "ACT_OBJ_STARTUP" 1
