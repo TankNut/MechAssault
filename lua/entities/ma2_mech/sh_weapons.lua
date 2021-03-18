@@ -24,7 +24,7 @@ function ENT:GetTargetLock()
 			filter = function(ent)
 				local owner = ent:GetOwner()
 
-				if ent:IsWorld() or ent == self or owner == self then
+				if ent:IsWorld() or ent == self or owner == self or ent == self:GetPlayer() then
 					return false
 				end
 
