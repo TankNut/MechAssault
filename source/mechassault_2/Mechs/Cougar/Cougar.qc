@@ -63,9 +63,8 @@ $attachment "jumpjets_R" "joint_torso" -31.00 92.00 19.00 rotate 30 140 0
 $scale		1
 $attachment "reactor_core" "joint_torso" 0.00 0.00 0.00 rotate -0 -90 0
 $attachment "battlearmor_attach" "joint_torso" -4.00 105.00 15.00 rotate -0 -90 0
-$cbox 0 0 0 0 0 0
 
-$bbox -114.71 -166.668 -37.527 110.163 167.195 367.077
+$bbox -165 -165 0 165 165 320
 
 $hboxset "default"
 $hbox 2 "joint_hipbelow" -34.038502 -39.662498 -32.660999 28.215 27.084499 25.1465
@@ -386,10 +385,7 @@ $sequence "walk" {
 	blend "move_x" 1 -1
 	{ event AE_CL_PLAYSOUND 14 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
-	{ event 1100 14 "event_ma2_mech_step" }
-	{ event 1100 28 "event_ma2_mech_step" }
-	fadein 0.3
-	fadeout 0.5
+	snap
 	addlayer "aimlayer_generic"
 	node "movement"
 }
@@ -409,10 +405,7 @@ $sequence "walk_limp" {
 	blend "move_x" 1 -1
 	{ event AE_CL_PLAYSOUND 12 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 28 "MA2_Mech.Step" }
-	{ event 1100 12 "event_ma2_mech_step" }
-	{ event 1100 28 "event_ma2_mech_step" }
-	fadein 0.3
-	fadeout 0.5
+	snap
 	addlayer "aimlayer_generic"
 	node "movement"
 	fps 15
@@ -435,10 +428,7 @@ $sequence "run" {
 	blend "move_x" 1 -1
 	{ event AE_CL_PLAYSOUND 1 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 13 "MA2_Mech.Step" }
-	{ event 1100 1 "event_ma2_mech_step" }
-	{ event 1100 13 "event_ma2_mech_step" }
-	fadein 0.3
-	fadeout 0.5
+	snap
 	addlayer "aimlayer_generic"
 	node "movement"
 }
@@ -484,8 +474,6 @@ $sequence "getup" {
 	activity "ACT_GET_UP_STAND" 1
 	{ event AE_CL_PLAYSOUND 35 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 45 "MA2_Mech.Step" }
-	{ event 1100 35 "event_ma2_mech_step" }
-	{ event 1100 45 "event_ma2_mech_step" }
 	fadein 0.3
 	fadeout 0.5
 	fps 30
@@ -497,8 +485,6 @@ $sequence "getup_right" {
 	activity "ACT_GET_UP_STAND" 1
 	{ event AE_CL_PLAYSOUND 35 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 45 "MA2_Mech.Step" }
-	{ event 1100 35 "event_ma2_mech_step" }
-	{ event 1100 45 "event_ma2_mech_step" }
 	fadein 0.3
 	fadeout 0.5
 	fps 30
@@ -538,8 +524,6 @@ $sequence "land" {
 	activity "ACT_LAND" 1
 	{ event AE_CL_PLAYSOUND 1 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.Step" }
-	{ event 1100 1 "event_ma2_mech_step" }
-	{ event 1100 2 "event_ma2_mech_step" }
 	delta
 	fadein 0.2
 	fadeout 0.2
@@ -570,8 +554,6 @@ $sequence "power_up" {
 	activity "ACT_OBJ_STARTUP" 1
 	{ event AE_CL_PLAYSOUND 15 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 29 "MA2_Mech.Step" }
-	{ event 1100 15 "event_ma2_mech_step" }
-	{ event 1100 29 "event_ma2_mech_step" }
 	fadein 0.2
 	fadeout 0.2
 	fps 30
@@ -582,8 +564,6 @@ $sequence "power_down" {
 	activity "ACT_OBJ_DISMANTLING" 1
 	{ event AE_CL_PLAYSOUND 15 "MA2_Mech.Step" }
 	{ event AE_CL_PLAYSOUND 22 "MA2_Mech.Step" }
-	{ event 1100 15 "event_ma2_mech_step" }
-	{ event 1100 22 "event_ma2_mech_step" }
 	fadein 0.2
 	fadeout 0.2
 	fps 30
