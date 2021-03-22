@@ -73,6 +73,8 @@ function ENT:StartMove(ply, mv, cmd)
 
 	if wheel != 0 then
 		self:SwitchWeapon(wheel)
+	elseif cmd:GetImpulse() != 0 then
+		self:SetWeapon(cmd:GetImpulse())
 	end
 
 	local dot = self:GetUp():Dot(self:GetAimAngle():Up())

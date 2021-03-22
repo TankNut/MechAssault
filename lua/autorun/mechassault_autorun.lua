@@ -95,6 +95,24 @@ if CLIENT then
 		end
 	end)
 
+	hook.Add("CreateMove", "mechassault", function(cmd)
+		local ent = LocalPlayer():GetNWEntity("mechassault")
+
+		if not IsValid(ent) then
+			return
+		end
+
+		for i = 0, 9 do
+			local enum = "KEY_" .. i
+
+			if input.IsKeyDown(_G[enum]) then
+				cmd:SetImpulse(i)
+
+				break
+			end
+		end
+	end)
+
 	hook.Add("CalcVehicleView", "mechassault", function(vehicle, ply, view)
 		local ent = ply:GetNWEntity("mechassault")
 

@@ -101,13 +101,21 @@ function ENT:SwitchWeapon(wheel)
 		new = #self.WeaponLoadout
 	end
 
+	self:SetWeapon(new)
+end
+
+function ENT:SetWeapon(index)
+	if not self.WeaponLoadout[index] then
+		return
+	end
+
 	local time = self:GetWeaponTimer()
 
 	if time != 0 then
 		self:AbortWeaponTimer()
 	end
 
-	self:SetCurrentWeapon(new)
+	self:SetCurrentWeapon(index)
 end
 
 function ENT:AbortWeaponTimer()
