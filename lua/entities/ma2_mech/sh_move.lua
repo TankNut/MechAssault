@@ -21,8 +21,10 @@ function ENT:GetSpeedData(mv)
 	local accel = 0
 
 	if self:HasMoveInput(mv) then
-		speed = mv:KeyDown(IN_SPEED) and run or walk
-		accel = mv:KeyDown(IN_SPEED) and run or (length > walk * self.Margin and run or walk)
+		local sprinting = mv:KeyDown(IN_SPEED) or self:GetFallTimer() != 0
+
+		speed = sprinting and run or walk
+		accel = sprinting and run or (length > walk * self.Margin and run or walk)
 	else
 		speed = 0
 		accel = self:GetRunning() and run or walk
@@ -140,21 +142,27 @@ function ENT:Move(mv)
 	local vel = mv:GetVelocity()
 	local speed, accel = self:GetSpeedData(mv)
 
-	if accel > 0 and self:GetFallTimer() == 0 then
+	if accel > 0 then
 		local aimPos = self:GetAimPos()
 		local offset = WorldToLocal(aimPos, angle_zero, mv:GetOrigin(), mv:GetOldAngles())
 
 		offset.z = 0
 		offset:Normalize()
 
+		if self:GetUsingJets() then
+			accel = accel * 0.1
+		end
+
 		local dir = Vector(mv:GetForwardSpeed(), -mv:GetSideSpeed(), 0):GetNormalized()
 
-		offset:Rotate(dir:Angle())
-		offset:Rotate(mv:GetOldAngles())
-		offset:Normalize()
-		offset:Mul(speed)
+		if self:GetFallTimer() == 0 or (dir:LengthSqr() > 0 and self:GetUsingJets()) then
+			offset:Rotate(dir:Angle())
+			offset:Rotate(mv:GetOldAngles())
+			offset:Normalize()
+			offset:Mul(speed)
 
-		vel:Approach(offset, accel * FrameTime())
+			vel:Approach(offset, accel * FrameTime())
+		end
 	end
 
 	mv:SetVelocity(vel)
