@@ -46,6 +46,7 @@ ENT.WeaponLoadout = {}
 
 include("weapons/weapon_autocannon.lua")
 include("weapons/weapon_crossbow.lua")
+include("weapons/weapon_crossbow_alt.lua")
 include("weapons/weapon_flamethrower.lua")
 include("weapons/weapon_gauss.lua")
 include("weapons/weapon_javelin.lua")
@@ -173,7 +174,7 @@ function ENT:SetupDataTables()
 	for k in ipairs(self.WeaponLoadout) do
 		local name = "NextAttack" .. k
 
-		self:NetworkVar("Float", k + 2, name)
+		self:NetworkVar("Float", k + 3, name)
 	end
 
 	self:NetworkVar("Int", 0, "CurrentWeapon")

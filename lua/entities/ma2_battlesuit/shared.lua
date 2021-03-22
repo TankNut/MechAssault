@@ -17,7 +17,7 @@ end
 function ENT:SetupDataTables()
 	BaseClass.SetupDataTables(self)
 
-	self:NetworkVar("Float", 4, "WeaponAnimationTimer")
+	self:NetworkVar("Float", 3, "WeaponAnimationTimer")
 end
 
 function ENT:Attack()

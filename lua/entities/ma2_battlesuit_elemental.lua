@@ -22,7 +22,7 @@ ENT.CoreAttachment 			= 2
 
 ENT.WeaponLoadout = {
 	{Type = "Laser", Level = 1, Attachments = {5}},
-	{Type = "Crossbow", Level = 1, Attachments = {4}}
+	{Type = "AltCrossbow", Level = 1, Attachments = {3, 4}}
 }
 
 ENT.JumpJets 				= {1}
