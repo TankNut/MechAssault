@@ -8,6 +8,14 @@ function ENT:SetWeaponLevel(index, level)
 	self["SetWeaponLevel" .. index](self, level)
 end
 
+function ENT:GetNextAttack()
+	return self["GetNextAttack" .. self:GetCurrentWeapon()](self)
+end
+
+function ENT:SetNextAttack(time)
+	self["SetNextAttack" .. self:GetCurrentWeapon()](self, time)
+end
+
 local radius = 64
 
 function ENT:GetTargetLock()

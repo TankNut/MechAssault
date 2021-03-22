@@ -167,16 +167,21 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Bool", 3, "UsingJets")
 
 	self:NetworkVar("Float", 0, "StateTimer")
-	self:NetworkVar("Float", 1, "NextAttack")
-	self:NetworkVar("Float", 2, "WeaponTimer")
-	self:NetworkVar("Float", 3, "FallTimer")
+	self:NetworkVar("Float", 1, "WeaponTimer")
+	self:NetworkVar("Float", 2, "FallTimer")
+
+	for k in ipairs(self.WeaponLoadout) do
+		local name = "NextAttack" .. k
+
+		self:NetworkVar("Float", k + 2, name)
+	end
 
 	self:NetworkVar("Int", 0, "CurrentWeapon")
 	self:NetworkVar("Int", 1, "CurrentState")
 	self:NetworkVar("Int", 2, "MechHealth")
 	self:NetworkVar("Int", 3, "AttachmentIndex")
 
-	for k, v in ipairs(self.WeaponLoadout) do
+	for k in ipairs(self.WeaponLoadout) do
 		local name = "WeaponLevel" .. k
 
 		self:NetworkVar("Int", k + 3, name)
