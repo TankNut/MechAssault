@@ -1,16 +1,9 @@
-// Created by Crowbar 0.56
-
-$modelname "mechassault_2/bosses/minispider.mdl"
 $attachment "rocketpod_L" "weapon_missleleft" 0.00 0.00 -10.00 rotate -0 -90 0
 $attachment "rocketpod_R" "weapon_missleright" 0.00 0.00 -10.00 rotate -0 -90 0
 $attachment "plasma_origin" "weapon_antimatterppc" 0.00 10.00 0.00 rotate 30 -90 0
 $scale 30
-//$origin 0 0 0 0
-
-$BodyGroup "Body"
-{
-	studio "Mini_Spid.smd"
-}
+$modelname "mechassault_2/bosses/minispider.mdl"
+$model "Mini-Spider Bot" "Mini_Spid.smd"
 
 $surfaceprop "metalvehicle"
 
@@ -47,195 +40,40 @@ $weightlist weights_attack {
 }
 
 $PoseParameter "aim_pitch" -1 1 0
-$PoseParameter "aim_yaw" -180 180 0
+$PoseParameter "aim_yaw" -180 180 wrap
 $poseparameter "move_y" -1 1 loop 0
 $poseparameter "move_x" -1 1 loop 0
 
 // RAGDOLL
+$Animation "a_idle" "minisb_anims\minisb_base.smd"	fps 15	loop
 
-$Animation "a_idle" "minisb_anims\minisb_base.smd" {
-	fps 15
-	loop
-}
-$Animation "a_charge" "minisb_anims\minisb_ppc_charge.smd" {
-	fps 30
-	loop
-	subtract	"a_idle"	0	
-	weightlist		"weights_attack"
-}
-$Animation "a_fire" "minisb_anims\minisb_ppc_ball_fire.smd" {
-	fps 30
-	loop
-	subtract	"a_idle"	0	
-	weightlist		"weights_attack"
-}
-$Animation "aim_mid_center" "minisb_anims\aim_mid_center.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_mid_left" "minisb_anims\aim_mid_left.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_mid_right" "minisb_anims\aim_mid_right.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_up_center" "minisb_anims\aim_mid_center.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_up_left" "minisb_anims\aim_mid_left.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_up_right" "minisb_anims\aim_mid_right.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_down_center" "minisb_anims\aim_mid_center.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_down_left" "minisb_anims\aim_mid_left.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "aim_down_right" "minisb_anims\aim_mid_right.smd" {
-	fps 15
-	loop
-	weightlist	"weights_turret"
-	subtract "a_idle" 0
-}
-$Animation "a_land" "minisb_anims\minisb_land.smd" {
-	fps 30
-	subtract "a_idle" 0
-}
-$Animation "a_jumpidle" "minisb_anims\minisb_jump_idle.smd" {
-	fps 30
-}
+$Animation "aim_mid_center"		"minisb_anims\aim_mid_center.smd"		subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_mid_left"		"minisb_anims\aim_mid_left.smd"			subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_mid_right"		"minisb_anims\aim_mid_right.smd"		subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_up_center"		"minisb_anims\aim_mid_center.smd"		subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_up_left"		"minisb_anims\aim_mid_left.smd"			subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_up_right"		"minisb_anims\aim_mid_right.smd"		subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_down_center"	"minisb_anims\aim_mid_center.smd"		subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_down_left"		"minisb_anims\aim_mid_left.smd"			subtract "a_idle" 0		weightlist weights_turret
+$Animation "aim_down_right"		"minisb_anims\aim_mid_right.smd"		subtract "a_idle" 0		weightlist weights_turret
 
-$Animation "a_walk_N" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 68 LX LY
-}
-$origin 0 0 0 45
+$Animation "a_walk_N" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto 0
+$Animation "a_walk_NE" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto -45
+$Animation "a_walk_NW" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto 45
+$Animation "a_walk_S" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto -180
+$Animation "a_walk_SE" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto -135
+$Animation "a_walk_SW" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto 135
+$Animation "a_walk_E" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto -90
+$Animation "a_walk_W" 			"minisb_anims\minisb_walk.smd" 		fps 15	loop LX LY		rotateto 90
 
-$Animation "a_walk_NW" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 68 LX LY
-}
-$origin 0 0 0 -45
-
-$Animation "a_walk_NE" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 68 LX LY
-}
-$origin 0 0 0 90
-$Animation "a_walk_W" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 32 LX LY
-}
-$origin 0 0 0 -90
-$Animation "a_walk_E" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 36 LX LY
-}
-$origin 0 0 0 180
-$Animation "a_walk_S" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 38 LX LY
-}
-$origin 0 0 0 135
-$Animation "a_walk_SW" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 38 LX LY
-}
-$origin 0 0 0 -135
-$Animation "a_walk_SE" "minisb_anims\minisb_walk.smd" {
-	fps 15
-	loop
-	walkframe 38 LX LY
-}
-
-$origin 0 0 0 0
-
-
-$Animation "a_run_N" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 68 LX LY
-}
-$origin 0 0 0 45
-
-$Animation "a_run_NW" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 68 LX LY
-}
-$origin 0 0 0 -45
-
-$Animation "a_run_NE" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 68 LX LY
-}
-$origin 0 0 0 90
-$Animation "a_run_W" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 32 LX LY
-}
-$origin 0 0 0 -90
-$Animation "a_run_E" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 36 LX LY
-}
-$origin 0 0 0 180
-$Animation "a_run_S" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 38 LX LY
-}
-$origin 0 0 0 135
-$Animation "a_run_SW" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 38 LX LY
-}
-$origin 0 0 0 -135
-$Animation "a_run_SE" "minisb_anims\minisb_walk.smd" {
-	fps 30
-	loop
-	walkframe 38 LX LY
-}
-
-
-$origin 0 0 0 0
+$Animation "a_run_N" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto 0
+$Animation "a_run_NE" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto -45
+$Animation "a_run_NW" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto 45
+$Animation "a_run_S" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto -180
+$Animation "a_run_SE" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto -135
+$Animation "a_run_SW" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto 135
+$Animation "a_run_E" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto -90
+$Animation "a_run_W" 			"minisb_anims\minisb_walk.smd" 			loop LX LY		rotateto 90
 
 $sequence "aimlayer_generic" {
 	"aim_up_right" "aim_up_center"  "aim_up_left"
@@ -267,7 +105,7 @@ $Sequence "walk" {
 	snap
 	loop
 	fps 15
-	node "movement"
+	node "movement" //Not required unless using transitional animations or on NPCS to determine if it's walking or running
 	walkframe 145 LX LY
 	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.MiniStep" }
 	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.MiniStep" }
@@ -289,13 +127,11 @@ $Sequence "run" {
 	"a_run_SE"
 	activity "ACT_RUN" 1
 	addlayer	"aimlayer_generic"
-	blend "move_y" -1 1
+    blend "move_y" -1 1
 	blend "move_x" 1 -1
 	snap
-	loop
 	fps 15
-	node "movement"
-	walkframe 145 LX LY
+	node "movement" //Not required unless using transitional animations or on NPCS to determine if it's walking or running
 	{ event AE_CL_PLAYSOUND 2 "MA2_Mech.MiniStep" }
 	{ event AE_CL_PLAYSOUND 7 "MA2_Mech.MiniStep" }
 	{ event AE_CL_PLAYSOUND 8 "MA2_Mech.MiniStep" }
@@ -304,188 +140,126 @@ $Sequence "run" {
 	{ event AE_CL_PLAYSOUND 20 "MA2_Mech.MiniStep" }
 }
 
-$sequence "mech_grab_front" {
-	"minisb_anims\minisb_attachfront.smd"
+$sequence "mech_grab_front" "minisb_anims\minisb_attachfront.smd" {
 	activity "ACT_OVERLAY_SHIELD_ATTACK" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	walkframe 145 LX LY
 }
 
-$sequence "mech_grab_front_idle" {
-	"minisb_anims\minisb_attachfrontpose.smd"
+$sequence "mech_grab_front_idle" "minisb_anims\minisb_attachfrontpose.smd" {
 	activity "ACT_OVERLAY_SHIELD_UP_IDLE" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	loop
 	walkframe 145 LX LY
 }
 
-$sequence "mech_grab_back" {
-	"minisb_anims\minisb_attachback.smd"
+$sequence "mech_grab_back" "minisb_anims\minisb_attachback.smd" {
 	activity "ACT_OVERLAY_SHIELD_ATTACK" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	walkframe 145 LX LY
 }
 
-$sequence "mech_grab_back_idle" {
-	"minisb_anims\minisb_attachbackpose.smd"
+$sequence "mech_grab_back_idle" "minisb_anims\minisb_attachbackpose.smd" {
 	activity "ACT_OVERLAY_SHIELD_UP_IDLE" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	loop
 	walkframe 145 LX LY
 }
 
-$Sequence "PPC Charge" {
-	"a_charge"
+$Sequence "PPC Charge" "minisb_anims\minisb_ppc_charge.smd" {
 	activity "ACT_FIRE_START" 1
+	subtract	"a_idle"	0
+	weightlist	"weights_attack"
 	fadein 0.3
 	fadeout 0.5
-	fps 30
 	delta
 	walkframe 145 LX LY
 }
 
-$Sequence "PPC Ball Fire" {
-	"a_fire"
+$Sequence "PPC Ball Fire" "minisb_anims\minisb_ppc_ball_fire.smd" {
 	activity "ACT_RANGE_ATTACK1" 1
+	subtract	"a_idle"	0
+	weightlist	"weights_attack"
 	fadein 0.3
 	fadeout 0.5
-	fps 30
 	delta
 	walkframe 145 LX LY
 
 }
 
-$Sequence "PPC Stance" {
-	"minisb_anims\minisb_ppc_stance.smd"
+$Sequence "PPC Stance" "minisb_anims\minisb_ppc_stance.smd" {
 	activity "ACT_OBJ_RUNNING" 1
 	fadein 0.3
 	fadeout 0.5
-	fps 30
 	loop
 	walkframe 145 LX LY
 }
 
-$Sequence "PPC Stance to Base" {
-	"minisb_anims\minisb_ppc_stance.smd"
+$Sequence "PPC Stance to Base" "minisb_anims\minisb_ppc_stance.smd" {
 	activity "ACT_OBJ_DISMANTLING" 1
 	fadein 0.3
 	fadeout 0.5
-	fps 30
 	loop
 	walkframe 145 LX LY
 }
 
-$sequence "turn_left" {
-	"minisb_anims\minisb_turn_left.smd"
+$sequence "turn_left" "minisb_anims\minisb_turn_left.smd" {
 	activity "ACT_TURN_LEFT" 1
 	addlayer	"aimlayer_generic"
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	walkframe 13 LXR LYR
 }
 
-$sequence "turn_right" {
-	"minisb_anims\minisb_turn_right.smd"
+$sequence "turn_right" "minisb_anims\minisb_turn_right.smd" {
 	activity "ACT_TURN_RIGHT" 1
 	addlayer	"aimlayer_generic"
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	walkframe 13 LXR LYR
 }
 
-$sequence "jump" {
-	"minisb_anims\minisb_jump.smd"
+$sequence "jump" "minisb_anims\minisb_jump.smd" {
 	activity "ACT_JUMP" 1
 	addlayer	"aimlayer_generic"
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	walkframe 145 LX LY
 }
 
-$sequence "jump_idle" {
-	"a_jumpidle"
+$sequence "jump_idle" "minisb_anims\minisb_jump_idle.smd" {
 	activity "ACT_HOVER" 1
 	addlayer	"aimlayer_generic"
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	loop
 }
 
-
-
-$sequence "land" {
-	"a_land"
+$sequence "land" "minisb_anims\minisb_land.smd" {
 	activity "ACT_LAND" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
+	subtract "a_idle" 0
 	delta
 }
 
-$sequence "idle" {
-	"minisb_anims\minisb_base.smd"
+$sequence "idle" "minisb_anims\minisb_base.smd" {
 	activity "ACT_IDLE" 1
 	addlayer	"aimlayer_generic"
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	loop
-
 }
 
-$sequence "power_up" {
-	"minisb_anims\minisb_base.smd"
+$sequence "power_up" "minisb_anims\minisb_base.smd" {
 	activity "ACT_OBJ_STARTUP" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 }
 
-$sequence "power_down" {
-	"minisb_anims\minisb_base.smd"
+$sequence "power_down" "minisb_anims\minisb_base.smd" {
 	activity "ACT_OBJ_DISMANTLING" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 }
 
-$sequence "power_down_pose" {
-	"minisb_anims\minisb_base.smd"
+$sequence "power_down_pose" "minisb_anims\minisb_base.smd" {
 	activity "ACT_OBJ_IDLE" 1
-	fadein 0.2
-	fadeout 0.2
-	fps 30
 	loop
 }
 
-
-
-$Sequence "reference" {
-	"Mini_Spid.smd"
+$Sequence "reference" "Mini_Spid.smd" {
 	fadein 1
 	fadeout 1
 	fps 10
 }
-$Sequence "ragdoll" {
-	"Mini_Spid.smd"
+
+$Sequence "ragdoll" "Mini_Spid.smd" {
 	activity "ACT_DIERAGDOLL" 1
 	fadein 1
 	fadeout 1
 	fps 10
 }
-
 
 // COLLISION
 $collisionjoints "Mini_Spid.smd" {
