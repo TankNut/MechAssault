@@ -3,9 +3,12 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_mech"
 
-ENT.PrintName 				= "Kit Fox"
+ENT.PrintName 				= "#mechassault.mech.kitfox"
 
-ENT.Category 				= "MechAssault: Light Mechs"
+if CLIENT then
+	ENT.Category			= language.GetPhrase("mechassault.categories.light")
+end
+
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 120

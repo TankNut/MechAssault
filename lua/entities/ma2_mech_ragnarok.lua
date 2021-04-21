@@ -3,9 +3,12 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_mech"
 
-ENT.PrintName 				= "Ragnarok"
+ENT.PrintName 				= "#mechassault.mech.prometheus"
 
-ENT.Category 				= "MechAssault: Assault Mechs"
+if CLIENT then
+	ENT.Category			= language.GetPhrase("mechassault.categories.assault")
+end
+
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 200

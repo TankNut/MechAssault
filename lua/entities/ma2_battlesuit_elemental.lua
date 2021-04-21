@@ -3,9 +3,12 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_battlesuit"
 
-ENT.PrintName 				= "Elemental"
+ENT.PrintName 				= "#mechassault.battlesuit.elemental"
 
-ENT.Category 				= "MechAssault: Light Mechs"
+if CLIENT then
+	ENT.Category			= language.GetPhrase("mechassault.categories.light")
+end
+
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 30

@@ -3,9 +3,12 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_salvage"
 
-ENT.PrintName 				= "Ballistic Upgrade"
+ENT.PrintName 				= "#mechassault.salvage.ballistic"
 
-ENT.Category 				= "MechAssault: Misc"
+if CLIENT then
+	ENT.Category			= language.GetPhrase("mechassault.categories.misc")
+end
+
 ENT.Spawnable 				= true
 
 ENT.Model 					= Model("models/mechassault_2/salvage/ballistic.mdl")

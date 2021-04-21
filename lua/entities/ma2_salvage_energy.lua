@@ -3,9 +3,12 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_salvage"
 
-ENT.PrintName 				= "Energy Upgrade"
+ENT.PrintName 				= "#mechassault.salvage.energy"
 
-ENT.Category 				= "MechAssault: Misc"
+if CLIENT then
+	ENT.Category			= language.GetPhrase("mechassault.categories.misc")
+end
+
 ENT.Spawnable 				= true
 
 ENT.Model 					= Model("models/mechassault_2/salvage/energy.mdl")

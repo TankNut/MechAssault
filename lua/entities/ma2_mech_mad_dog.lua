@@ -3,9 +3,12 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_mech"
 
-ENT.PrintName 				= "Mad Dog"
+ENT.PrintName 				= "#mechassault.mech.maddog"
 
-ENT.Category 				= "MechAssault: Medium Mechs"
+if CLIENT then
+	ENT.Category			= language.GetPhrase("mechassault.categories.medium")
+end
+
 ENT.Spawnable 				= true
 
 ENT.Radius 					= 140
