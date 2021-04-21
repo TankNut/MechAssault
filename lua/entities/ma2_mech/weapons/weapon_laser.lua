@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Laser = {
-	Name = "Laser",
+	Name = "mechassault.weapon.laser",
 	Type = "Energy",
 	Function = "FireLaser",
 	Cooldown = 1,

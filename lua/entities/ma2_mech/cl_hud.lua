@@ -1,3 +1,9 @@
+function ENT:GetWeaponString()
+	local _, class, level = self:GetWeaponData()
+
+	return language.GetPhrase(class.Name) .. string.format(language.GetPhrase("mechassault.ui.weapon.level"), level)
+end
+
 function ENT:DrawHUD()
 	if not self:AllowInput() then
 		return
@@ -13,24 +19,20 @@ function ENT:DrawHUD()
 		surface.SetFont("DebugFixed")
 		surface.SetTextColor(255, 0, 0)
 
-		local health = "Health: " .. self:GetMechHealth()
+		local health = string.format(language.GetPhrase("mechassault.ui.health"), self:GetMechHealth())
 		local w, h = surface.GetTextSize(health)
 
 		surface.SetTextPos(screen.x - 10 - w, screen.y - 10 - h)
 		surface.DrawText(health)
 
-		local index = self:GetCurrentWeapon()
-		local weapon = self.WeaponLoadout[index]
-		local class = self.WeaponTypes[weapon.Type]
-
-		local level = self:GetWeaponLevel(index)
+		local weapon, class, level = self:GetWeaponData()
 
 		self:Invoke(class.DrawHUD, class, level, weapon.Attachments, screen)
 
 		surface.SetDrawColor(255, 0, 0)
 
 		surface.SetTextPos(screen.x + 10, screen.y + 10)
-		surface.DrawText(string.format("%s lvl %s", class.Name, level))
+		surface.DrawText(self:GetWeaponString())
 
 		local target = self:GetTargetLock()
 

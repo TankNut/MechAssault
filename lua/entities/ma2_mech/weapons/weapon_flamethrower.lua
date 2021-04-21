@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Flamethrower = {
-	Name = "Flamethrower",
+	Name = "mechassault.weapon.flamethrower",
 	Type = "Energy",
 	Function = "FireFlamethrower",
 	Cooldown = 1.45,

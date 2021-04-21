@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Javelin = {
-	Name = "Javelin LRM",
+	Name = "mechassault.weapon.javelin",
 	Type = "Missile",
 	Function = "FireJavelin",
 	Cooldown = 2.5,

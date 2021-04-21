@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Autocannon = {
-	Name = "Autocannon",
+	Name = "mechassault.weapon.autocannon",
 	Type = "Ballistic",
 	Function = "FireAutocannon",
 	Cooldown = {2, 2.08, 2.16},

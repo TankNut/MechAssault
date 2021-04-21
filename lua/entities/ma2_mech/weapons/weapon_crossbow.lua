@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Crossbow = {
-	Name = "Crossbow SRM",
+	Name = "mechassault.weapon.crossbow",
 	Type = "Missile",
 	Function = "FireCrossbow",
 	Cooldown = {0.8, 1, 1.2},

@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Machinegun = {
-	Name = "Machinegun",
+	Name = "mechassault.weapon.machinegun",
 	Type = "Ballistic",
 	Function = "FireMachinegun",
 	Cooldown = 0.3,

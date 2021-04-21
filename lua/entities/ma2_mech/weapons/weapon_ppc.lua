@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.PPC = {
-	Name = "PPC",
+	Name = "mechassault.weapon.ppc",
 	Type = "Energy",
 	Function = "PrimePPC",
 	Succeed = "FirePPC",

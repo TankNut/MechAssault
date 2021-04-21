@@ -71,9 +71,9 @@ function ENT:DrawWarhammerHUD(tbl, level, attachments, screen)
 	if weaponTimer > 0 and CurTime() - weaponTimer > 0 then
 		local time = getMissileTimer(tbl, weaponTimer)
 
-		local _, h = surface.GetTextSize(string.format("%s lvl %s", tbl.Name, level))
+		local _, h = surface.GetTextSize(self:GetWeaponString())
 
 		surface.SetTextPos(screen.x + 10, screen.y + 10 + h)
-		surface.DrawText(string.format("Charge: %.2fs", time))
+		surface.DrawText(string.format(language.GetPhrase("mechassault.ui.weapon.charge"), time))
 	end
 end

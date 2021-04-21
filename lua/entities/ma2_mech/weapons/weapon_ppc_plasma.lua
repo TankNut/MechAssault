@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.PlasmaPPC = {
-	Name = "Plasma PPC",
+	Name = "mechassault.weapon.plasmappc",
 	Type = "Energy",
 	Function = "PrimePlasmaPPC",
 	Succeed = "FirePlasmaPPC",

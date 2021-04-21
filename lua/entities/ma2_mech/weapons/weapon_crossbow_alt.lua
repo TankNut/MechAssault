@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.AltCrossbow = {
-	Name = "Crossbow SRM",
+	Name = "mechassault.weapon.crossbow",
 	Type = "Missile",
 	Function = "FireAltCrossbow",
 	Cooldown = {0.8, 1, 1.2},

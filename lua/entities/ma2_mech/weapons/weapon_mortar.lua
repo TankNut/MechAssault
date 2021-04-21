@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Mortar = {
-	Name = "Mortar",
+	Name = "mechassault.weapon.mortar",
 	Type = "Missile",
 	Function = "FireMortar",
 	Cooldown = {1.8, 1.75, 1.58},
@@ -89,13 +89,13 @@ function ENT:DrawMortarHUD(tbl, level, attachments, screen)
 
 	local solutions = solve(attachment.Pos, target, vel, -physenv.GetGravity().z * gravity)
 
-	local _, h = surface.GetTextSize(string.format("%s lvl %s", tbl.Name, level))
+	local _, h = surface.GetTextSize(self:GetWeaponString())
 
 	surface.SetTextPos(screen.x + 10, screen.y + 10 + h)
 
 	if solutions == 2 then
-		surface.DrawText("Range: OK")
+		surface.DrawText(language.GetPhrase("mechassault.ui.weapon.range.ok"))
 	else
-		surface.DrawText("Range: ERR")
+		surface.DrawText(language.GetPhrase("mechassault.ui.weapon.range.err"))
 	end
 end

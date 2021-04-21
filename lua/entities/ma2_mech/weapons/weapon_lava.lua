@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Lava = {
-	Name = "Lava Gun",
+	Name = "mechassault.weapon.lava",
 	Type = "Energy",
 	Function = "FireLavaGun",
 	Cooldown = 3.6,

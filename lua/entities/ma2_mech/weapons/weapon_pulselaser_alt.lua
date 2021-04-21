@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.AltPulseLaser = {
-	Name = "Pulse Laser",
+	Name = "mechassault.weapon.pulselaser",
 	Type = "Energy",
 	Function = "FireAltPulseLaser",
 	Cooldown = {0.25, 0.2, 0.15},

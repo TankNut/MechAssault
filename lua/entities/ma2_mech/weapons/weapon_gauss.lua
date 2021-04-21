@@ -1,7 +1,7 @@
 AddCSLuaFile()
 
 ENT.WeaponTypes.Gauss = {
-	Name = "Gauss",
+	Name = "mechassault.weapon.gauss",
 	Type = "Ballistic",
 	Function = "FireGauss",
 	Cooldown = 2.5,
