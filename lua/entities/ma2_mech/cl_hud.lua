@@ -1,7 +1,7 @@
 function ENT:GetWeaponString()
 	local _, class, level = self:GetWeaponData()
 
-	return language.GetPhrase(class.Name) .. string.format(language.GetPhrase("mechassault.ui.weapon.level"), level)
+	return string.format(language.GetPhrase("mechassault.ui.weapon.level"), language.GetPhrase(class.Name), level)
 end
 
 function ENT:DrawHUD()
