@@ -33,7 +33,7 @@ function ENT:Initialize()
 	end
 
 	if self.Lifespan then
-		self:SetDietime(CurTime() + self.Lifespan)
+		self:SetDietime(self:GetCreationTime() + self.Lifespan)
 	end
 end
 
