@@ -129,7 +129,7 @@ function ENT:Move(mv)
 
 	self:SetAimAngle(mv:GetMoveAngles())
 
-	if mv:KeyDown(IN_ATTACK) then
+	if mv:KeyDown(IN_ATTACK) and self:CanAttack() then
 		self:Attack()
 	end
 

@@ -136,6 +136,12 @@ function ENT:Initialize()
 
 	for k, v in ipairs(self.WeaponLoadout) do
 		self["SetWeaponLevel" .. k](self, v.Level)
+
+		local tab = self.WeaponTypes[v.Type]
+
+		if tab.UseAmmo then
+			self["SetWeaponAmmo" .. k](self, tab.MaxAmmo)
+		end
 	end
 
 	self:SetForcedAngle(Angle(0, 0, 180))
@@ -182,10 +188,19 @@ function ENT:SetupDataTables()
 	self:NetworkVar("Int", 2, "MechHealth")
 	self:NetworkVar("Int", 3, "AttachmentIndex")
 
-	for k in ipairs(self.WeaponLoadout) do
-		local name = "WeaponLevel" .. k
+	local ints = {
+		"WeaponLevel",
+		"WeaponAmmo"
+	}
 
-		self:NetworkVar("Int", k + 3, name)
+	local i = 4
+
+	for _, v in pairs(ints) do
+		for k in ipairs(self.WeaponLoadout) do
+			self:NetworkVar("Int", i, v .. k)
+
+			i = i + 1
+		end
 	end
 end
 

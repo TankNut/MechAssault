@@ -125,6 +125,14 @@ function ENT:AbortWeaponTimer()
 	self:SetWeaponTimer(0)
 end
 
+function ENT:GetAmmo(index)
+	return self["GetWeaponAmmo" .. (index or self:GetCurrentWeapon())](self)
+end
+
+function ENT:SetAmmo(index, amount)
+	return self["SetWeaponAmmo" .. (index or self:GetCurrentWeapon())](self, amount)
+end
+
 function ENT:GetWeaponData()
 	local index = self:GetCurrentWeapon()
 	local weapon = self.WeaponLoadout[index]
@@ -148,6 +156,16 @@ function ENT:UpdateWeapon(mv)
 
 		self:SetWeaponTimer(0)
 	end
+end
+
+function ENT:CanAttack()
+	local _, class = self:GetWeaponData()
+
+	if class.UseAmmo and self:GetAmmo() <= 0 then
+		return false
+	end
+
+	return true
 end
 
 function ENT:Attack()
