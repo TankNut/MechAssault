@@ -42,6 +42,10 @@ function ENT:FireAutocannon(tbl, level, attachments)
 			ent:Spawn()
 			ent:Activate()
 		end
+
+		if not self:TakeAmmo() then
+			return
+		end
 	end
 
 	self:SetNextAttack(CurTime() + tbl.Cooldown[level])

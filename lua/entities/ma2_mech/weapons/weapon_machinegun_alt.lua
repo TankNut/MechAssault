@@ -58,5 +58,7 @@ function ENT:FireAltMachinegun(tbl, level, attachments)
 		ent:Activate()
 	end
 
+	self:TakeAmmo()
+
 	self:SetNextAttack(CurTime() + tbl.Cooldown)
 end

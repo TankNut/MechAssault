@@ -15,7 +15,8 @@ ENT.WeaponTypes.AltPulseLaser = {
 		"gm_MA2_muzzleflash_laser_lvl2",
 		"gm_MA2_muzzleflash_laser_lvl3"
 	},
-	MaxLevel = 3
+	MaxLevel = 3,
+	MaxAmmo = 20
 }
 
 PrecacheParticleSystem("gm_MA2_muzzleflash_laser_lvl1")
@@ -58,5 +59,6 @@ function ENT:FireAltPulseLaser(tbl, level, attachments)
 		ent:Activate()
 	end
 
+	self:TakeAmmo()
 	self:SetNextAttack(CurTime() + tbl.Cooldown[level])
 end

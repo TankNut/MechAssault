@@ -16,6 +16,9 @@ ENT.WeaponTypes.AltCrossbow = {
 
 function ENT:FireAltCrossbow(tbl, level, attachments)
 	if SERVER then
+		local weaponIndex = self:GetCurrentWeapon()
+		local aborted = false
+
 		local target = self:GetTargetLock() -- Cache early so we re-use the same target in the timer section
 
 		for i = 0, level - 1 do
@@ -30,6 +33,10 @@ function ENT:FireAltCrossbow(tbl, level, attachments)
 			self:SetAttachmentIndex(index)
 
 			timer.Simple(i * tbl.FireRate, function()
+				if aborted then
+					return
+				end
+
 				local attachment = self:GetAttachment(attachments[index])
 				local ent = ents.Create(tbl.Class[level])
 				local ang = (self:GetAimPos() - attachment.Pos):Angle()
@@ -46,6 +53,10 @@ function ENT:FireAltCrossbow(tbl, level, attachments)
 					ent:SetTracked(target)
 				else
 					ent:SetTargetPos(self:GetAimTrace().HitPos)
+				end
+
+				if not self:TakeAmmo(weaponIndex) then
+					aborted = true
 				end
 			end)
 		end

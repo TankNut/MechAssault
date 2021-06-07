@@ -72,6 +72,7 @@ function ENT:FireMortar(tbl, level, attachments)
 		end
 	end
 
+	self:TakeAmmo()
 	self:SetNextAttack(CurTime() + tbl.Cooldown[level])
 
 	if SERVER then

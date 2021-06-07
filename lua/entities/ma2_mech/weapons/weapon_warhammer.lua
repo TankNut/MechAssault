@@ -62,6 +62,10 @@ function ENT:FireWarhammer(tbl, level, attachments)
 
 			ent:SetDietime(CurTime() + time)
 		end
+
+		if not self:TakeAmmo() then
+			return
+		end
 	end
 end
 

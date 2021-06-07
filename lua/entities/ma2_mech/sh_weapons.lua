@@ -1,11 +1,11 @@
 AddCSLuaFile()
 
 function ENT:GetWeaponLevel(index)
-	return self["GetWeaponLevel" .. index](self)
+	return self["GetWeaponLevel" .. (index or self:GetCurrentWeapon())](self)
 end
 
 function ENT:SetWeaponLevel(index, level)
-	self["SetWeaponLevel" .. index](self, level)
+	self["SetWeaponLevel" .. (index or self:GetCurrentWeapon())](self, level)
 end
 
 function ENT:GetNextAttack()
@@ -14,6 +14,14 @@ end
 
 function ENT:SetNextAttack(time)
 	self["SetNextAttack" .. self:GetCurrentWeapon()](self, time)
+end
+
+function ENT:GetAmmo(index)
+	return self["GetWeaponAmmo" .. (index or self:GetCurrentWeapon())](self)
+end
+
+function ENT:SetAmmo(index, amount)
+	return self["SetWeaponAmmo" .. (index or self:GetCurrentWeapon())](self, amount)
 end
 
 local radius = 64
@@ -73,14 +81,17 @@ end
 function ENT:UpgradeWeapon(weaponType)
 	local upgraded = false
 
-	for k, v in ipairs(self.WeaponLoadout) do
-		local class = self.WeaponTypes[v.Type]
-		local level = self:GetWeaponLevel(k)
+	for k in ipairs(self.WeaponLoadout) do
+		local _, class, level = self:GetWeaponData(k)
 
 		if class.Type == weaponType and level < class.MaxLevel then
 			upgraded = true
 
 			self:SetWeaponLevel(k, level + 1)
+
+			if class.MaxAmmo then
+				self:SetAmmo(k, class.MaxAmmo)
+			end
 		end
 	end
 
@@ -89,6 +100,47 @@ function ENT:UpgradeWeapon(weaponType)
 	end
 
 	return upgraded
+end
+
+function ENT:DowngradeWeapon(index)
+	index = index or self:GetCurrentWeapon()
+
+	self:SetWeaponLevel(index, 1)
+	self:SetAmmo(index, -1)
+end
+
+function ENT:HasAmmo(index)
+	local ammo = self:GetAmmo(index)
+
+	if ammo == -1 then
+		return true
+	end
+
+	return ammo > 0
+end
+
+function ENT:TakeAmmo(index)
+	local ammo = self:GetAmmo(index)
+
+	if ammo == -1 then
+		return true
+	end
+
+	self:SetAmmo(index, self:GetAmmo(index) - 1)
+
+	return self:CheckAmmo(index)
+end
+
+function ENT:CheckAmmo(index)
+	if self:HasAmmo(index) then
+		return true
+	end
+
+	if IsFirstTimePredicted() then
+		self:DowngradeWeapon(index)
+	end
+
+	return false
 end
 
 function ENT:SwitchWeapon(wheel)
@@ -125,16 +177,9 @@ function ENT:AbortWeaponTimer()
 	self:SetWeaponTimer(0)
 end
 
-function ENT:GetAmmo(index)
-	return self["GetWeaponAmmo" .. (index or self:GetCurrentWeapon())](self)
-end
+function ENT:GetWeaponData(index)
+	index = index or self:GetCurrentWeapon()
 
-function ENT:SetAmmo(index, amount)
-	return self["SetWeaponAmmo" .. (index or self:GetCurrentWeapon())](self, amount)
-end
-
-function ENT:GetWeaponData()
-	local index = self:GetCurrentWeapon()
 	local weapon = self.WeaponLoadout[index]
 	local class = self.WeaponTypes[weapon.Type]
 	local level = self:GetWeaponLevel(index)
@@ -156,16 +201,6 @@ function ENT:UpdateWeapon(mv)
 
 		self:SetWeaponTimer(0)
 	end
-end
-
-function ENT:CanAttack()
-	local _, class = self:GetWeaponData()
-
-	if class.UseAmmo and self:GetAmmo() <= 0 then
-		return false
-	end
-
-	return true
 end
 
 function ENT:Attack()
