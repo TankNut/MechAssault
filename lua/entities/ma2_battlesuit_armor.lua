@@ -32,9 +32,9 @@ ENT.Jumpjets 				= true
 ENT.MainJets 				= {1, 2}
 
 function ENT:GetAnimationSpeeds()
-	return 40, 100
+	return 90, 175
 end
 
 function ENT:GetSpeeds()
-	return 100, 235
+	return 225, 425
 end

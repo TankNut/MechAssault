@@ -34,5 +34,5 @@ function ENT:GetAnimationSpeeds()
 end
 
 function ENT:GetSpeeds()
-	return 200, 445
+	return 300, 550
 end
