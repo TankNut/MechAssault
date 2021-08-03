@@ -195,9 +195,13 @@ function ENT:HandleJumpJets(mv)
 		if not self:GetUsingJets() then
 			self:SetUsingJets(true)
 
-			ParticleEffectAttach("gm_MA2_JumpJets_Main", PATTACH_POINT_FOLLOW, self, self.JumpJets[1])
-			ParticleEffectAttach("gm_MA2_JumpJets_Small", PATTACH_POINT_FOLLOW, self, self.JumpJets[2])
-			ParticleEffectAttach("gm_MA2_JumpJets_Small", PATTACH_POINT_FOLLOW, self, self.JumpJets[3])
+			for _, v in pairs(self.MainJets) do
+				ParticleEffectAttach("gm_MA2_JumpJets_Main", PATTACH_POINT_FOLLOW, self, v)
+			end
+
+			for _, v in pairs(self.AuxJets) do
+				ParticleEffectAttach("gm_MA2_JumpJets_Small", PATTACH_POINT_FOLLOW, self, v)
+			end
 
 			if SERVER then
 				self:EmitSound("MA2_Mech.JJStart")
@@ -241,7 +245,7 @@ function ENT:HandleMove(mv)
 	local first = true
 	local flying = false
 
-	if self.JumpJets then
+	if self.Jumpjets then
 		flying, start = self:HandleJumpJets(mv)
 	else
 		start = mv:GetOrigin()

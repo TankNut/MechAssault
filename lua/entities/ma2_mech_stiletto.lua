@@ -29,7 +29,9 @@ ENT.WeaponLoadout = {
 	{Type = "Crossbow", Level = 1, Attachments = {3, 4, 3}}
 }
 
-ENT.JumpJets 				= {5, 6, 7}
+ENT.Jumpjets 				= true
+ENT.MainJets 				= {5}
+ENT.AuxJets 				= {6, 7}
 
 function ENT:GetAnimationSpeeds()
 	return 500, 800

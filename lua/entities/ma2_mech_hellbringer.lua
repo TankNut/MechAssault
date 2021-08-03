@@ -29,7 +29,9 @@ ENT.WeaponLoadout = {
 	{Type = "Javelin", Level = 1, Attachments = {5}}
 }
 
-ENT.JumpJets 				= {6, 7, 8}
+ENT.Jumpjets 				= true
+ENT.MainJets 				= {6}
+ENT.AuxJets 				= {7, 8}
 
 function ENT:GetAnimationSpeeds()
 	return 240, 500

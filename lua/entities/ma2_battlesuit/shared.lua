@@ -90,7 +90,7 @@ function ENT:HandleJumpJets(mv)
 		if not self:GetUsingJets() then
 			self:SetUsingJets(true)
 
-			for _, v in pairs(self.JumpJets) do
+			for _, v in pairs(self.MainJets) do
 				ParticleEffectAttach("gm_MA2_BA_JumpJets", PATTACH_POINT_FOLLOW, self, v)
 			end
 

@@ -28,7 +28,8 @@ ENT.WeaponLoadout = {
 	{Type = "Mortar", Level = 1, Attachments = {3}}
 }
 
-ENT.JumpJets 				= {1, 2}
+ENT.Jumpjets 				= true
+ENT.MainJets 				= {1, 2}
 
 function ENT:GetAnimationSpeeds()
 	return 40, 100

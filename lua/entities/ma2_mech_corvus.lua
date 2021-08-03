@@ -28,7 +28,9 @@ ENT.WeaponLoadout = {
 	{Type = "Autocannon", Level = 1, Attachments = {1}}
 }
 
-ENT.JumpJets 				= {4, 5, 6}
+ENT.Jumpjets 				= true
+ENT.MainJets 				= {4}
+ENT.AuxJets 				= {5, 6}
 
 function ENT:GetAnimationSpeeds()
 	return 350, 580
