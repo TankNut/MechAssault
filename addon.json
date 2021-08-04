@@ -1,0 +1,13 @@
+{
+	"title": "Mechassault 2: Mech Pack [PUBLIC BETA]",
+	"type":	"vehicle",
+	"tags":	["roleplay", "scenic"],
+	"ignore":
+	[
+		"*.bat",
+		"*.md",
+		".git*",
+		"LICENSE",
+		"source/*"
+	]
+}
