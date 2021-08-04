@@ -161,16 +161,15 @@ function ENT:SetWeapon(index)
 		return
 	end
 
-	local time = self:GetWeaponTimer()
-
-	if time != 0 then
-		self:AbortWeaponTimer()
-	end
-
+	self:AbortWeaponTimer()
 	self:SetCurrentWeapon(index)
 end
 
 function ENT:AbortWeaponTimer()
+	if self:GetWeaponTimer() == 0 then
+		return
+	end
+
 	local weapon, class, level = self:GetWeaponData()
 
 	self:Invoke(class.Abort, class, level, weapon.Attachments)
