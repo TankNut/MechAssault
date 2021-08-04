@@ -105,7 +105,7 @@ function ENT:Trace(start, endpos)
 				return false
 			end
 
-			return not scripted_ents.IsTypeOf(ent:GetClass(), "ma2_salvage")
+			return not ent:IsNPC()
 		end
 	})
 
