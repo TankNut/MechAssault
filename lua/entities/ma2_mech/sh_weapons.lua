@@ -188,10 +188,9 @@ end
 
 function ENT:UpdateWeapon(mv)
 	local time = self:GetWeaponTimer()
+	local weapon, class, level = self:GetWeaponData()
 
-	if time != 0 and not mv:KeyDown(IN_ATTACK) then
-		local weapon, class, level = self:GetWeaponData()
-
+	if time != 0 and (not mv:KeyDown(IN_ATTACK) or (class.MaxTimer and CurTime() - time >= class.MaxTimer)) then
 		if time <= CurTime() then
 			self:Invoke(class.Succeed, class, level, weapon.Attachments)
 		else
