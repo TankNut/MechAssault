@@ -95,6 +95,14 @@ if CLIENT then
 		end
 	end)
 
+	net.Receive("nMAStopObs", function(len)
+		local ply = net.ReadEntity()
+
+		if IsValid(ply) then
+			ply:SetObserverMode(OBS_MODE_NONE)
+		end
+	end)
+
 	hook.Add("CreateMove", "mechassault", function(cmd)
 		local ent = LocalPlayer():GetNWEntity("mechassault")
 
@@ -148,6 +156,7 @@ if CLIENT then
 	end)
 else
 	util.AddNetworkString("nMAStopEffect")
+	util.AddNetworkString("nMAStopObs")
 
 	hook.Add("PlayerDeath", "mechassault", function(ply)
 		local ent = ply:GetNWEntity("mechassault")

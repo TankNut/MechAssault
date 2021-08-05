@@ -3,15 +3,15 @@ AddCSLuaFile()
 function ENT:EjectPlayer(safe)
 	local ply = self:GetPlayer()
 
-	if IsValid(ply) then
+	if SERVER and IsValid(ply) then
 		ply:SetNWEntity("mechassault", NULL)
 
 		if safe then -- Set them down gently
-			ply:SetObserverMode(OBS_MODE_NONE)
+			net.Start("nMAStopObs")
+				net.WriteEntity(ply)
+			net.Broadcast()
 
-			if SERVER then
-				ply:ExitVehicle()
-			end
+			ply:ExitVehicle()
 
 			local ang = Angle(0, self:GetAngles().y, 0)
 
