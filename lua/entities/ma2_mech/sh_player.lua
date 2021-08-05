@@ -14,8 +14,23 @@ function ENT:EjectPlayer(safe)
 			ply:ExitVehicle()
 
 			local ang = Angle(0, self:GetAngles().y, 0)
+			local mins, maxs = ply:GetHull()
 
-			ply:SetPos(self:GetPos())
+			local tr = util.TraceHull({
+				start = self:WorldSpaceCenter(),
+				endpos = self:LocalToWorld(self.ExitOffset),
+				mins = mins,
+				maxs = maxs,
+				filter = function(ent)
+					if ent == self or ent:GetOwner() == self or ent == ply then
+						return false
+					end
+
+					return true
+				end
+			})
+
+			ply:SetPos(tr.HitPos)
 			ply:SetAngles(ang)
 			ply:SetEyeAngles(ang)
 		end
