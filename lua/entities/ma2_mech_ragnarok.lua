@@ -3,7 +3,7 @@ AddCSLuaFile()
 
 ENT.Base 					= "ma2_mech"
 
-ENT.PrintName 				= "#mechassault.mech.prometheus"
+ENT.PrintName 				= "#mechassault.mech.ragnarok"
 
 if CLIENT then
 	ENT.Category			= language.GetPhrase("mechassault.categories.assault")
