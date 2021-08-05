@@ -157,6 +157,7 @@ else
 		end
 
 		ent:StopDriving()
+		ent:EjectPlayer()
 	end)
 
 	hook.Add("CanPlayerEnterVehicle", "mechassault", function(ply, vehicle, role)
