@@ -158,6 +158,12 @@ else
 	util.AddNetworkString("nMAStopEffect")
 	util.AddNetworkString("nMAStopObs")
 
+	hook.Add("EntityTakeDamage", "mechassault", function(ply, dmg)
+		if IsValid(ply) and ply:IsPlayer() and IsValid(ply:GetNWEntity("mechassault")) then
+			return true
+		end
+	end)
+
 	hook.Add("PlayerDeath", "mechassault", function(ply)
 		local ent = ply:GetNWEntity("mechassault")
 
